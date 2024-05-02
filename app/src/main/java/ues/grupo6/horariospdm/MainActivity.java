@@ -1,6 +1,8 @@
 package ues.grupo6.horariospdm;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
@@ -10,8 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 public class MainActivity extends AppCompatActivity {
-    private DrawerLayout drawerLayout;
-    private ActionBarDrawerToggle actionBarDrawerToggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +24,22 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar_element);
         setSupportActionBar(toolbar);
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.main);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout, R.string.open_menu,R.string.closed_menu);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.main);
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_menu, R.string.closed_menu);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+    }
+
+    public void navigateTo (View view) {
+        Intent newView;
+        System.out.println("INTENTO------------------------------------------------");
+        if (view.getId() == R.id.btn_schedule) {
+            newView = new Intent(this, ScheduleActivity.class);
+        } else if ( view.getId() == R.id.btn_events ) {
+            newView = new Intent(this, EventsActivity.class);
+        } else {
+            newView = new Intent(this, RequestActivity.class);
+        }
+        startActivity(newView);
     }
 }

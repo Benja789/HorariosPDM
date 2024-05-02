@@ -7,4 +7,9 @@
     <string name="menu_item_three">Signout</string>
     <string name="open_menu">Menu</string>
     <string name="closed_menu">Close</string>
+    <string name="text_title_events"><b>Events</b></string>
+    <string name="text_helper_events">"There are no events "</string>
+    <string name="card_item_one">Schedule</string>
+    <string name="card_item_two">Events</string>
+    <string name="card_item_three">Requests</string>
 </resources>

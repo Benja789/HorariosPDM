@@ -6,4 +6,9 @@
     <string name="menu_item_three">Cerrar sesion</string>
     <string name="open_menu">Menu</string>
     <string name="closed_menu">Cerrar</string>
+    <string name="text_title_events"><b>Eventos</b></string>
+    <string name="text_helper_events">No hay eventos</string>
+    <string name="card_item_one">Horarios</string>
+    <string name="card_item_two">Eventos</string>
+    <string name="card_item_three">Solicitudes</string>
 </resources>
