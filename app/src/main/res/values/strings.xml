@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">HorariosPDM</string>
+    <string name="app_name">Horarios</string>
+    <string name="bar_title">Consulta Horarios</string>
+    <string name="menu_item_one">Perfil</string>
+    <string name="menu_item_two">Acerca de nosotros</string>
+    <string name="menu_item_three">Cerrar sesion</string>
+    <string name="open_menu">Menu</string>
+    <string name="closed_menu">Cerrar</string>
 </resources>
