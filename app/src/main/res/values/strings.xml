@@ -1,4 +1,71 @@
 <resources>
+    <string name="app_name">HorariosPDM</string>
+    <!-- Strings de Menu -->
+    <string name="title_activity_grupo_menu">GrupoMenuActivity</string>
+    <string name="title_activity_tipo_grupo_menu">TipoGrupoMenuActivity</string>
+    <string name="title_activity_escuela_menu">EscuelaMenuActivity</string>
+    <string name="title_activity_asignatura_menu">AsignaturaMenuActivity</string>
+
+    <!-- FUNCIONES -->
+        <string name="grupo_menu">Función a Ejecutar Grupo</string>
+    <string name="tipo_grupo_menu">Función a Ejecutar Tipo Grupo</string>
+    <string name="asignatura_menu">Función a Ejecutar Asignatura</string>
+    <string name="escuela_menu">Función a Ejecutar Escuela</string>
+    <string name="insertar_registro">Insertar Registro</string>
+    <string name="eliminar_registro">Eliminar Registro</string>
+    <string name="consultar_registro">Consultar Registro</string>
+    <string name="actualizar_registro">Actualizar Registro</string>
+
+    <!-- GRUPO -->
+        <!-- CRUD -->
+    <string name="title_activity_grupo_insertar">GrupoInsertarActivity</string>
+    <string name="title_activity_grupo_eliminar">GrupoEliminarActivity</string>
+    <string name="title_activity_grupo_actualizar">GrupoActualizarActivity</string>
+    <string name="title_activity_grupo_consultar">GrupoConsultarActivity</string>
+        <!-- CAMPOS -->
+    <string name="id_grupo">ID GRUPO</string>
+    <string name="id_tipo_grupo_fk">ID Tipo Grupo</string>
+    <string name="id_asignatura_fk">ID Asignatura</string>
+    <string name="id_docente">ID Docente</string>
+    <string name="num_grupo">Numero de grupo</string>
+    <string name="estado_grupo">Estado Grupo</string>
+
+    <!-- TIPO_GRUPO -->
+        <!-- CRUD -->
+    <string name="title_activity_tipo_grupo_insertar">TipoGrupoInsertarActivity</string>
+    <string name="title_activity_tipo_grupo_eliminar">TipoGrupoEliminarActivity</string>
+    <string name="title_activity_tipo_grupo_actualizar">TipoGrupoActualizarActivity</string>
+    <string name="title_activity_tipo_grupo_consultar">TipoGrupoConsultarActivity</string>
+        <!-- CAMPOS -->
+    <string name="id_tipo_grupo">ID Tipo Grupo</string>
+    <string name="nombre_tipo_grupo">Nombre Tipo de Grupo</string>
+    <string name="Estado_tipo_grupo">Estado Tipo de Grupo</string>
+
+    <!-- ASIGNATURA -->
+        <!-- CRUD -->
+    <string name="title_activity_asignatura_insertar">AsignaturaInsertarActivity</string>
+    <string name="title_activity_asignatura_eliminar">AsignaturaEliminarActivity</string>
+    <string name="title_activity_asignatura_actualizar">AsignaturaActualizarActivity</string>
+    <string name="title_activity_asignatura_consultar">AsignaturaConsultarActivity</string>
+        <!-- CAMPOS -->
+    <string name="id_asignatura">ID Asignatura</string>
+    <string name="id_escuela_fk">ID Escuela</string>
+    <string name="nombre_asignatura">Nombre de Asignatura</string>
+    <string name="codigo_asignatura">Codigo de Asignatura</string>
+    <string name="estado_asignatura">Estado de Asignatura</string>
+
+    <!-- ESCUELA -->
+        <!-- CRUD -->
+    <string name="title_activity_escuela_insertar">EscuelaInsertarActivity</string>
+    <string name="title_activity_escuela_eliminar">EscuelaEliminarActivity</string>
+    <string name="title_activity_escuela_actualizar">EscuelaActualizarActivity</string>
+    <string name="title_activity_escuela_consultar">EscuelaConsultarActivity</string>
+        <!-- CAMPOS -->
+    <string name="id_escuela">ID Escuela</string>
+    <string name="nombre_escuela">Nombre de Escuela</string>
+    <string name="prioridad_escuela">Prioridad de Escuela</string>
+    <string name="estado_escuela">Estado de Escuela</string>
+
     <string name="app_name">Horarios</string>
     <string name="bar_title">Consulta Horarios</string>
     <string name="menu_item_one">Perfil</string>
