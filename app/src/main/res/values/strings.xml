@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">HorariosPDM</string>
     <!-- Strings de Menu -->
     <string name="title_activity_grupo_menu">GrupoMenuActivity</string>
     <string name="title_activity_tipo_grupo_menu">TipoGrupoMenuActivity</string>

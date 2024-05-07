@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initToolBar () {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar_element);
-        setSupportActionBar(toolbar);
-
-        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.main);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_menu, R.string.closed_menu);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar_element);
+//        setSupportActionBar(toolbar);
+//
+//        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.main);
+//        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_menu, R.string.closed_menu);
+//        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+//        actionBarDrawerToggle.syncState();
     }
 
     public void navigateTo (View view) {

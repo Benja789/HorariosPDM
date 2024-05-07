@@ -111,24 +111,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/text_title_events" />
+<!--    <androidx.drawerlayout.widget.DrawerLayout-->
+<!--        android:id="@+id/main"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        tools:openDrawer="start">-->
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:openDrawer="start">
+<!--        <include-->
+<!--            layout="@layout/app_bar_main"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content" />-->
 
-        <include
-            layout="@layout/app_bar_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/navigation_bar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:menu="@menu/activity_main_drawer" />
-    </androidx.drawerlayout.widget.DrawerLayout>
+<!--        <com.google.android.material.navigation.NavigationView-->
+<!--            android:id="@+id/navigation_bar"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="start"-->
+<!--            app:layout_behavior="@string/appbar_scrolling_view_behavior"-->
+<!--            app:menu="@menu/activity_main_drawer" />-->
+<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>
