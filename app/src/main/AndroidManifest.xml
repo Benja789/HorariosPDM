@@ -9,84 +9,107 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:screenOrientation="landscape"
         android:supportsRtl="true"
         android:theme="@style/Theme.HorariosPDM"
         tools:targetApi="31">
         <activity
             android:name=".escuela.EscuelaConsultarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".escuela.EscuelaActualizarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".escuela.EscuelaEliminarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".escuela.EscuelaInsertarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
-        <activity
-            android:name=".escuela.EscuelaMenuActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".escuela.EscuelaMenuActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".asignatura.AsignaturaActualizarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".asignatura.AsignaturaEliminarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".asignatura.AsignaturaConsultarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".asignatura.AsignaturaInsertarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
-        <activity
-            android:name=".asignatura.AsignaturaMenuActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".asignatura.AsignaturaMenuActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".tipo_grupo.TipoGrupoActualizarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".tipo_grupo.TipoGrupoConsultarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".tipo_grupo.TipoGrupoEliminarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".tipo_grupo.TipoGrupoInsertarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
-        <activity
-            android:name=".tipo_grupo.TipoGrupoMenuActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".tipo_grupo.TipoGrupoMenuActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".grupo.GrupoActualizarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".grupo.GrupoConsultarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".grupo.GrupoEliminarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".grupo.GrupoInsertarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
-        <activity
-            android:name=".grupo.GrupoMenuActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".grupo.GrupoMenuActivity"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".RequestActivity"
             android:exported="false" />
         <activity
             android:name=".EventsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ScheduleActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
-        <activity
-            android:name=".schedule"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".schedule"-->
+<!--            android:screenOrientation="portrait"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
