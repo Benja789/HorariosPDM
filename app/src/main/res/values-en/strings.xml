@@ -58,4 +58,37 @@
     <string name="card_item_one">Schedule</string>
     <string name="card_item_two">Events</string>
     <string name="card_item_three">Requests</string>
+
+    <!-- TIPO EVENTO -->
+    <!-- CRUD -->
+    <string name="title_activity_tipo_evento_insertar">TypeEventInsertActivity</string>
+    <string name="title_activity_tipo_evento_eliminar">TypeEventDeleteActivity</string>
+    <string name="title_activity_tipo_evento_actualizar">TypeEventUpdateActivity</string>
+    <string name="title_activity_tipo_evento_consultar">TypeEventConsultActivity</string>
+
+    <!-- CAMPOS -->
+    <string name="id_tipo_evento">Type of event ID</string>
+    <string name="nombre_tipo_evento">Name of the type of event</string>
+    <string name="estado_tipo_evento">Event type status</string>
+
+    <!-- EVENTO -->
+    <!-- CRUD -->
+    <string name="title_activity_evento_insertar">EventInsertActivity</string>
+    <string name="title_activity_evento_eliminar">EventDeleteActivity</string>
+    <string name="title_activity_evento_actualizar">EventUpdateActivity</string>
+    <string name="title_activity_evento_consultar">EventConsultActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_evento">Event ID</string>
+    <string name="nombre_evento">Event name</string>
+    <string name="estado_evento">Event status</string>
+    <string name="tipo_evento">type of event</string>
+
+
+    <!-- BOTONES FORMULARIOS -->
+    <string name="btn_insertar">Insert</string>
+    <string name="btn_consultar">Consult</string>
+    <string name="btn_limpiar">Clean</string>
+    <string name="btn_eliminar">Delete</string>
+    <string name="btn_actualizar">Update</string>
+
 </resources>

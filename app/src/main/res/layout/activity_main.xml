@@ -23,8 +23,35 @@
             android:layout_weight="3"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btn_schedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_margin="7dp"
+                    android:background="@drawable/box_card_home"
+                    android:backgroundTint="@color/box_home"
+                    android:contentDescription="@string/card_item_one"
+                    android:onClick="navigateTo"
+                    android:padding="24dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/schedule_calendar" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/card_item_one" />
+            </LinearLayout>
+
+
             <ImageButton
-                android:id="@+id/btn_schedule"
+                android:id="@+id/btn_TipoEvento"
                 android:layout_width="wrap_content"
                 android:layout_height="130dp"
                 android:layout_margin="7dp"
@@ -34,20 +61,47 @@
                 android:contentDescription="@string/card_item_one"
                 android:padding="24dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/schedule_calendar" />
+                android:src="@drawable/request" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/card_item_one" />
+                android:text="Tipo de eventos" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <ImageButton
+                    android:id="@+id/btn_events"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:layout_margin="7dp"
+                    android:background="@drawable/box_card_home"
+                    android:backgroundTint="@color/box_home"
+                    android:contentDescription="@string/card_item_two"
+                    android:onClick="navigateTo"
+                    android:padding="24dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/events" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/card_item_two" />
+            </LinearLayout>
+
             <ImageButton
-                android:id="@+id/btn_events"
+                android:id="@+id/btn_Eventos"
                 android:layout_width="wrap_content"
                 android:layout_height="130dp"
                 android:onClick="navigateTo"
@@ -57,14 +111,13 @@
                 android:contentDescription="@string/card_item_two"
                 android:padding="24dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/events"  />
+                android:src="@drawable/request"  />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/card_item_two" />
+                android:text="Registro eventos" />
         </LinearLayout>
-
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -89,7 +142,13 @@
                 android:text="@string/card_item_three" />
         </LinearLayout>
 
+
+
+
     </LinearLayout>
+
+
+
 
     <TextView
         android:id="@+id/text_title_events"

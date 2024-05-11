@@ -4,12 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.widget.Toolbar;
-
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
+
+import ues.grupo6.horariospdm.menus.EventoMenuActivity;
+import ues.grupo6.horariospdm.menus.TipoEventoMenuActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -37,8 +36,12 @@ public class MainActivity extends AppCompatActivity {
             newView = new Intent(this, ScheduleActivity.class);
         } else if ( view.getId() == R.id.btn_events ) {
             newView = new Intent(this, EventsActivity.class);
-        } else {
+        } else if ( view.getId() == R.id.btn_request ){
             newView = new Intent(this, RequestActivity.class);
+        } else if ( view.getId() == R.id.btn_TipoEvento ){
+            newView = new Intent(this, TipoEventoMenuActivity.class);
+        }else{
+            newView = new Intent(this, EventoMenuActivity.class);
         }
         startActivity(newView);
     }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dip"
+    android:stretchColumns="1" >
+
+    <TableRow>
+        <TextView android:text="@string/nombre_evento" />
+        <EditText
+            android:id="@+id/editNombreEvento"
+            android:inputType="text"
+            android:maxLength="25" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="Seleccione:" />
+        <Spinner
+            android:id="@+id/spinnerTipoEvento"
+
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/tipo_evento" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:onClick="insertarEvento"
+            android:text="@string/btn_insertar" />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/btn_limpiar" />
+    </TableRow>
+</TableLayout>

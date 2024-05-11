@@ -34,7 +34,7 @@ public class TipoGrupoMenuActivity extends ListActivity {
         l.getChildAt(position).setBackgroundColor((int) Color.luminance(1));
 
         try{
-            Class<?> clase=Class.forName("ues.grupo06.horariospdm."+entidad+"."+nombreValue);
+            Class<?> clase=Class.forName("ues.grupo6.horariospdm.menus."+entidad+"."+nombreValue);
             Intent inte = new Intent(this,clase);
             this.startActivity(inte);
         }catch(ClassNotFoundException e){
