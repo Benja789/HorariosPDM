@@ -51,6 +51,7 @@
     <string name="menu_item_one">Profile</string>
     <string name="menu_item_two">About us</string>
     <string name="menu_item_three">Signout</string>
+    <string name="menu_item_fourth">Subjects</string>
     <string name="open_menu">Menu</string>
     <string name="closed_menu">Close</string>
     <string name="text_title_events"><b>Events</b></string>
@@ -90,5 +91,6 @@
     <string name="btn_limpiar">Clean</string>
     <string name="btn_eliminar">Delete</string>
     <string name="btn_actualizar">Update</string>
+    <string name="item_five">Event type</string>
 
 </resources>

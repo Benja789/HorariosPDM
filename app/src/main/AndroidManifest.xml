@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HorariosPDM"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
         <activity
             android:name=".menus.EventoMenuActivity"
@@ -24,9 +25,9 @@
         <activity
             android:name=".evento.EventoActualizarActivity"
             android:exported="false" />
-        <activity
-            android:name=".menus.TipoEventoMenuActivity$EventoMenuActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".menus.TipoEventoMenuActivity$EventoMenuActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".evento.EventoInsertarActivity"
             android:exported="false" />
