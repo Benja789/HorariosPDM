@@ -6,6 +6,10 @@
             android:icon="@drawable/account"
             android:title="@string/menu_item_one"/>
         <item
+            android:id="@+id/item_fourth"
+            android:icon="@drawable/book"
+            android:title="@string/menu_item_fourth"/>
+        <item
             android:id="@+id/item_two"
             android:icon="@drawable/information_outline"
             android:title="@string/menu_item_two"/>
