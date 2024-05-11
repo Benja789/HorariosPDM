@@ -108,5 +108,6 @@
     <string name="btn_limpiar">Limpiar</string>
     <string name="btn_eliminar">Eliminar</string>
     <string name="btn_actualizar">Actualizar</string>
-    <string name="item_five">Tipo eventos</string>
+    <string name="menu_item_five">Tipo eventos</string>
+    <string name="menu_item_six">Docentes</string>
 </resources>

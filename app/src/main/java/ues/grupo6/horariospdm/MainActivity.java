@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 
+import ues.grupo6.horariospdm.menus.DocenteMenu;
 import ues.grupo6.horariospdm.menus.EventoMenuActivity;
 import ues.grupo6.horariospdm.menus.TipoEventoMenuActivity;
 
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             System.out.println("item 3");
         } else if ( item.getItemId() ==R.id.item_fourth ){
             System.out.println("item 4");
-        } else callNewActivity(TipoEventoMenuActivity.class);
+        } else if (item.getItemId() == R.id.item_six)  callNewActivity(DocenteMenu.class);
+        else if (item.getItemId() == R.id.item_five) callNewActivity(TipoEventoMenuActivity.class);
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

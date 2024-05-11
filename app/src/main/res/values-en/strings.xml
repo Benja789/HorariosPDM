@@ -91,6 +91,7 @@
     <string name="btn_limpiar">Clean</string>
     <string name="btn_eliminar">Delete</string>
     <string name="btn_actualizar">Update</string>
-    <string name="item_five">Event type</string>
+    <string name="menu_item_five">Event type</string>
+    <string name="menu_item_six">Teachers</string>
 
 </resources>
