@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     private void initNavigationView () {
         NavigationView navigationView = findViewById(R.id.navigation_bar);
         navigationView.setNavigationItemSelectedListener(this);
-
     }
+
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         System.out.println("Accion del boton del menu");
@@ -51,33 +51,22 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             System.out.println("item 3");
         } else if ( item.getItemId() ==R.id.item_fourth ){
             System.out.println("item 4");
-        } else callTypeEventActivity();
+        } else callNewActivity(TipoEventoMenuActivity.class);
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
 
-
     public void navigateTo (View view) {
-        Intent newView;
-        if (view.getId() == R.id.btn_schedule) {
-            newView = new Intent(this, ScheduleActivity.class);
-        } else if ( view.getId() == R.id.btn_events ) {
-            newView = new Intent(this, EventsActivity.class);
-        } else if ( view.getId() == R.id.btn_request ){
-            newView = new Intent(this, RequestActivity.class);
-//        } else if ( view.getId() == R.id.btn_TipoEvento ){
-//            newView = new Intent(this, TipoEventoMenuActivity.class);
-        }else{
-            newView = new Intent(this, EventoMenuActivity.class);
-        }
-        startActivity(newView);
-    }
-    private void callTypeEventActivity () {
-        Intent newView = new Intent(this, TipoEventoMenuActivity.class);
-        startActivity(newView);
-
+        if (view.getId() == R.id.btn_schedule) callNewActivity(ScheduleActivity.class);
+        else if ( view.getId() == R.id.btn_events ) callNewActivity( EventsActivity.class);
+        else if ( view.getId() == R.id.btn_request ) callNewActivity(RequestActivity.class);
+        else callNewActivity(EventoMenuActivity.class);
     }
 
+    private void callNewActivity (Class<?> activityClass) {
+        Intent newView = new Intent(this, activityClass);
+        startActivity(newView);
+    }
 }
