@@ -53,38 +53,35 @@ public class ControlBD {
 
             //Tablas Benjamin
 
-                db.execSQL("create table docente (\n" +
-                        "id_docente           integer PRIMARY KEY AUTOINCREMENT,\n" +
-                        "docente_primer_nombre varchar(25)          not null,\n" +
-                        "docente_segundo_nombre varchar(25),\n" +
-                        "docente_primer_apellido varchar(25)          not null,\n" +
-                        "docente_segundo_apellido varchar(25),\n" +
-                        "docente_apellido_casada varchar(25),\n" +
-                        "docente_titulo       varchar(25)          not null,\n" +
-                        "estado_docente       numeric(1)           not null,\n" +
-                        "primary key (id_docente)\n" +
+                db.execSQL("create table docente  (\n" +
+                        "   id_docente           integer                         not null,\n" +
+                        "   docente_primer_nombre varchar2(25)                    not null,\n" +
+                        "   docente_segundo_nombre varchar2(25),\n" +
+                        "   docente_primer_apellido varchar2(25)                    not null,\n" +
+                        "   docente_segundo_apellido varchar2(25),\n" +
+                        "   docente_apellido_casada varchar2(25),\n" +
+                        "   docente_titulo       varchar2(25)                    not null,\n" +
+                        "   estado_docente       number(1)                       not null,\n" +
+                        "   constraint pk_docente primary key (id_docente)\n" +
                         ");");
-                db.execSQL("create unique index docente_pk on docente (\n" +
-                        "id_docente asc\n" +
-                        ");\n" +
-                        "\n");
-                db.execSQL("create table tipo_funcion (\n" +
-                        "id_funcion           integer              not null,\n" +
-                        "nombre_tipo_funcion  varchar(25)          not null,\n" +
-                        "estado_tipo_funcion  numeric(1)           not null,\n" +
-                        "primary key (id_funcion)\n);");
-                db.execSQL("create table docente_funcion (\n" +
-                        "id_docente_funcion   integer              not null,\n" +
-                        "id_docente           integer              not null,\n" +
-                        "id_funcion           integer              not null,\n" +
-                        "id_ciclo_academico   integer              not null,\n" +
-                        "primary key (id_docente_funcion),\n" +
-                        "foreign key (id_docente)\n" +
-                        "      references docente (id_docente),\n" +
-                        "foreign key (id_funcion)\n" +
-                        "      references tipo_funcion (id_funcion),\n" +
-                        "foreign key (id_ciclo_academico)\n" +
-                        "      references ciclo_academico (id_ciclo_academico)\n" +
+                db.execSQL("create table tipo_funcion  (\n" +
+                        "   id_funcion           integer                         not null,\n" +
+                        "   nombre_tipo_funcion  varchar2(25)                    not null,\n" +
+                        "   estado_tipo_funcion  number(1)                       not null,\n" +
+                        "   constraint pk_tipo_funcion primary key (id_funcion)\n" +
+                        ");");
+                db.execSQL("create table docente_funcion  (\n" +
+                        "   id_docente_funcion   integer                         not null,\n" +
+                        "   id_docente           integer                         not null,\n" +
+                        "   id_funcion           integer                         not null,\n" +
+                        "   id_ciclo_academico   integer                         not null,\n" +
+                        "   constraint pk_docente_funcion primary key (id_docente_funcion),\n" +
+                        "   constraint fk_docente__realiza_docente foreign key (id_docente)\n" +
+                        "         references docente (id_docente),\n" +
+                        "   constraint fk_docente__es_realiz_tipo_fun foreign key (id_funcion)\n" +
+                        "         references tipo_funcion (id_funcion),\n" +
+                        "   constraint fk_docente__relations_ciclo_ac foreign key (id_ciclo_academico)\n" +
+                        "         references ciclo_academico (id_ciclo_academico)\n" +
                         ");");
 
             //Tablas Cesar
