@@ -110,4 +110,12 @@
     <string name="btn_actualizar">Actualizar</string>
     <string name="menu_item_five">Tipo eventos</string>
     <string name="menu_item_six">Docentes</string>
+    <string name="error_intent_load">No se pudo cargar el recurso</string>
+    <string name="title_activity_insert_docente">Agregar nuevo docente</string>
+    <string name="text_first_name_teacher">Primer nombre</string>
+    <string name="text_second_name_teacher">Segundo nombre</string>
+    <string name="text_first_lastname_teacher">Primer apellido</string>
+    <string name="text_second_lastname_teacher">Segundo apellido</string>
+    <string name="text_profesion_teacher">Titulo</string>
+    <string name="text_state_teacher">Estado</string>
 </resources>

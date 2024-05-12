@@ -15,53 +15,67 @@
         tools:targetApi="31">
         <activity
             android:name=".docente.DocenteInsertarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".docente.DocenteEliminarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".docente.DocenteConsultarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".docente.DocenteActualizarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".menus.DocenteMenu"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".menus.EventoMenuActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".evento.EventoEliminarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".evento.EventoConsultarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".evento.EventoActualizarActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".menus.TipoEventoMenuActivity$EventoMenuActivity" -->
-        <!-- android:exported="false" /> -->
+            android:screenOrientation="portrait"
+            android:exported="false" />
         <activity
             android:name=".evento.EventoInsertarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".tipo_evento.TipoEventoActualizarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".tipo_evento.TipoEventoEliminarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".tipo_evento.TipoEventoConsultarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".tipo_evento.TipoEventoInsertarActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".menus.TipoEventoMenuActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".escuela.EscuelaConsultarActivity"
@@ -78,10 +92,7 @@
         <activity
             android:name=".escuela.EscuelaInsertarActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- <activity -->
-        <!-- android:name=".escuela.EscuelaMenuActivity" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:exported="false" /> -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".asignatura.AsignaturaActualizarActivity"
             android:exported="false"
@@ -97,10 +108,7 @@
         <activity
             android:name=".asignatura.AsignaturaInsertarActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- <activity -->
-        <!-- android:name=".asignatura.AsignaturaMenuActivity" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:exported="false" /> -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".tipo_grupo.TipoGrupoActualizarActivity"
             android:exported="false"
@@ -116,10 +124,7 @@
         <activity
             android:name=".tipo_grupo.TipoGrupoInsertarActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- <activity -->
-        <!-- android:name=".tipo_grupo.TipoGrupoMenuActivity" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:exported="false" /> -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".grupo.GrupoActualizarActivity"
             android:exported="false"
@@ -135,12 +140,10 @@
         <activity
             android:name=".grupo.GrupoInsertarActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- <activity -->
-        <!-- android:name=".grupo.GrupoMenuActivity" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:exported="false" /> -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".RequestActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".EventsActivity"
@@ -149,10 +152,7 @@
         <activity
             android:name=".ScheduleActivity"
             android:exported="false"
-            android:screenOrientation="portrait" /> <!-- <activity -->
-        <!-- android:name=".schedule" -->
-        <!-- android:screenOrientation="portrait" -->
-        <!-- android:exported="false" /> -->
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"

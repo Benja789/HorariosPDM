@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import ues.grupo6.horariospdm.R;
 
 public class DocenteMenu extends AppCompatActivity {
     String[] menu = {"Insertar Registro", "Eliminar Registro", "Consultar Registro","Actualizar Registro"};
-    String[] activities = {"TipoEventoInsertarActivity", "TipoEventoEliminarActivity", "TipoEventoConsultarActivity", "TipoEventoActualizarActivity"};
+    String[] activities = {"DocenteInsertarActivity", "DocenteEliminarActivity", "DocenteConsultarActivity", "DocenteActualizarActivity"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,7 @@ public class DocenteMenu extends AppCompatActivity {
                     Intent inte = new Intent(DocenteMenu.this, clase);
                     DocenteMenu.this.startActivity(inte);
                 } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
+                    Toast.makeText(DocenteMenu.this, R.string.error_intent_load, Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -93,5 +93,13 @@
     <string name="btn_actualizar">Update</string>
     <string name="menu_item_five">Event type</string>
     <string name="menu_item_six">Teachers</string>
+    <string name="error_intent_load">The resource could not be loaded</string>
+    <string name="title_activity_insert_docente">Add new teacher</string>
+    <string name="text_first_name_teacher">First name</string>
+    <string name="text_second_name_teacher">Second name</string>
+    <string name="text_first_lastname_teacher">First lastname</string>
+    <string name="text_second_lastname_teacher">Second lastname</string>
+    <string name="text_profesion_teacher">Profession</string>
+    <string name="text_state_teacher">State</string>
 
 </resources>

@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import ues.grupo6.horariospdm.docente.Docente;
 import ues.grupo6.horariospdm.tipo_evento.TipoEvento;
 import ues.grupo6.horariospdm.evento.Evento;
 
@@ -37,6 +38,41 @@ public class ControlBD {
             try{
                 db.execSQL("CREATE TABLE tipo_evento(id_tipo_evento INTEGER PRIMARY KEY AUTOINCREMENT, nombre_tipo_evento VARCHAR(25) NOT NULL, estado_tipo_evento NUMERIC(1) NOT NULL);");
                 db.execSQL("CREATE TABLE evento(id_evento INTEGER PRIMARY KEY AUTOINCREMENT, id_tipo_evento INTEGER NOT NULL, nombre_evento VARCHAR(50) NOT NULL, estado_evento NUMERIC(1) NOT NULL, FOREIGN KEY (id_tipo_evento) REFERENCES tipo_evento(id_tipo_evento));");
+                db.execSQL("create table docente (\n" +
+                        "id_docente           integer PRIMARY KEY AUTOINCREMENT,\n" +
+                        "docente_primer_nombre varchar(25)          not null,\n" +
+                        "docente_segundo_nombre varchar(25),\n" +
+                        "docente_primer_apellido varchar(25)          not null,\n" +
+                        "docente_segundo_apellido varchar(25),\n" +
+                        "docente_apellido_casada varchar(25),\n" +
+                        "docente_titulo       varchar(25)          not null,\n" +
+                        "estado_docente       numeric(1)           not null,\n" +
+                        "primary key (id_docente)\n" +
+                        ");");
+                db.execSQL("create unique index docente_pk on docente (\n" +
+                        "id_docente asc\n" +
+                        ");\n" +
+                        "\n" +
+                        "create table tipo_funcion (\n" +
+                        "id_funcion           integer              not null,\n" +
+                        "nombre_tipo_funcion  varchar(25)          not null,\n" +
+                        "estado_tipo_funcion  numeric(1)           not null,\n" +
+                        "primary key (id_funcion)\n" +
+                        ");\n" +
+                        "\n" +
+                        "create table docente_funcion (\n" +
+                        "id_docente_funcion   integer              not null,\n" +
+                        "id_docente           integer              not null,\n" +
+                        "id_funcion           integer              not null,\n" +
+                        "id_ciclo_academico   integer              not null,\n" +
+                        "primary key (id_docente_funcion),\n" +
+                        "foreign key (id_docente)\n" +
+                        "      references docente (id_docente),\n" +
+                        "foreign key (id_funcion)\n" +
+                        "      references tipo_funcion (id_funcion),\n" +
+                        "foreign key (id_ciclo_academico)\n" +
+                        "      references ciclo_academico (id_ciclo_academico)\n" +
+                        ");");
             }catch(SQLException e){
                 e.printStackTrace();
             }
@@ -73,6 +109,24 @@ public class ControlBD {
         return regInsertados;
     }
 
+
+    public  String insertarDocente ( Docente dataTeacher) {
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues docenteData = new ContentValues();
+        docenteData.put("docente_primer_nombre",dataTeacher.getFirstName());
+        docenteData.put("docente_segundo_nombre",dataTeacher.getSecondName());
+        docenteData.put("docente_primer_apellido",dataTeacher.getFirstLastName());
+        docenteData.put("docente_segundo_nombre",dataTeacher.getSecondLastName());
+        docenteData.put("docente_titulo",dataTeacher.getProfession());
+        if ( dataTeacher.getActive()) docenteData.put("estado_docente", 1);
+        else  docenteData.put("estado_docente", 0);
+
+        contador=db.insert("docente", null, docenteData);
+        if(contador==-1 || contador==0) regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        else  regInsertados=regInsertados+contador;
+        return regInsertados;
+    }
     public String insertarEvento(Evento evento){
         String regInsertados="Registro Insertado Nº= ";
         long contador=0;
@@ -82,13 +136,8 @@ public class ControlBD {
         event.put("id_tipo_evento", evento.getId_tipo_evento());
 
         contador=db.insert("evento", null, event);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        }
-        else {
-            regInsertados=regInsertados+contador;
-        }
+        if(contador==-1 || contador==0) regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        else regInsertados=regInsertados+contador;
         return regInsertados;
     }
     public String actualizar(TipoEvento tipoEvento){
