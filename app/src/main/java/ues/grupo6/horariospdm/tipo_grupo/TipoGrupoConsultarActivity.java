@@ -37,7 +37,9 @@ public class TipoGrupoConsultarActivity extends Activity {
             if(tipoGrupo.getEstado_tipo_grupo()==1){
                 editEstado_tipo_grupo.setText("Activo");
             }
-            editEstado_tipo_grupo.setText("Inactivo");
+            else{
+                editEstado_tipo_grupo.setText("Inactivo");
+            }
         }
     }
     public void limpiarTexto(View v) {

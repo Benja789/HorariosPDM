@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -329,7 +328,7 @@ public class ControlBD {
     }
     public Tipo_Grupo consultarTipoGrupo(int id_tipo_grupo){
         String[] id = {id_tipo_grupo+""};
-        Cursor cursor = db.query("tipo_grupo", camposTipoEvento, "id_tipo_evento = ?", id, null, null, null);
+        Cursor cursor = db.query("tipo_grupo", camposTipoGrupo, "id_tipo_grupo = ?", id, null, null, null);
         if(cursor.moveToFirst()){
             Tipo_Grupo tipoGrupo = new Tipo_Grupo();
             tipoGrupo.setId_tipo_grupo(cursor.getInt(0));
@@ -340,8 +339,8 @@ public class ControlBD {
             return null;
         }
     }
-    public String actualizar(Tipo_Grupo tipoGrupo){
-        if(verificarIntegridad(tipoGrupo, 4)){
+    public String actualizarTipoGrupo(Tipo_Grupo tipoGrupo){
+        if(verificarIntegridad(tipoGrupo, 50)){
             String[] id = {tipoGrupo.getId_tipo_grupo()+""};
             ContentValues cv = new ContentValues();
             cv.put("nombre_tipo_grupo", tipoGrupo.getNombre_tipo_grupo());
@@ -352,9 +351,9 @@ public class ControlBD {
             return "Registro con id tipo de grupo " + tipoGrupo.getId_tipo_grupo() + " no existe";
         }
     }
-    public String eliminar(Tipo_Grupo tipoGrupo){
+    public String eliminarTipoGrupo(Tipo_Grupo tipoGrupo){
 
-        if(verificarIntegridad(tipoGrupo, 4)){
+        if(verificarIntegridad(tipoGrupo, 50)){
             String[] id = {tipoGrupo.getId_tipo_grupo()+""};
             ContentValues cv = new ContentValues();
             cv.put("estado_tipo_grupo", 0);
@@ -432,7 +431,19 @@ public class ControlBD {
             }
 
         //Case tablas Walter (empiezan con 5, ejemplo 50,51,510,511)
-
+            case 50:
+            {
+                //verificar que exista tipoGrupo
+                Tipo_Grupo tipoGrupo = (Tipo_Grupo) dato;
+                String[] id = {tipoGrupo.getId_tipo_grupo()+""};
+                abrir();
+                Cursor c2 = db.query("tipo_grupo", null, "id_tipo_grupo = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro el tipo de evento
+                    return true;
+                }
+                return false;
+            }
             default:
                 return false;
         }
