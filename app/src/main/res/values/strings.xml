@@ -118,4 +118,5 @@
     <string name="text_second_lastname_teacher">Segundo apellido</string>
     <string name="text_profesion_teacher">Titulo</string>
     <string name="text_state_teacher">Estado</string>
+    <string name="opciones">Opciones</string>
 </resources>

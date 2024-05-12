@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".tipo_grupo.TipoGrupoInsertarActivity">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dip"
+    android:stretchColumns="1" >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TableRow>
+        <TextView android:text="@string/nombre_tipo_grupo" />
+        <EditText
+            android:id="@+id/editNombre_tipo_grupo"
+            android:inputType="text"
+            android:maxLength="25" />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/opciones" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:onClick="insertarTipoGrupo"
+            android:text="@string/btn_insertar" />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/btn_limpiar" />
+    </TableRow>
+</TableLayout>

@@ -59,6 +59,7 @@
     <string name="card_item_one">Schedule</string>
     <string name="card_item_two">Events</string>
     <string name="card_item_three">Requests</string>
+    <string name="opciones">Options</string>
 
     <!-- TIPO EVENTO -->
     <!-- CRUD -->
