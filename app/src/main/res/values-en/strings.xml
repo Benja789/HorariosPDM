@@ -102,5 +102,6 @@
     <string name="text_second_lastname_teacher">Second lastname</string>
     <string name="text_profesion_teacher">Profession</string>
     <string name="text_state_teacher">State</string>
+    <string name="text_search_teacher">ID Teacher</string>
 
 </resources>

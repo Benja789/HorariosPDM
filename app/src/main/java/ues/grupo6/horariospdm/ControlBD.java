@@ -21,6 +21,7 @@ public class ControlBD {
     //Campos Aura
 
     //Campos Benjamin
+    private static final String[]camposDocente = new String [] {"id_docente","docente_primer_nombre","docente_segundo_nombre", "docente_primer_apellido", "docente_segundo_apellido", "docente_apellido_casada", "docente_titulo", "estado_docente"};
 
     //Campos Cesar
 
@@ -300,6 +301,31 @@ public class ControlBD {
             regInsertados=regInsertados+contador;
         }
         return regInsertados;
+    }
+
+    public Docente consultarDocente (int idDocente) {
+        String[] id = {idDocente+""};
+        Cursor cursor = db.query("docente", camposDocente, "id_docente = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Docente docente = new Docente();
+            System.out.println("------------------------------------------------------------------------------");
+            System.out.println(cursor.getInt(0));
+            System.out.println(cursor.getString(1));
+            System.out.println(cursor.getString(2));
+            System.out.println(cursor.getString(3));
+            System.out.println(cursor.getString(4));
+            System.out.println(cursor.getInt(5));
+            System.out.println("------------------------------------------------------------------------------");
+            docente.setIdDocente(cursor.getInt(0));
+            docente.setFirstName(cursor.getString(1));
+            docente.setSecondName(cursor.getString(2));
+            docente.setFirstLastName(cursor.getString(3));
+            docente.setSecondLastName(cursor.getString(4));
+            docente.setActive(cursor.getInt(5));
+            return docente;
+        }else{
+            return null;
+        }
     }
     public Tipo_Grupo consultarTipoGrupo(int id_tipo_grupo){
         String[] id = {id_tipo_grupo+""};
