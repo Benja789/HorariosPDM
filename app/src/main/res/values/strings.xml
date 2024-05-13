@@ -222,4 +222,5 @@
     <string name="menu_item_seven">Tipo Funcion</string>
     <string name="title_activity_school_menu">Escuela</string>
     <string name="title_activity_type_group">Tipo Grupo</string>
+    <string name="title_activity_group">Grupo</string>
 </resources>
