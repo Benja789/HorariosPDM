@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 
 import ues.grupo6.horariospdm.docente.Docente;
+import ues.grupo6.horariospdm.escuela.Escuela;
 import ues.grupo6.horariospdm.tipo_evento.TipoEvento;
 import ues.grupo6.horariospdm.evento.Evento;
 import ues.grupo6.horariospdm.tipo_grupo.Tipo_Grupo;
@@ -28,6 +29,8 @@ public class ControlBD {
     private static final String[]camposEvento = new String [] {"id_evento","id_tipo_evento","nombre_evento","estado_evento"};
 
     //Campos Walter
+    private static final String[]camposEscuela = new String [] {"id_escuela","nombre_escuela","prioridad_escuela","estado_escuela"};
+
     private static final String[]camposTipoGrupo = new String [] {"id_tipo_grupo","nombre_tipo_grupo","estado_tipo_grupo"};
 
 
@@ -281,6 +284,67 @@ public class ControlBD {
 
 
     //CRUD Walter
+
+        //Escuela
+    public String insertar(Escuela escuela){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+
+        ContentValues esc = new ContentValues();
+        esc.put("nombre_escuela", escuela.getNombre_escuela());
+        esc.put("prioridad_escuela", escuela.getPrioridad_esccuela());
+        esc.put("estado_escuela", escuela.getEstado_escuela());
+
+        contador=db.insert("escuela", null, esc);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    public Escuela consultarEscuela(int id_escuela){
+        String[] id = {id_escuela+""};
+        Cursor cursor = db.query("escuela", camposEscuela, "id_escuela = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Escuela escuela = new Escuela();
+            escuela.setId_escuela(cursor.getInt(0));
+            escuela.setNombre_escuela(cursor.getString(1));
+            escuela.setPrioridad_esccuela(cursor.getInt(2));
+            escuela.setEstado_escuela(cursor.getInt(3));
+            return escuela;
+        }else{
+            return null;
+        }
+    }
+    public String actualizarEscuela(Escuela escuela){
+        if(verificarIntegridad(escuela, 50)){
+            String[] id = {escuela.getId_escuela()+""};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre_escuela", escuela.getNombre_escuela());
+            cv.put("prioridad_escuela", escuela.getPrioridad_esccuela());
+            cv.put("estado_escuela", escuela.getEstado_escuela());
+            db.update("escuela", cv, "id_escuela = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro con id Escuela " + escuela.getId_escuela() + " no existe";
+        }
+    }
+    public String eliminarEscuela(Escuela escuela){
+
+        if(verificarIntegridad(escuela, 50)){
+            String[] id = {escuela.getId_escuela()+""};
+            ContentValues cv = new ContentValues();
+            cv.put("estado_escuela", 0);
+            db.update("escuela", cv, "id_escuela = ?", id);
+            return "Registro eliminado Correctamente";
+        }else{
+            return "Registro con id Escuela " + escuela.getId_escuela() + " no existe";
+        }
+    }
+
         //Tipo Grupo
     public String insertar(Tipo_Grupo tipoGrupo){
         String regInsertados="Registro Insertado Nº= ";
@@ -314,7 +378,7 @@ public class ControlBD {
         }
     }
     public String actualizarTipoGrupo(Tipo_Grupo tipoGrupo){
-        if(verificarIntegridad(tipoGrupo, 50)){
+        if(verificarIntegridad(tipoGrupo, 530)){
             String[] id = {tipoGrupo.getId_tipo_grupo()+""};
             ContentValues cv = new ContentValues();
             cv.put("nombre_tipo_grupo", tipoGrupo.getNombre_tipo_grupo());
@@ -327,7 +391,7 @@ public class ControlBD {
     }
     public String eliminarTipoGrupo(Tipo_Grupo tipoGrupo){
 
-        if(verificarIntegridad(tipoGrupo, 50)){
+        if(verificarIntegridad(tipoGrupo, 530)){
             String[] id = {tipoGrupo.getId_tipo_grupo()+""};
             ContentValues cv = new ContentValues();
             cv.put("estado_tipo_grupo", 0);
@@ -406,6 +470,19 @@ public class ControlBD {
 
         //Case tablas Walter (empiezan con 5, ejemplo 50,51,510,511)
             case 50:
+            {
+                //verificar que exista Escuela
+                Escuela escuela = (Escuela) dato;
+                String[] id = {escuela.getId_escuela()+""};
+                abrir();
+                Cursor c2 = db.query("escuela", null, "id_escuela = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro la Escuela
+                    return true;
+                }
+                return false;
+            }
+            case 530:
             {
                 //verificar que exista tipoGrupo
                 Tipo_Grupo tipoGrupo = (Tipo_Grupo) dato;
