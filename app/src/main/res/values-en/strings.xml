@@ -85,6 +85,45 @@
     <string name="estado_evento">Event status</string>
     <string name="tipo_evento">type of event</string>
 
+    <!-- TIPO SALON -->
+    <!-- CRUD -->
+    <string name="title_activity_tipo_salon_insertar">ClassroomTypeInsertActivity</string>
+    <string name="title_activity_tipo_salon_eliminar">ClassroomTypeDeleteActivity</string>
+    <string name="title_activity_tipo_salon_actualizar">ClassroomTypeUpdateActivity</string>
+    <string name="title_activity_tipo_salon_consultar">ClassroomTypeConsultActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_tipo_salon">ID Classroom Type</string>
+    <string name="nombre_tipo_salon">Classroom Type Name</string>
+    <string name="disponible_tipo_salon">Availability of Classroom Type</string>
+    <string name="codigo_tipo_salon">Classroom Type Code</string>
+    <string name="estado_tipo_salon">Classroom Type Status</string>
+
+    <!-- SALON -->
+    <!-- CRUD -->
+    <string name="title_activity_salon_insertar">ClassroomInsertActivity</string>
+    <string name="title_activity_salon_eliminar">ClassroomDeleteActivity</string>
+    <string name="title_activity_salon_actualizar">ClassroomUpdateActivity</string>
+    <string name="title_activity_salon_consultar">ClassroomConsultActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_salon">Classroom ID</string>
+    <string name="nombre_salon">Classroom Name</string>
+    <string name="capacidad">Capacity</string>
+    <string name="codigo_salon">Classroom Code</string>
+    <string name="disponible_salon">Classroom Availability</string>
+
+    <!-- DISTRIBUCION HORA -->
+    <!-- CRUD -->
+    <string name="title_activity_distribucion_hora_insertar">TimeDistributionInsertActivity</string>
+    <string name="title_activity_distribucion_hora_eliminar">TimeDistributionDeleteActivity</string>
+    <string name="title_activity_distribucion_hora_actualizar">TimeDistributionUpdateActivity</string>
+    <string name="title_activity_distribucion_hora_consultar">TimeDistributionConsultActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_distribucion_hora">Time Distribution ID</string>
+    <string name="hora_inicio">Beginnning Time</string>
+    <string name="hora_fin">Ending Time</string>
+    <string name="dia">Day</string>
+    <string name="estado_distribucion_hora">Hour Distribution State</string>
+
 
     <!-- BOTONES FORMULARIOS -->
     <string name="btn_insertar">Insert</string>

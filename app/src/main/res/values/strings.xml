@@ -102,6 +102,45 @@
     <string name="estado_evento">Estado del evento</string>
     <string name="tipo_evento">tipo de evento</string>
 
+    <!-- TIPO SALON -->
+    <!-- CRUD -->
+    <string name="title_activity_tipo_salon_insertar">TipoSalonInsertarActivity</string>
+    <string name="title_activity_tipo_salon_eliminar">TipoSalonEliminarActivity</string>
+    <string name="title_activity_tipo_salon_actualizar">TipoSalonActualizarActivity</string>
+    <string name="title_activity_tipo_salon_consultar">TipoSalonConsultarActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_tipo_salon">ID Tipo Salon</string>
+    <string name="nombre_tipo_salon">Nombre del tipo de salon</string>
+    <string name="disponible_tipo_salon">Disponibilidad del tipo de salon</string>
+    <string name="codigo_tipo_salon">Codigo del tipo de salon</string>
+    <string name="estado_tipo_salon">Estado del tipo de salon</string>
+
+    <!-- SALON -->
+    <!-- CRUD -->
+    <string name="title_activity_salon_insertar">SalonInsertarActivity</string>
+    <string name="title_activity_salon_eliminar">SalonEliminarActivity</string>
+    <string name="title_activity_salon_actualizar">SalonActualizarActivity</string>
+    <string name="title_activity_salon_consultar">SalonConsultarActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_salon">ID Salon</string>
+    <string name="nombre_salon">Nombre del salon</string>
+    <string name="capacidad">Capacidad</string>
+    <string name="codigo_salon">Codigo del salon</string>
+    <string name="disponible_salon">Disponibilidad del salon</string>
+
+    <!-- DISTRIBUCION HORA -->
+    <!-- CRUD -->
+    <string name="title_activity_distribucion_hora_insertar">DistribucionHoraInsertarActivity</string>
+    <string name="title_activity_distribucion_hora_eliminar">DistribucionHoraEliminarActivity</string>
+    <string name="title_activity_distribucion_hora_actualizar">DistribucionHoraActualizarActivity</string>
+    <string name="title_activity_distribucion_hora_consultar">DistribucionHoraConsultarActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_distribucion_hora">ID Distribucion de Hora</string>
+    <string name="hora_inicio">Hora Inicio</string>
+    <string name="hora_fin">Hora Fin</string>
+    <string name="dia">Dia</string>
+    <string name="estado_distribucion_hora">Estado de la Distribucion de Hora</string>
+
     <!-- BOTONES FORMULARIO -->
     <string name="btn_insertar">Insertar</string>
     <string name="btn_consultar">Consultar</string>
