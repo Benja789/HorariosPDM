@@ -286,8 +286,8 @@ public class ControlBD {
         if(cursor.moveToFirst()){
             Evento evento = new Evento();
             evento.setId_evento(cursor.getInt(0));
-            evento.setNombre_evento(cursor.getString(1));
-            evento.setId_tipo_evento(cursor.getInt(2));
+            evento.setId_tipo_evento(cursor.getInt(1));
+            evento.setNombre_evento(cursor.getString(2));
             evento.setEstado_evento(cursor.getInt(3));
             return evento;
         }else{

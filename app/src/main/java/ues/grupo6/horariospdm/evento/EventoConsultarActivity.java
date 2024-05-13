@@ -22,7 +22,7 @@ public class EventoConsultarActivity extends Activity {
     ControlBD helper;
     EditText editIdEvento;
     EditText editNombreEvento;
-    EditText editNombreTipoEvento;
+    EditText editIdTipoEvento;
     EditText editEstadoEvento;
 
     @SuppressLint("MissingInflatedId")
@@ -33,7 +33,7 @@ public class EventoConsultarActivity extends Activity {
         helper = new ControlBD(this);
         editIdEvento = (EditText) findViewById(R.id.editIdEvento);
         editNombreEvento = (EditText) findViewById(R.id.editNombreEvento);
-        editNombreTipoEvento = (EditText) findViewById(R.id.editNombreTipoEvento);
+        editIdTipoEvento = (EditText) findViewById(R.id.editIdTipoEvento);
         editEstadoEvento = (EditText) findViewById(R.id.editEstadoEvento);
     }
     public void consultarEvento(View v) {
@@ -44,18 +44,16 @@ public class EventoConsultarActivity extends Activity {
 
         helper.abrir();
         Evento evento = helper.consultarEvento(Integer.parseInt(String.valueOf(editIdEvento.getText())));
-
         if(evento == null)
             Toast.makeText(this, "Evento no registrado", Toast.LENGTH_LONG).show();
         else{
+            Toast.makeText(this, String.valueOf(evento.getId_tipo_evento()), Toast.LENGTH_LONG).show();
             TipoEvento tipoEvento = helper.consultarTipoEvento(evento.getId_tipo_evento());
             if (tipoEvento != null) {
-                editNombreTipoEvento.setText(tipoEvento.getNombre_tipo_evento());
+                editIdTipoEvento.setText(tipoEvento.getNombre_tipo_evento());
             } else {
-                editNombreTipoEvento.setText("Tipo de evento no encontrado");
+                editIdTipoEvento.setText("Tipo de evento no encontrado");
             }
-
-            editIdEvento.setText(String.valueOf(evento.getId_evento()));
             editNombreEvento.setText(String.valueOf(evento.getNombre_evento()));
             if(evento.getEstado_evento()==1){
                 editEstadoEvento.setText("Activo");
@@ -68,7 +66,7 @@ public class EventoConsultarActivity extends Activity {
     public void limpiarTexto(View v) {
         editIdEvento.setText("");
         editNombreEvento.setText("");
-        editNombreTipoEvento.setText("");
+        editIdTipoEvento.setText("");
         editEstadoEvento.setText("");
     }
 }
