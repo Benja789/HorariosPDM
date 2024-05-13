@@ -4,6 +4,7 @@
     <string name="title_activity_tipo_grupo_menu">TipoGrupoMenuActivity</string>
     <string name="title_activity_escuela_menu">EscuelaMenuActivity</string>
     <string name="title_activity_asignatura_menu">AsignaturaMenuActivity</string>
+    <string name="title_activity_horario_menu">HorarioMenuActivity</string>
 
     <!-- FUNCIONES -->
     <string name="grupo_menu">Función a Ejecutar Grupo</string>
@@ -15,7 +16,7 @@
     <string name="consultar_registro">Consultar Registro</string>
     <string name="actualizar_registro">Actualizar Registro</string>
 
-    <!-- GRUPO -->
+
     <!-- CRUD -->
     <string name="title_activity_grupo_insertar">GrupoInsertarActivity</string>
     <string name="title_activity_grupo_eliminar">GrupoEliminarActivity</string>
@@ -110,6 +111,58 @@
     <string name="btn_actualizar">Actualizar</string>
     <string name="menu_item_five">Tipo eventos</string>
     <string name="menu_item_six">Docentes</string>
+
+    <!-- Horario -->
+    <!-- CRUD -->
+    <string name="title_activity_horario_actualizar">HorarioActualizarActivity</string>
+    <string name="title_activity_horario_consultar">HorarioConsultarActivity</string>
+    <string name="title_activity_horario_insertar">HorarioInsertarActivity</string>
+    <string name="title_activity_horario_eliminar">HorarioEliminarActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_horario">ID Horario</string>
+    <string name="id_solicitud_evento_fk">ID Solicitud Evento </string>
+    <string name="id_solicitud_horario_fk">ID Solicitud Horario</string>
+
+    <!-- Estado Horario -->
+    <!-- CRUD -->
+    <string name="title_activity_estado_horario_actualizar">EstadoHorarioActualizarActivity</string>
+    <string name="title_activity_estado_horario_consultar">EstadoHorarioConsultarActivity</string>
+    <string name="title_activity_estado_horario_insertar">EstadoHorarioInsertarActivity</string>
+    <string name="title_activity_estado_horario_eliminar">EstadoHorarioEliminarActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_estado_horario">ID Estado Horario</string>
+    <string name="id_horario_fk">ID Horario</string>
+    <string name="nombre_estado_horario">Nombre Estado Horario</string>
+    <string name="estado">Estado</string>
+
+    <!-- Ciclo Academico -->
+    <!-- CRUD -->
+    <string name="title_activity_ciclo_academico_actualizar">CicloAcademicoActualizarActivity</string>
+    <string name="title_activity_ciclo_academico_consultar">CicloAcademicoConsultarActivity</string>
+    <string name="title_activity_ciclo_academico_insertar">CicloAcademicoInsertarActivity</string>
+    <string name="title_activity_ciclo_academico_Eliminar">CicloAcademicoEliminarActivity</string>
+
+    <!-- CAMPOS -->
+    <string name="id_ciclo_academico">ID Ciclo Academico</string>
+    <string name="id_tipo_ciclo_fk">ID Tipo Ciclo</string>
+    <string name="inicio_ciclo_academico">Inicio Ciclo Academico</string>
+    <string name="fin_ciclo_academico">Fin Ciclo Academico</string>
+    <string name="anio_ciclo_academico">Anio Ciclo Academico</string>
+    <string name="estado_ciclo_academico">Estado Ciclo Academico</string>
+
+    <!-- Ciclo Academico -->
+    <!-- CRUD -->
+    <string name="title_activity_tipo_ciclo_actualizar">TipoCicloActualizarActivity</string>
+    <string name="title_activity_tipo_ciclo_consultar">TipoCicloConsultarActivity</string>
+    <string name="title_activity_tipo_ciclo_insertar">TipoCicloInsertarActivity</string>
+    <string name="title_activity_tipo_ciclo_eliminar">TipoCiclooEliminarActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_tipo_ciclo">ID Tipo Ciclo</string>
+    <string name="nombre_tipo_ciclo">nombre Tipo Ciclo</string>
+    <string name="estado_tipo_ciclo">Estado Tipo Ciclo</string>
+    <string name="seleccine">seleccine:</string>
+    <string name="seleccine_solicitud_horario">seleccine solicitud horario:</string>
+    <string name="seleccine_solicitud_evento">seleccine solicitud evento</string>
 
     <string name="error_intent_load">No se pudo cargar el recurso</string>
     <string name="title_activity_insert_docente">Agregar nuevo docente</string>
