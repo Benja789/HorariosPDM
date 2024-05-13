@@ -74,6 +74,9 @@
             android:name=".menus.TipoFuncionMenuActivity"
             android:exported="false" />
         <activity
+            android:name=".menus.GrupoMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".docente.DocenteInsertarActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

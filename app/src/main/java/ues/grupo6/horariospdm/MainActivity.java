@@ -15,6 +15,7 @@ import ues.grupo6.horariospdm.menus.AsignaturaMenuActivity;
 import ues.grupo6.horariospdm.menus.DocenteMenu;
 import ues.grupo6.horariospdm.menus.EscuelaMenuActivity;
 import ues.grupo6.horariospdm.menus.EventoMenuActivity;
+import ues.grupo6.horariospdm.menus.GrupoMenuActivity;
 import ues.grupo6.horariospdm.menus.TipoEventoMenuActivity;
 import ues.grupo6.horariospdm.menus.TipoFuncionMenuActivity;
 import ues.grupo6.horariospdm.menus.TipoGrupoMenuActivity;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         else if ( item.getItemId() == R.id.item_seven )callNewActivity(TipoFuncionMenuActivity.class);
         else if ( item.getItemId() ==  R.id.item_eight ) callNewActivity(EscuelaMenuActivity.class);
         else if ( item.getItemId() == R.id.item_nine ) callNewActivity(TipoGrupoMenuActivity.class);
-
+        else if ( item.getItemId() ==  R.id.item_ten ) callNewActivity(GrupoMenuActivity.class);
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
