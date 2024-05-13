@@ -187,6 +187,21 @@ public class ControlBD {
         }
 
     }
+
+    public TipoCiclo consultarTipoCiclo(int id_tipo_ciclo){
+        String[] id = {id_tipo_ciclo+""};
+        Cursor cursor = db.query("tipo_ciclo", camposTipoCiclo, "id_tipo_ciclo = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            TipoCiclo tipoCiclo = new TipoCiclo();
+            tipoCiclo.setId_tipo_ciclo(cursor.getInt(0));
+            tipoCiclo.setNombre_tipo_ciclo(cursor.getString(1));
+            tipoCiclo.setEstado_tipo_ciclo(cursor.getInt(2));
+            return tipoCiclo;
+        }else{
+            return null;
+        }
+
+    }
     public ArrayList<TipoEvento> consultarTiposEventosActivos() {
         ArrayList<TipoEvento> listado = new ArrayList<TipoEvento>();
         Cursor cursor = db.rawQuery("SELECT * FROM tipo_evento WHERE estado_tipo_evento = 1", null);
