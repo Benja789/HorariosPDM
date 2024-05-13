@@ -22,6 +22,10 @@
             android:icon="@drawable/group"
             android:title="@string/title_activity_group"/>
         <item
+            android:id="@+id/item_eleven"
+            android:icon="@drawable/libro"
+            android:title="@string/title_activity_cycle"/>
+        <item
             android:id="@+id/item_six"
             android:icon="@drawable/human_male_board"
             android:title="@string/menu_item_six"/>

@@ -58,7 +58,26 @@
             android:name=".tipo_funcion.TipoFuncionEliminarActivity"
             android:exported="false" />
 
-<!--        <activity-->
+        <activity
+            android:name=".ciclo_academico.CicloAcademicoActualizarActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ciclo_academico.CicloAcademicoConsultarActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ciclo_academico.CicloAcademicoEliminarActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".ciclo_academico.CicloAcademicoInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".menus.CicloAcademicoMenuActivity"
+            android:exported="false" />
+
+        <!--        <activity-->
 <!--            android:name=".tipo_funcion.TipoFuncionActualizarActivity"-->
 <!--            android:exported="false" />-->
 <!--        <activity-->

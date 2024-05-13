@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 
 import ues.grupo6.horariospdm.menus.AsignaturaMenuActivity;
+import ues.grupo6.horariospdm.menus.CicloAcademicoMenuActivity;
 import ues.grupo6.horariospdm.menus.DocenteMenu;
 import ues.grupo6.horariospdm.menus.EscuelaMenuActivity;
 import ues.grupo6.horariospdm.menus.EventoMenuActivity;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         else if ( item.getItemId() ==  R.id.item_eight ) callNewActivity(EscuelaMenuActivity.class);
         else if ( item.getItemId() == R.id.item_nine ) callNewActivity(TipoGrupoMenuActivity.class);
         else if ( item.getItemId() ==  R.id.item_ten ) callNewActivity(GrupoMenuActivity.class);
+        else if ( item.getItemId() == R.id.item_eleven ) callNewActivity(CicloAcademicoMenuActivity.class);
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }

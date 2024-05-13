@@ -188,5 +188,6 @@
     <string name="title_activity_school_menu">School</string>
     <string name="title_activity_type_group">Group Type</string>
     <string name="title_activity_group">Group</string>
+    <string name="title_activity_cycle">Cycle</string>
 
 </resources>
