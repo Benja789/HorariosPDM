@@ -19,7 +19,7 @@ public class EscuelaMenuActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_asignatura_menu);
+        setContentView(R.layout.activity_escuela_menu);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
         ListView listView = findViewById(R.id.list_escuela_menu);
         listView.setAdapter(adapter);
