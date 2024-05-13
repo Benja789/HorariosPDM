@@ -93,6 +93,10 @@
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".menus.AsignaturaMenuActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".escuela.EscuelaConsultarActivity"
             android:exported="false"
             android:screenOrientation="portrait" />

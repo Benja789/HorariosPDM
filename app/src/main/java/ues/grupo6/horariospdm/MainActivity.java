@@ -11,6 +11,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 
+import ues.grupo6.horariospdm.menus.AsignaturaMenuActivity;
 import ues.grupo6.horariospdm.menus.DocenteMenu;
 import ues.grupo6.horariospdm.menus.EventoMenuActivity;
 import ues.grupo6.horariospdm.menus.TipoEventoMenuActivity;
@@ -47,13 +48,11 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         System.out.println("Accion del boton del menu");
         if (item.getItemId() == R.id.item_one) {
             System.out.println("item 1");
-        } else if ( item.getItemId() == R.id.item_two) {
-            System.out.println("item 2");
-        } else if ( item.getItemId() == R.id.item_three ) {
+        } else if ( item.getItemId() == R.id.item_two) callNewActivity(AsignaturaMenuActivity.class);
+        else if ( item.getItemId() == R.id.item_three ) {
             System.out.println("item 3");
-        } else if ( item.getItemId() ==R.id.item_fourth ){
-            System.out.println("item 4");
-        } else if (item.getItemId() == R.id.item_six)  callNewActivity(DocenteMenu.class);
+        } else if ( item.getItemId() ==R.id.item_fourth ) callNewActivity(AsignaturaMenuActivity.class);
+        else if (item.getItemId() == R.id.item_six)  callNewActivity(DocenteMenu.class);
         else if (item.getItemId() == R.id.item_five) callNewActivity(TipoEventoMenuActivity.class);
         else if ( item.getItemId() == R.id.item_seven )callNewActivity(TipoFuncionMenuActivity.class);
 

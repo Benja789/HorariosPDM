@@ -12,7 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:layout_constraintStart_toStartOf="parent"
-        android:src="@drawable/call_split"
+        android:src="@drawable/book"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -20,7 +20,7 @@
         android:id="@+id/title_asignatura_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/menu_item_five"
+        android:text="@string/menu_item_fourth"
         android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
