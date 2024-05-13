@@ -61,7 +61,7 @@ public class EventoActualizarActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTipoEvento.setAdapter(adapter);
 
-    }
+    } 
     public void actualizarEvento(View v) {
         Evento evento = new Evento();
         // Obtener el nombre del tipo de evento seleccionado en el Spinner
@@ -72,7 +72,7 @@ public class EventoActualizarActivity extends AppCompatActivity {
             int id_TipoEvento = tipoEventoSeleccionado.getId_tipo_evento();
 
             evento.setId_evento(Integer.parseInt(String.valueOf(editIdEvento.getText())));
-            evento.setNombre_evento(editNombreEvento.toString());
+            evento.setNombre_evento(editNombreEvento.getText().toString());
             evento.setEstado_evento(Integer.parseInt(String.valueOf(editEstadoEvento.getText())));
             evento.setId_tipo_evento(Integer.parseInt(String.valueOf(id_TipoEvento)));
         } else {
@@ -95,5 +95,11 @@ public class EventoActualizarActivity extends AppCompatActivity {
         }
         // Retornar null si el tipo de evento no se encontró
         return null;
+    }
+    public void limpiarTexto(View v) {
+
+        editIdEvento.setText("");
+        editNombreEvento.setText("");
+        editEstadoEvento.setText("");
     }
 }
