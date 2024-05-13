@@ -122,7 +122,7 @@
     <string name="hora_inicio">Beginnning Time</string>
     <string name="hora_fin">Ending Time</string>
     <string name="dia">Day</string>
-    <string name="estado_distribucion_hora">Hour Distribution State</string>
+    <string name="estado_distribucion_hora">Hour Distribution Status</string>
 
 
     <!-- BOTONES FORMULARIOS -->
