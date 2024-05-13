@@ -14,6 +14,10 @@
             android:icon="@drawable/human_male_board"
             android:title="@string/menu_item_six"/>
         <item
+            android:id="@+id/item_seven"
+            android:icon="@drawable/innovacion"
+            android:title="@string/menu_item_seven"/>
+        <item
             android:id="@+id/item_five"
             android:icon="@drawable/call_split"
             android:title="@string/menu_item_five"/>

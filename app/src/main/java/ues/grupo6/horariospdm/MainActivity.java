@@ -14,6 +14,7 @@ import com.google.android.material.navigation.NavigationView;
 import ues.grupo6.horariospdm.menus.DocenteMenu;
 import ues.grupo6.horariospdm.menus.EventoMenuActivity;
 import ues.grupo6.horariospdm.menus.TipoEventoMenuActivity;
+import ues.grupo6.horariospdm.menus.TipoFuncionMenuActivity;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener  {
     DrawerLayout drawerLayout;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             System.out.println("item 4");
         } else if (item.getItemId() == R.id.item_six)  callNewActivity(DocenteMenu.class);
         else if (item.getItemId() == R.id.item_five) callNewActivity(TipoEventoMenuActivity.class);
+        else if ( item.getItemId() == R.id.item_seven )callNewActivity(TipoFuncionMenuActivity.class);
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

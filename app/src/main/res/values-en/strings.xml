@@ -109,5 +109,6 @@
     <string name="title_activity_query_teacher">Query teacher</string>
     <string name="item_status_enable">Active</string>
     <string name="item_status_innactive">Innactive</string>
+    <string name="menu_item_seven">Function type</string>
 
 </resources>

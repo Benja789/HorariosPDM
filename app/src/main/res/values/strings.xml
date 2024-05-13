@@ -127,4 +127,5 @@
     <string name="title_activity_query_teacher">Consultar docente</string>
     <string name="item_status_enable">Activo</string>
     <string name="item_status_innactive">Inactivo</string>
+    <string name="menu_item_seven">Tipo Funcion</string>
 </resources>
