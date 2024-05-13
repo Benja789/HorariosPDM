@@ -10,6 +10,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import ues.grupo6.horariospdm.ciclo_academico.CicloAcademico;
+import ues.grupo6.horariospdm.tipo_ciclo.TipoCiclo;
 import ues.grupo6.horariospdm.tipo_evento.TipoEvento;
 import ues.grupo6.horariospdm.evento.Evento;
 
@@ -17,6 +19,11 @@ import ues.grupo6.horariospdm.evento.Evento;
 public class ControlBD {
     private static final String[]camposTipoEvento = new String [] {"id_tipo_evento","nombre_tipo_evento","estado_tipo_evento"};
     private static final String[]camposEvento = new String [] {"id_evento","id_tipo_evento","nombre_evento","estado_evento"};
+    private static final String[]camposTipoCiclo = new String [] {"id_tipo_ciclo","nombre_tipo_ciclo","estado_tipo_ciclo"};
+
+    private static final String[]camposCicloAcademico = new String [] {"id_ciclo_academico","id_tipo_ciclo","inicio_ciclo_academico","fin_ciclo_academico","anio_ciclo_academico","estado_ciclo_academico"};
+    private static final String[]camposHorario = new String [] {"id_horario","id_solicitud_evento","id_solicitud_horario"};
+    private static final String[]camposEstadoHorario = new String [] {"id_estado_horario","id_horario","nombre_estado_horario","estado"};
 
     private final Context context;
     private DatabaseHelper DBHelper;
@@ -37,6 +44,10 @@ public class ControlBD {
             try{
                 db.execSQL("CREATE TABLE tipo_evento(id_tipo_evento INTEGER PRIMARY KEY AUTOINCREMENT, nombre_tipo_evento VARCHAR(25) NOT NULL, estado_tipo_evento NUMERIC(1) NOT NULL);");
                 db.execSQL("CREATE TABLE evento(id_evento INTEGER PRIMARY KEY AUTOINCREMENT, id_tipo_evento INTEGER NOT NULL, nombre_evento VARCHAR(50) NOT NULL, estado_evento NUMERIC(1) NOT NULL, FOREIGN KEY (id_tipo_evento) REFERENCES tipo_evento(id_tipo_evento));");
+                db.execSQL("CREATE TABLE tipo_ciclo(id_tipo_ciclo INTEGER PRIMARY KEY AUTOINCREMENT, nombre_tipo_ciclo VARCHAR(25) NOT NULL, estado_tipo_ciclo NUMERIC(1) NOT NULL);");
+                db.execSQL("CREATE TABLE ciclo_academico(id_ciclo_academico INTEGER PRIMARY KEY AUTOINCREMENT, id_tipo_ciclo INTEGER NOT NULL,inicio_ciclo_academico Date NOT NULL, fin_ciclo_academico Date NOT NULL,anio_ciclo_academico Date NOT NULL,estado_ciclo_academico INTEGER NOT NULL, FOREIGN KEY (id_tipo_ciclo) REFERENCES tipo_ciclo(id_tipo_ciclo));");
+                db.execSQL("CREATE TABLE horario(id_horario INTEGER PRIMARY KEY AUTOINCREMENT, id_solicitud_evento INTEGER NOT NULL, id_solicitud_horario INTEGER NOT NULL,FOREIGN KEY (id_solicitud_evento) REFERENCES solicitud_evento(id_solicitud_evento),FOREIGN KEY (id_solicitud_horario) REFERENCES solicitud_horario(id_solicitud_horario));");
+                db.execSQL("CREATE TABLE estado_horario(id_estado_horario INTEGER PRIMARY KEY AUTOINCREMENT, id_horario INTEGER NOT NULL, nombre_estado_horario VARCHAR(50) NOT NULL, estado NUMERIC(1) NOT NULL, FOREIGN KEY (id_horario) REFERENCES horario(id_horario));");
             }catch(SQLException e){
                 e.printStackTrace();
             }
@@ -72,6 +83,26 @@ public class ControlBD {
         }
         return regInsertados;
     }
+        public String insertarTipoCiclo(TipoCiclo tipoCiclo){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues tpCiclo = new ContentValues();
+
+
+            tpCiclo.put("nombre_tipo_evento", tipoCiclo.getNombre_tipo_ciclo());
+            tpCiclo.put("estado_tipo_evento", tipoCiclo.getEstado_tipo_ciclo());
+
+        contador=db.insert("tipo_ciclo", null, tpCiclo);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+
 
     public String insertarEvento(Evento evento){
         String regInsertados="Registro Insertado Nº= ";
@@ -91,6 +122,7 @@ public class ControlBD {
         }
         return regInsertados;
     }
+
     public String actualizar(TipoEvento tipoEvento){
         if(verificarIntegridad(tipoEvento, 4)){
             String[] id = {tipoEvento.getId_tipo_evento()+""};
@@ -102,8 +134,6 @@ public class ControlBD {
         }else{
             return "Registro con id tipo de evento " + tipoEvento.getId_tipo_evento() + " no existe";
         }
-
-
 
     }
 
@@ -121,6 +151,20 @@ public class ControlBD {
             return "Registro eliminado Correctamente";
         }else{
             return "Registro con id tipo de evento " + tipoEvento.getId_tipo_evento() + " no existe";
+        }
+
+    }
+
+    public String eliminar(TipoCiclo tipoCiclo){
+
+        if(verificarIntegridad(tipoCiclo, 4)){
+            String[] id = {tipoCiclo.getId_tipo_ciclo()+""};
+            ContentValues cv = new ContentValues();
+            cv.put("estado_tipo_ciclo", 0);
+            db.update("tipo_ciclo", cv, "id_tipo_ciclo = ?", id);
+            return "Registro eliminado Correctamente";
+        }else{
+            return "Registro con id tipo de ciclo " + tipoCiclo.getId_tipo_ciclo() + " no existe";
         }
 
     }
