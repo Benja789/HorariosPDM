@@ -125,4 +125,6 @@
     <string name="title_activity_delete_teacher">Eliminar Docente</string>
     <string name="title_activity_update_teacher">Actualizar docente</string>
     <string name="title_activity_query_teacher">Consultar docente</string>
+    <string name="item_status_enable">Activo</string>
+    <string name="item_status_innactive">Inactivo</string>
 </resources>
