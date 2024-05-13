@@ -73,7 +73,7 @@
     <string name="menu_item_fourth">Materias</string>
     <string name="open_menu">Menu</string>
     <string name="closed_menu">Cerrar</string>
-    <string name="text_title_events"><b>Eventos</b></string>
+    <string name="text_title_events">Eventos</string>
     <string name="text_helper_events">No hay eventos</string>
     <string name="card_item_one">Horarios</string>
     <string name="card_item_two">Eventos</string>
@@ -110,6 +110,7 @@
     <string name="btn_actualizar">Actualizar</string>
     <string name="menu_item_five">Tipo eventos</string>
     <string name="menu_item_six">Docentes</string>
+
     <string name="error_intent_load">No se pudo cargar el recurso</string>
     <string name="title_activity_insert_docente">Agregar nuevo docente</string>
     <string name="text_first_name_teacher">Primer nombre</string>
