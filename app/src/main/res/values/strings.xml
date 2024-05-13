@@ -120,4 +120,8 @@
     <string name="text_state_teacher">Estado</string>
     <string name="opciones">Opciones</string>
     <string name="text_search_teacher">ID Docente</string>
+    <string name="text_lastname_married">Apellido de casada</string>
+    <string name="title_activity_delete_teacher">Eliminar Docente</string>
+    <string name="title_activity_update_teacher">Actualizar docente</string>
+    <string name="title_activity_query_teacher">Consultar docente</string>
 </resources>

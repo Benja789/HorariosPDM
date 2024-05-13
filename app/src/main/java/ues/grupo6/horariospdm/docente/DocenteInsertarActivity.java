@@ -12,11 +12,7 @@ import ues.grupo6.horariospdm.R;
 
 public class DocenteInsertarActivity extends AppCompatActivity {
     ControlBD helper;
-    EditText text_first_name;
-    EditText text_second_name;
-    EditText text_first_lastname;
-    EditText text_second_lastname;
-    EditText text_profession;
+    EditText text_first_name, text_second_name,text_first_lastname,text_second_lastname, text_married_name, text_profession;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +23,7 @@ public class DocenteInsertarActivity extends AppCompatActivity {
         text_first_lastname = findViewById(R.id.text_first_lastname);
         text_second_lastname = findViewById(R.id.text_second_lastname);
         text_profession = findViewById(R.id.text_profession);
+        text_married_name = findViewById(R.id.text_married_lastname);
     }
 
     public void cleanFields (View v) {
@@ -35,17 +32,19 @@ public class DocenteInsertarActivity extends AppCompatActivity {
         text_first_lastname.setText("");
         text_second_lastname.setText("");
         text_profession.setText("");
+        text_married_name.setText("");
     }
 
     public void saveNewTeacher (View v) {
-        Docente newTeacher = new Docente(
-            text_first_name.getText().toString(),
-            text_second_name.getText().toString(),
-            text_first_lastname.getText().toString(),
-            text_second_lastname.getText().toString(),
-            text_profession.getText().toString(),
-            true
-        );
+        Docente newTeacher = new Docente();
+        newTeacher.setFirstName(text_first_name.getText().toString());
+        newTeacher.setSecondName(text_second_name.getText().toString());
+        newTeacher.setFirstLastName(text_first_lastname.getText().toString());
+        newTeacher.setSecondLastName(text_second_lastname.getText().toString());
+        newTeacher.setProfession(text_profession.getText().toString());
+        newTeacher.setMarriedName(text_married_name.getText().toString());
+        newTeacher.setActive(true);
+
         if (newTeacher.getFirstName().equals("")) {
             Toast.makeText(this, "Es obligatorio el primer nombre del docente", Toast.LENGTH_SHORT).show();
             return;

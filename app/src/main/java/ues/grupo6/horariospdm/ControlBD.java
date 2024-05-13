@@ -158,7 +158,8 @@ public class ControlBD {
         docenteData.put("docente_primer_nombre",dataTeacher.getFirstName());
         docenteData.put("docente_segundo_nombre",dataTeacher.getSecondName());
         docenteData.put("docente_primer_apellido",dataTeacher.getFirstLastName());
-        docenteData.put("docente_segundo_nombre",dataTeacher.getSecondLastName());
+        docenteData.put("docente_segundo_apellido",dataTeacher.getSecondLastName());
+        docenteData.put("docente_apellido_casada", dataTeacher.getMarriedName());
         docenteData.put("docente_titulo",dataTeacher.getProfession());
         if ( dataTeacher.getActive()) docenteData.put("estado_docente", 1);
         else  docenteData.put("estado_docente", 0);
@@ -307,25 +308,32 @@ public class ControlBD {
         Cursor cursor = db.query("docente", camposDocente, "id_docente = ?", id, null, null, null);
         if(cursor.moveToFirst()){
             Docente docente = new Docente();
-            System.out.println("------------------------------------------------------------------------------");
-            System.out.println(cursor.getInt(0));
-            System.out.println(cursor.getString(1));
-            System.out.println(cursor.getString(2));
-            System.out.println(cursor.getString(3));
-            System.out.println(cursor.getString(4));
-            System.out.println(cursor.getInt(5));
-            System.out.println("------------------------------------------------------------------------------");
             docente.setIdDocente(cursor.getInt(0));
             docente.setFirstName(cursor.getString(1));
             docente.setSecondName(cursor.getString(2));
             docente.setFirstLastName(cursor.getString(3));
             docente.setSecondLastName(cursor.getString(4));
-            docente.setActive(cursor.getInt(5));
+            docente.setMarriedName(cursor.getString(5));
+            docente.setProfession(cursor.getString(6));
+            docente.setActive(cursor.getInt(7));
             return docente;
         }else{
             return null;
         }
     }
+    public String eliminateDocent(Docente docente){
+
+        if(verificarIntegridad(docente, 20)){
+            String[] id = {docente.getIdDocente()+""};
+            ContentValues cv = new ContentValues();
+            cv.put("id_docente", 0);
+            db.update("docente", cv, "id_docente = ?", id);
+            return "Registro eliminado Correctamente";
+        } else {
+            return "Docente con el ID " + docente.getIdDocente() + " no existe";
+        }
+    }
+
     public Tipo_Grupo consultarTipoGrupo(int id_tipo_grupo){
         String[] id = {id_tipo_grupo+""};
         Cursor cursor = db.query("tipo_grupo", camposTipoGrupo, "id_tipo_grupo = ?", id, null, null, null);
@@ -369,9 +377,6 @@ public class ControlBD {
         switch(relacion){
 
         //Case tablas Aura (empiezan con 1, ejemplo 10,11,110,111)
-
-
-        //Case tablas Benjamin (empiezan con 2, ejemplo 20,21,210,211)
 
         //Case tablas Cesar (empiezan con 3, ejemplo 30,31,310,311)
 
@@ -429,23 +434,27 @@ public class ControlBD {
                 }
                 return false;
             }
-
+            //Case tablas Benjamin (empiezan con 2, ejemplo 20,21,210,211)
+            case 20: {
+                Docente docente = (Docente) dato;
+                String[] id = {docente.getIdDocente()+""};
+                abrir();
+                Cursor c2 = db.query("docente", null, "id_docente = ?", id, null, null, null);
+                //Se encontro el tipo de evento
+                return c2.moveToFirst();
+            }
         //Case tablas Walter (empiezan con 5, ejemplo 50,51,510,511)
-            case 50:
-            {
+            case 50:  {
                 //verificar que exista tipoGrupo
                 Tipo_Grupo tipoGrupo = (Tipo_Grupo) dato;
                 String[] id = {tipoGrupo.getId_tipo_grupo()+""};
                 abrir();
                 Cursor c2 = db.query("tipo_grupo", null, "id_tipo_grupo = ?", id, null, null, null);
-                if(c2.moveToFirst()){
-                    //Se encontro el tipo de evento
-                    return true;
-                }
+                return c2.moveToFirst();
+            }
+            default: {
                 return false;
             }
-            default:
-                return false;
         }
     }
 }

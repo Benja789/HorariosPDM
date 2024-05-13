@@ -112,11 +112,34 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearlayout_profession"
+        android:id="@+id/linearlayout_married_lastname"
         android:layout_width="match_parent"
         app:layout_constraintStart_toStartOf="parent"
         android:weightSum="4"
         app:layout_constraintTop_toBottomOf="@id/linearlayout_second_lastname"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/text_lastname_married"/>
+        <EditText
+            android:id="@+id/text_married_lastname"
+            android:layout_weight="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="text"
+            android:text=""/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearlayout_profession"
+        android:layout_width="match_parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:weightSum="4"
+        app:layout_constraintTop_toBottomOf="@id/linearlayout_married_lastname"
         android:orientation="horizontal"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content">

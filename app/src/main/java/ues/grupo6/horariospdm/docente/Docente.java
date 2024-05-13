@@ -9,17 +9,27 @@ public class Docente {
     String firstLastName;
     String secondLastName;
     String profession;
+    String marriedName;
     Boolean isActive;
 
     public Docente () {}
-   public Docente (String firstName, String secondName, String firstLastName, String secondLastName, String profession, Boolean isActive) {
-       this.secondLastName = secondLastName;
+   public Docente (String firstName, String secondName, String firstLastName, String secondLastName, String profession, String marriedName, Boolean isActive) {
        this.firstName = firstName;
        this.secondName = secondName;
        this.firstLastName = firstLastName;
+       this.secondLastName = secondLastName;
        this.profession = profession;
+       this.marriedName = marriedName;
        this.isActive = isActive;
    }
+
+    public String getMarriedName() {
+        return marriedName;
+    }
+
+    public void setMarriedName(String marriedName) {
+        this.marriedName = marriedName;
+    }
 
     public void setIdDocente(int idDocente) {
         this.idDocente = idDocente;

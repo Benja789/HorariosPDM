@@ -103,5 +103,9 @@
     <string name="text_profesion_teacher">Profession</string>
     <string name="text_state_teacher">State</string>
     <string name="text_search_teacher">ID Teacher</string>
+    <string name="text_lastname_married">Married name</string>
+    <string name="title_activity_delete_teacher">Delete teacher</string>
+    <string name="title_activity_update_teacher">Update teacher</string>
+    <string name="title_activity_query_teacher">Query teacher</string>
 
 </resources>
