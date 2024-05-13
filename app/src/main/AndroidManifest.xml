@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,6 +13,42 @@
         android:theme="@style/Theme.HorariosPDM"
         tools:targetApi="31">
         <activity
+            android:name=".tipo_salon.TipoSalonInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tipo_salon.TipoSalonEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tipo_salon.TipoSalonConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".tipo_salon.TipoSalonActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".salon.SalonInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".salon.SalonEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".salon.SalonConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".salon.SalonActualizarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".distribucion_hora.DistribucionHoraInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".distribucion_hora.DistribucionHoraEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".distribucion_hora.DistribucionHoraConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".distribucion_hora.DistribucionHoraActualizarActivity"
+            android:exported="false" />
+        <activity
             android:name=".tipo_funcion.TipoFuncionActualizarActivity"
             android:exported="false" />
         <activity
@@ -22,12 +57,74 @@
         <activity
             android:name=".tipo_funcion.TipoFuncionEliminarActivity"
             android:exported="false" />
+
+<!--        <activity-->
+<!--            android:name=".tipo_funcion.TipoFuncionActualizarActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".tipo_funcion.TipoFuncionConsultarActivity"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".tipo_funcion.TipoFuncionEliminarActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".tipo_funcion.TipoFuncionInsertarActivity"
             android:exported="false" />
         <activity
             android:name=".menus.TipoFuncionMenuActivity"
             android:exported="false" />
+        <activity
+            android:name=".docente.DocenteInsertarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".docente.DocenteEliminarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".docente.DocenteConsultarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".docente.DocenteActualizarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".menus.DocenteMenu"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".menus.TipoGrupoMenuActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".menus.EventoMenuActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".evento.EventoEliminarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".evento.EventoConsultarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".evento.EventoActualizarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".evento.EventoInsertarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".tipo_evento.TipoEventoActualizarActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".docente.DocenteInsertarActivity"
             android:exported="false"
@@ -94,6 +191,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".menus.AsignaturaMenuActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".menus.EscuelaMenuActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -183,5 +284,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

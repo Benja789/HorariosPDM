@@ -5,10 +5,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import ues.grupo6.horariospdm.R;
+
 /** @noinspection ALL*/
-public class TipoGrupoMenuActivity extends ListActivity {
+public class TipoGrupoMenuActivity extends AppCompatActivity {
     String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
             "Actualizar Registro"};
     String[] activities={"TipoGrupoInsertarActivity","TipoGrupoEliminarActivity","TipoGrupoConsultarActivity",
@@ -18,29 +24,23 @@ public class TipoGrupoMenuActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ListView listView = getListView();
-        listView.setBackgroundColor(Color.TRANSPARENT);
-        ArrayAdapter<String> adapter = new
-                ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
-        setListAdapter(adapter);
-    }
-
-    @Override
-    protected void onListItemClick(ListView l,View v,int position,long id){
-        super.onListItemClick(l, v, position, id);
-
-        String nombreValue=activities[position];
-
-        l.getChildAt(position).setBackgroundColor((int) Color.luminance(1));
-
-        try{
-            Class<?> clase=Class.forName("ues.grupo6.horariospdm.menus."+entidad+"."+nombreValue);
-            Intent inte = new Intent(this,clase);
-            this.startActivity(inte);
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-
+        setContentView(R.layout.activity_tipo_grupo_menu);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
+        ListView listView = findViewById(R.id.list_tipo_grupo_menu);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String nombreValue = activities[position];
+                try {
+                    Class<?> clase = Class.forName("ues.grupo6.horariospdm." + entidad + "." + nombreValue);
+                    Intent inte = new Intent(TipoGrupoMenuActivity.this, clase);
+                    TipoGrupoMenuActivity.this.startActivity(inte);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
 

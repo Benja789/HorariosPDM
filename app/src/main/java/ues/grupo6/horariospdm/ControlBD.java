@@ -10,14 +10,17 @@ import android.media.metrics.Event;
 
 import java.util.ArrayList;
 
+import ues.grupo6.horariospdm.distribucion_hora.DistribucionHora;
 import ues.grupo6.horariospdm.asignatura.Asignatura;
 import ues.grupo6.horariospdm.ciclo_academico.CicloAcademico;
 import ues.grupo6.horariospdm.tipo_ciclo.TipoCiclo;
 import ues.grupo6.horariospdm.docente.Docente;
 import ues.grupo6.horariospdm.escuela.Escuela;
+import ues.grupo6.horariospdm.salon.Salon;
 import ues.grupo6.horariospdm.tipo_evento.TipoEvento;
 import ues.grupo6.horariospdm.evento.Evento;
 import ues.grupo6.horariospdm.tipo_grupo.Tipo_Grupo;
+import ues.grupo6.horariospdm.tipo_salon.TipoSalon;
 
 
 public class ControlBD {
@@ -100,7 +103,32 @@ public class ControlBD {
 
             //Tablas Cesar
 
-            //Tablas Manuel
+                db.execSQL("CREATE TABLE tipo_salon (" +
+                        "id_tipo_salon          integer         PRIMARY KEY AUTOINCREMENT, " +
+                        "nombre_tipo_salon      varchar2(30)    not null, " +
+                        "disponible_tipo_salon  smallint        not null, " +
+                        "codigo_tipo_salon      varchar2(8)     not null, " +
+                        "estado_tipo_salon      numeric(1)      not null);");
+
+                db.execSQL("CREATE TABLE salon (" +
+                        "id_salon                   integer         PRIMARY KEY AUTOINCREMENT, " +
+                        "id_tipo_salon              integer         not null, " +
+                        "id_distribucion_de_hora    integer         not null, " +
+                        "id_docente                 integer         not null, " +
+                        "nombre_salon               varchar2(30)    not null, " +
+                        "capacidad                  numeric(4)      not null, " +
+                        "codigo_salon               varchar2(8)     not null, " +
+                        "disponible                 numeric(1)      not null);");
+
+                db.execSQL("CREATE TABLE distribucion_de_hora (" +
+                        "id_distribucion_hora           integer         PRIMARY KEY AUTOINCREMENT, " +
+                        "hora_inicio                    date            not null, " +
+                        "hora_fin                       date            not null, " +
+                        "dia                            varchar2(10)    not null, " +
+                        "estado_distribucion_de_hora    numeric(1)      not null);");
+
+
+                //Tablas Manuel
                 db.execSQL("CREATE TABLE tipo_evento(id_tipo_evento INTEGER PRIMARY KEY AUTOINCREMENT, nombre_tipo_evento VARCHAR(25) NOT NULL, estado_tipo_evento NUMERIC(1) NOT NULL);");
                 db.execSQL("CREATE TABLE evento(id_evento INTEGER PRIMARY KEY AUTOINCREMENT, id_tipo_evento INTEGER NOT NULL, nombre_evento VARCHAR(50) NOT NULL, estado_evento NUMERIC(1) NOT NULL, FOREIGN KEY (id_tipo_evento) REFERENCES tipo_evento(id_tipo_evento));");
                 db.execSQL("CREATE TABLE tipo_ciclo(id_tipo_ciclo INTEGER PRIMARY KEY AUTOINCREMENT, nombre_tipo_ciclo VARCHAR(25) NOT NULL, estado_tipo_ciclo NUMERIC(1) NOT NULL);");
@@ -190,6 +218,71 @@ public class ControlBD {
 
     //CRUD Cesar
 
+    public String insertarTipoSalon(TipoSalon tipoSalon){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues tpSalon = new ContentValues();
+
+
+        tpSalon.put("nombre_tipo_salon", tipoSalon.getNombreTipoSalon());
+        tpSalon.put("disponible_tipo_salon", tipoSalon.isDisponibleTipoSalon());
+        tpSalon.put("codigo_tipo_salon", tipoSalon.getCodigoTipoSalon());
+        tpSalon.put("estado_tipo_salon", tipoSalon.getEstadoTipoSalon());
+
+        contador=db.insert("tipo_salon", null, tpSalon);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    public String insertarSalon(Salon salon){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues cvSalon = new ContentValues();
+
+        cvSalon.put("id_tipo_salon", salon.getIdTipoSalon());
+        cvSalon.put("id_distribucion_de_hora", salon.getIdTipoSalon());
+        cvSalon.put("id_docente", salon.getIdDocente());
+        cvSalon.put("nombre_salon", salon.getNombreSalon());
+        cvSalon.put("capacidad", salon.getCapacidad());
+        cvSalon.put("codigo_salon",salon.getCodigoSalon());
+        cvSalon.put("disponible", salon.isDisponible());
+
+        contador=db.insert("tipo_salon", null, cvSalon);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
+    public String insertarDistribucionHora(DistribucionHora distribucionHora){
+        String regInsertados="Registro Insertado Nº= ";
+        long contador=0;
+        ContentValues cvDisHora = new ContentValues();
+
+
+        cvDisHora.put("hora_inicio", distribucionHora.getHoraInicio());
+        cvDisHora.put("hora_fin", distribucionHora.getHoraFin());
+        cvDisHora.put("dia", distribucionHora.getDia());
+        cvDisHora.put("estado_distribucion_de_hora", distribucionHora.getEstadoDistribucionHora());
+
+        contador=db.insert("distribucion_de_hora", null, cvDisHora);
+        if(contador==-1 || contador==0)
+        {
+            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        }
+        else {
+            regInsertados=regInsertados+contador;
+        }
+        return regInsertados;
+    }
     //CRUD Manuel
 
     public String insertarTipoEvento(TipoEvento tipoEvento){

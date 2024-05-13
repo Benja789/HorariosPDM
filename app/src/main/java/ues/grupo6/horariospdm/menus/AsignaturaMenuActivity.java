@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import ues.grupo6.horariospdm.R;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 /** @noinspection ALL*/

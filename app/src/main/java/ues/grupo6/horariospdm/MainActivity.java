@@ -13,9 +13,11 @@ import com.google.android.material.navigation.NavigationView;
 
 import ues.grupo6.horariospdm.menus.AsignaturaMenuActivity;
 import ues.grupo6.horariospdm.menus.DocenteMenu;
+import ues.grupo6.horariospdm.menus.EscuelaMenuActivity;
 import ues.grupo6.horariospdm.menus.EventoMenuActivity;
 import ues.grupo6.horariospdm.menus.TipoEventoMenuActivity;
 import ues.grupo6.horariospdm.menus.TipoFuncionMenuActivity;
+import ues.grupo6.horariospdm.menus.TipoGrupoMenuActivity;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener  {
     DrawerLayout drawerLayout;
@@ -46,15 +48,15 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         System.out.println("Accion del boton del menu");
-        if (item.getItemId() == R.id.item_one) {
-            System.out.println("item 1");
-        } else if ( item.getItemId() == R.id.item_two) callNewActivity(AsignaturaMenuActivity.class);
-        else if ( item.getItemId() == R.id.item_three ) {
-            System.out.println("item 3");
-        } else if ( item.getItemId() ==R.id.item_fourth ) callNewActivity(AsignaturaMenuActivity.class);
+        if (item.getItemId() == R.id.item_one) System.out.println("item 1");
+//        else if ( item.getItemId() == R.id.item_two) callNewActivity(AsignaturaMenuActivity.class);
+        else if ( item.getItemId() == R.id.item_three ) System.out.println("item 3");
+        else if ( item.getItemId() ==R.id.item_fourth ) callNewActivity(AsignaturaMenuActivity.class);
         else if (item.getItemId() == R.id.item_six)  callNewActivity(DocenteMenu.class);
         else if (item.getItemId() == R.id.item_five) callNewActivity(TipoEventoMenuActivity.class);
         else if ( item.getItemId() == R.id.item_seven )callNewActivity(TipoFuncionMenuActivity.class);
+        else if ( item.getItemId() ==  R.id.item_eight ) callNewActivity(EscuelaMenuActivity.class);
+        else if ( item.getItemId() == R.id.item_nine ) callNewActivity(TipoGrupoMenuActivity.class);
 
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

@@ -10,6 +10,14 @@
             android:icon="@drawable/book"
             android:title="@string/menu_item_fourth"/>
         <item
+            android:id="@+id/item_eight"
+            android:icon="@drawable/school"
+            android:title="@string/title_activity_school_menu"/>
+        <item
+            android:id="@+id/item_nine"
+            android:icon="@drawable/account_group"
+            android:title="@string/title_activity_type_group"/>
+        <item
             android:id="@+id/item_six"
             android:icon="@drawable/human_male_board"
             android:title="@string/menu_item_six"/>
