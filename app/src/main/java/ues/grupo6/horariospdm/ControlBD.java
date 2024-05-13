@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 
+import ues.grupo6.horariospdm.asignatura.Asignatura;
 import ues.grupo6.horariospdm.docente.Docente;
 import ues.grupo6.horariospdm.escuela.Escuela;
 import ues.grupo6.horariospdm.tipo_evento.TipoEvento;
@@ -31,8 +32,10 @@ public class ControlBD {
 
     //Campos Walter
     private static final String[]camposEscuela = new String [] {"id_escuela","nombre_escuela","prioridad_escuela","estado_escuela"};
+    private static final String[]camposAsignatura = new String [] {"id_asignatura","id_escuela","nombre_asignatura","codigo_asignatura","estado_asignatura"};
 
     private static final String[]camposTipoGrupo = new String [] {"id_tipo_grupo","nombre_tipo_grupo","estado_tipo_grupo"};
+
 
 
     private final Context context;
@@ -355,6 +358,54 @@ public class ControlBD {
             return "Registro eliminado Correctamente";
         }else{
             return "Registro con id Escuela " + escuela.getId_escuela() + " no existe";
+        }
+    }
+
+        //Asignatura
+        public ArrayList<Escuela> consultarEscuelasActivas() {
+            ArrayList<Escuela> listado = new ArrayList<Escuela>();
+            Cursor cursor = db.rawQuery("SELECT * FROM escuela WHERE estado_escuela = 1", null);
+            while (cursor.moveToNext()) {
+                Escuela escuela = new Escuela();
+                escuela.setId_escuela(cursor.getInt(0));
+                escuela.setNombre_escuela(cursor.getString(1));
+                escuela.setPrioridad_esccuela(cursor.getInt(2));
+                escuela.setEstado_escuela(cursor.getInt(3));
+                listado.add(escuela);
+            }
+            cursor.close();
+            return listado;
+
+
+        }
+        public String insertarAsignatura(Asignatura asignatura){
+            String regInsertados="Registro Insertado Nº= ";
+            long contador=0;
+            ContentValues asign = new ContentValues();
+            asign.put("id_escuela", asignatura.getId_escuela());
+            asign.put("nombre_asignatura", asignatura.getNombre_asignatura());
+            asign.put("codigo_asignatura", asignatura.getCodigo_asignatura());
+            asign.put("estado_asignatura", asignatura.getEstado_asignatura());
+
+            contador=db.insert("asignatura", null, asign);
+            if(contador==-1 || contador==0) regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+            else regInsertados=regInsertados+contador;
+            return regInsertados;
+        }
+
+    public Asignatura consultarAsignatura(int id_asignatura){
+        String[] id = {id_asignatura+""};
+        Cursor cursor = db.query("asignatura", camposAsignatura, "id_asignatura = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Asignatura asignatura = new Asignatura();
+            asignatura.setId_asignatura(cursor.getInt(0));
+            asignatura.setId_escuela(cursor.getInt(1));
+            asignatura.setNombre_asignatura(cursor.getString(2));
+            asignatura.setCodigo_asignatura(cursor.getString(3));
+            asignatura.setEstado_asignatura(cursor.getInt(4));
+            return asignatura;
+        }else{
+            return null;
         }
     }
 
