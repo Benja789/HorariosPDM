@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
     public void navigateTo (View view) {
         if (view.getId() == R.id.btn_schedule) callNewActivity(ScheduleActivity.class);
-        else if ( view.getId() == R.id.btn_events ) callNewActivity( EventsActivity.class);
+        else if ( view.getId() == R.id.btn_events ) callNewActivity( EventoMenuActivity.class);
         else if ( view.getId() == R.id.btn_request ) callNewActivity(RequestActivity.class);
         else callNewActivity(EventoMenuActivity.class);
     }

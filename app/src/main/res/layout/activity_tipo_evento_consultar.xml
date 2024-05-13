@@ -1,49 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/id_tipo_evento"/>
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="30dip"
+    android:stretchColumns="1">
 
-    <EditText
-        android:id="@+id/editIdTipoEvento"
+    <ImageView
+        android:id="@+id/image_tipo_evento"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:maxLength="7" />
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-        <Button
-            android:id="@+id/botonConsultar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_consultar"
-            android:onClick="consultarTipoEvento"/>
-        <Button
-            android:id="@+id/botonLimpiar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btn_limpiar"
-            android:onClick="limpiarTexto"/>
-    </LinearLayout>
-
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/call_split"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
     <TextView
+        android:id="@+id/title_tipo_evento_menu"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/nombre_tipo_evento" />
-    <EditText
-        android:id="@+id/editNombre"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:enabled ="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:cursorVisible="false"
-        android:longClickable="false" />
-</LinearLayout>
+        app:layout_constraintTop_toBottomOf="@id/image_tipo_evento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/menu_item_five"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:layout_marginBottom="50dp"
+        android:layout_height="wrap_content"/>
+
+    <TableRow
+        android:layout_width="399dp"
+        android:layout_height="100dp"
+        android:layout_weight="1">
+
+        <TextView android:text="@string/id_tipo_evento" />
+
+        <EditText
+            android:id="@+id/editIdTipoEvento"
+            android:autofillHints=""
+            android:inputType="number"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="10px"
+        android:paddingStart="10px"
+        android:paddingEnd="10px">
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/btn_standard"
+            android:onClick="consultarTipoEvento"
+            android:text="@string/btn_consultar"
+            android:textColor="@color/black" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/btn_standard"
+            android:onClick="limpiarTexto"
+            android:text="@string/btn_limpiar"
+            android:textColor="@color/black"
+            tools:ignore="VisualLintButtonSize" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="399dp"
+        android:layout_height="100dp"
+        android:layout_weight="1">
+
+        <TextView android:text="@string/nombre_tipo_evento" />
+
+        <EditText
+            android:id="@+id/editNombreTipoEvento"
+            android:autofillHints=""
+            android:inputType="text"
+            android:maxLength="25"
+            android:clickable="false"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+    </TableRow>
+    <TableRow
+        android:layout_width="399dp"
+        android:layout_height="100dp"
+        android:layout_weight="1">
+
+        <TextView android:text="@string/estado_tipo_evento" />
+
+        <EditText
+            android:id="@+id/editEstadoTipoEvento"
+            android:autofillHints=""
+            android:inputType="text"
+            android:clickable="false"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+    </TableRow>
+
+</TableLayout>

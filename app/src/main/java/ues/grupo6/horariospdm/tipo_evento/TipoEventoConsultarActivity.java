@@ -8,11 +8,13 @@ import android.widget.Toast;
 
 import ues.grupo6.horariospdm.ControlBD;
 import ues.grupo6.horariospdm.R;
+import ues.grupo6.horariospdm.tipo_grupo.Tipo_Grupo;
 
 public class TipoEventoConsultarActivity extends Activity {
     ControlBD helper;
     EditText editIdTipoEvento;
-    EditText editNombre;
+    EditText editNombreTipoEvento;
+    EditText editEstadoTipoEvento;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,7 +22,8 @@ public class TipoEventoConsultarActivity extends Activity {
         setContentView(R.layout.activity_tipo_evento_consultar);
         helper = new ControlBD(this);
         editIdTipoEvento = (EditText) findViewById(R.id.editIdTipoEvento);
-        editNombre = (EditText) findViewById(R.id.editNombre);
+        editNombreTipoEvento = (EditText) findViewById(R.id.editNombreTipoEvento);
+        editEstadoTipoEvento = (EditText) findViewById(R.id.editEstadoTipoEvento);
     }
 
     public void consultarTipoEvento(View v){
@@ -29,22 +32,27 @@ public class TipoEventoConsultarActivity extends Activity {
             Toast.makeText(this, "Ingrese un ID de tipo de evento", Toast.LENGTH_SHORT).show();
             return;
         }
-        int idTipoEvento = Integer.parseInt(editIdTipoEvento.getText().toString());
+
         helper.abrir();
-        TipoEvento tipoEvento = helper.consultar(idTipoEvento);
+        TipoEvento tipoEvento = helper.consultarTipoEvento(Integer.parseInt(String.valueOf(editIdTipoEvento.getText())));
         helper.cerrar();
 
-        if(tipoEvento.getEstado_tipo_evento()!=1)
+        if(tipoEvento == null)
             Toast.makeText(this, "Tipo de evento no encontrado ", Toast.LENGTH_LONG).show();
         else{
-            editNombre.setText(tipoEvento.getNombre_tipo_evento());
-            //editEstado.setText(String.valueOf(tipoEvento.getEstado_tipo_evento()));
+            editIdTipoEvento.setText(String.valueOf(tipoEvento.getId_tipo_evento()));
+            editNombreTipoEvento.setText(tipoEvento.getNombre_tipo_evento());
+            if(tipoEvento.getEstado_tipo_evento()==1){
+                editEstadoTipoEvento.setText("Activo");
+            } else{
+                editEstadoTipoEvento.setText("Inactivo");
+            }
         }
     }
 
     public void limpiarTexto(View v){
         editIdTipoEvento.setText("");
-        editNombre.setText("");
-        //editEstado.setText("");
+        editNombreTipoEvento.setText("");
+        editEstadoTipoEvento.setText("");
     }
 }

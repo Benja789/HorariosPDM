@@ -2,6 +2,15 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="MainActivity">
+        <State />
+      </entry>
+      <entry key="TipoGrupoConsultarActivity">
+        <State />
+      </entry>
+      <entry key="TipoGrupoMenuActivity">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>

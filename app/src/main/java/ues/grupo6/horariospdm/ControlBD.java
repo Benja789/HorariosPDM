@@ -225,7 +225,7 @@ public class ControlBD {
 
     }
 
-    public String actualizar(Evento evento){
+    public String actualizarEvento(Evento evento){
         return null;
     }
 
@@ -243,11 +243,11 @@ public class ControlBD {
 
     }
 
-    public String eliminar(Evento evento){
+    public String eliminarEvento(Evento evento){
         return null;
     }
 
-    public TipoEvento consultar(int id_tipo_evento){
+    public TipoEvento consultarTipoEvento(int id_tipo_evento){
         String[] id = {id_tipo_evento+""};
         Cursor cursor = db.query("tipo_evento", camposTipoEvento, "id_tipo_evento = ?", id, null, null, null);
         if(cursor.moveToFirst()){
@@ -278,7 +278,18 @@ public class ControlBD {
     }
 
     public Evento consultarEvento(int id_evento){
-        return null;
+        String[] id = {id_evento+""};
+        Cursor cursor = db.query("evento", camposEvento, "id_evento = ?", id, null, null, null);
+        if(cursor.moveToFirst()){
+            Evento evento = new Evento();
+            evento.setId_evento(cursor.getInt(0));
+            evento.setNombre_evento(cursor.getString(1));
+            evento.setId_tipo_evento(cursor.getInt(2));
+            evento.setEstado_evento(cursor.getInt(3));
+            return evento;
+        }else{
+            return null;
+        }
     }
 
 
