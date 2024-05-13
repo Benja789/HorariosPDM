@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.media.metrics.Event;
 
 import java.util.ArrayList;
 
@@ -229,7 +230,17 @@ public class ControlBD {
     }
 
     public String actualizarEvento(Evento evento){
-        return null;
+        if(verificarIntegridad(evento, 41)){
+            String[] id = {evento.getId_evento()+""};
+            ContentValues cv = new ContentValues();
+            cv.put("nombre_evento", evento.getNombre_evento());
+            cv.put("id_tipo_evento", evento.getId_tipo_evento());
+            cv.put("estado_evento", evento.getEstado_evento());
+            db.update("evento", cv, "id_evento = ?", id);
+            return "Registro Actualizado Correctamente";
+        }else{
+            return "Registro con id evento " + evento.getId_evento() + " no existe";
+        }
     }
 
     public String eliminar(TipoEvento tipoEvento){
@@ -247,7 +258,15 @@ public class ControlBD {
     }
 
     public String eliminarEvento(Evento evento){
-        return null;
+        if(verificarIntegridad(evento, 41)){
+            String[] id = {evento.getId_evento()+""};
+            ContentValues cv = new ContentValues();
+            cv.put("estado_evento", 0);
+            db.update("evento", cv, "id_evento = ?", id);
+            return "Registro eliminado Correctamente";
+        }else{
+            return "Registro con id evento " + evento.getId_evento() + " no existe";
+        }
     }
 
     public TipoEvento consultarTipoEvento(int id_tipo_evento){
@@ -505,6 +524,19 @@ public class ControlBD {
                 Cursor c2 = db.query("tipo_evento", null, "id_tipo_evento = ?", id, null, null, null);
                 if(c2.moveToFirst()){
                     //Se encontro el tipo de evento
+                    return true;
+                }
+                return false;
+            }
+            case 41:
+            {
+                //verificar que exista tipoEvento
+                Evento evento = (Evento) dato;
+                String[] id = {evento.getId_tipo_evento()+""};
+                abrir();
+                Cursor c2 = db.query("evento", null, "id_evento = ?", id, null, null, null);
+                if(c2.moveToFirst()){
+                    //Se encontro el evento
                     return true;
                 }
                 return false;
