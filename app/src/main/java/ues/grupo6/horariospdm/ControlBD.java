@@ -409,6 +409,22 @@ public class ControlBD {
         }
     }
 
+    public Boolean updateTeacher ( Docente docente ) {
+        if(verificarIntegridad(docente, 20)){
+            String[] id = {docente.getIdDocente()+""};
+            ContentValues cv = new ContentValues();
+            cv.put("docente_primer_nombre", docente.getFirstName());
+            cv.put("docente_segundo_nombre", docente.getSecondName());
+            cv.put("docente_primer_apellido", docente.getFirstLastName());
+            cv.put("docente_segundo_apellido", docente.getSecondLastName());
+            cv.put("docente_apellido_casada", docente.getMarriedName());
+            cv.put("docente_titulo", docente.getProfession());
+            cv.put("estado_docente", docente.getActive());
+            db.update("docente", cv, "id_docente = ?", id);
+            return true;
+        } else return false;
+    }
+
     public Tipo_Grupo consultarTipoGrupo(int id_tipo_grupo){
         String[] id = {id_tipo_grupo+""};
         Cursor cursor = db.query("tipo_grupo", camposTipoGrupo, "id_tipo_grupo = ?", id, null, null, null);

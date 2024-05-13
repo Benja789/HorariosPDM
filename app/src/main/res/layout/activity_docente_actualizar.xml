@@ -119,6 +119,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:ems="10"
+            android:enabled="false"
             android:inputType="text"
             android:text="" />
     </LinearLayout>
@@ -144,6 +145,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="3"
+            android:enabled="false"
             android:ems="10"
             android:inputType="text"
             android:text="" />
@@ -172,6 +174,7 @@
             android:layout_weight="3"
             android:ems="10"
             android:inputType="text"
+            android:enabled="false"
             android:text="" />
     </LinearLayout>
 
@@ -196,6 +199,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="2"
+            android:enabled="false"
             android:ems="10"
             android:inputType="text"
             android:text="" />
@@ -225,12 +229,14 @@
                 android:layout_width="wrap_content"
                 android:onClick="handleChangeRadioButton"
                 android:text="@string/item_status_enable"
+                android:enabled="false"
                 android:layout_height="wrap_content"/>
             <RadioButton
                 android:id="@+id/radio_btn_inactive_teacher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="handleChangeRadioButton"
+                android:enabled="false"
                 android:text="@string/item_status_innactive"/>
         </RadioGroup>
     </LinearLayout>
@@ -252,7 +258,6 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:onClick="cleanFields"
-            android:enabled="false"
             android:text="@string/btn_limpiar" />
         <Button
             android:id="@+id/btn_save_teacher"

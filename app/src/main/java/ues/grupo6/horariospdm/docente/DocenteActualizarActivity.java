@@ -41,37 +41,77 @@ public class DocenteActualizarActivity extends AppCompatActivity {
     public void handleChangeRadioButton (View v) {
         if ( teacher != null ) teacher.setActive(v.getId() == R.id.radio_btn_active_teacher);
     }
+
     public void updateTeacher ( View v ) {
         if ( teacher == null  ) {
             // Para buscar el docente
             helper.abrir();
-            Docente docenteData = helper.consultarDocente(Integer.parseInt(String.valueOf(idDocente.getText())));
+            teacher = helper.consultarDocente(Integer.parseInt(String.valueOf(idDocente.getText())));
             helper.cerrar();
-            if(docenteData == null) Toast.makeText(this, "Docente no registrado", Toast.LENGTH_LONG).show();
+            if(teacher == null) Toast.makeText(this, "Docente no registrado", Toast.LENGTH_LONG).show();
             else {
-                nameDocente.setText(String.valueOf(docenteData.getFirstName()));
+                teacher.setIdDocente(Integer.parseInt(String.valueOf(idDocente.getText())));
+                nameDocente.setText(teacher.getFirstName());
                 nameDocente.setEnabled(true);
-                secondNameDocente.setText(String.valueOf(docenteData.getSecondName()));
+                secondNameDocente.setText(teacher.getSecondName());
                 secondNameDocente.setEnabled(true);
-                firstLastnameDocente.setText(String.valueOf(docenteData.getFirstLastName()));
+                firstLastnameDocente.setText(teacher.getFirstLastName());
                 firstLastnameDocente.setEnabled(true);
-                secondLastNameDocente.setText(String.valueOf(docenteData.getSecondLastName()));
+                secondLastNameDocente.setText(teacher.getSecondLastName());
                 secondLastNameDocente.setEnabled(true);
-                professionDocente.setText(String.valueOf(docenteData.getProfession()));
+                professionDocente.setText(teacher.getProfession());
                 professionDocente.setEnabled(true);
-                marriedNameDocente.setText(String.valueOf(docenteData.getMarriedName()));
+                marriedNameDocente.setText(teacher.getMarriedName());
                 marriedNameDocente.setEnabled(true);
-                if( docenteData.getActive() ) activeDocente.setActivated(true);
-                else inactiveDocente.setActivated(true);
+                activeDocente.setEnabled(true);
+                inactiveDocente.setEnabled(true);
+                idDocente.setEnabled(false);
+                if( teacher.getActive() ) activeDocente.setChecked(true);
+                else inactiveDocente.setChecked(true);
                 btnUpdate.setText(R.string.btn_actualizar);
             }
         } else {
             // Para actualizarlo
+            teacher.setFirstName(String.valueOf(nameDocente.getText()));
+            teacher.setSecondName(String.valueOf(secondNameDocente.getText()));
+            teacher.setFirstLastName(String.valueOf(firstLastnameDocente.getText()));
+            teacher.setSecondLastName(String.valueOf(secondLastNameDocente.getText()));
+            teacher.setProfession(String.valueOf(professionDocente.getText()));
+            teacher.setMarriedName(String.valueOf(marriedNameDocente.getText()));
+            teacher.setActive(activeDocente.isChecked());
+            helper.abrir();
+            Boolean estado = helper.updateTeacher(teacher);
+            helper.cerrar();
+            if (estado) {
+                Toast.makeText(this, "Docente actualizado", Toast.LENGTH_SHORT).show();
+                cleanFields(null);
+                teacher = null ;
+                btnUpdate.setText(R.string.btn_consultar);
+            } else {
+                Toast.makeText(this, "No se logro actualizar el registro", Toast.LENGTH_SHORT).show();
+            }
         }
 
     }
 
     public void cleanFields (View v ) {
-
+        idDocente.setEnabled(true);
+        nameDocente.setEnabled(false);
+        secondNameDocente.setEnabled(false);
+        firstLastnameDocente.setEnabled(false);
+        secondLastNameDocente.setEnabled(false);
+        professionDocente.setEnabled(false);
+        marriedNameDocente.setEnabled(false);
+        activeDocente.setEnabled(false);
+        inactiveDocente.setEnabled(false);
+        idDocente.setText("");
+        nameDocente.setText("");
+        secondNameDocente.setText("");
+        firstLastnameDocente.setText("");
+        secondLastNameDocente.setText("");
+        professionDocente.setText("");
+        marriedNameDocente.setText("");
+        activeDocente.setChecked(false);
+        inactiveDocente.setChecked(false);
     }
 }
