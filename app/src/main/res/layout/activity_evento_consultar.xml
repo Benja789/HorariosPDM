@@ -89,7 +89,7 @@
         <TextView android:text="@string/nombre_tipo_evento" />
 
         <EditText
-            android:id="@+id/editTipoEvento"
+            android:id="@+id/editIdTipoEvento"
             android:autofillHints=""
             android:inputType="text"
             android:maxLength="25"
