@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_activity_grupo_menu">MenuGroupActivity</string>
+    <string name="title_activity_tipo_grupo_menu">TypeGruopMenuActivity</string>
+    <string name="title_activity_escuela_menu">SchoolMenuActivity</string>
+    <string name="title_activity_asignatura_menu">AssignatureMenuActivity</string>
+    <string name="grupo_menu">Execute function goup</string>
+    <string name="tipo_grupo_menu">Execute function Type group</string>
+    <string name="asignatura_menu">Execute function Assignature</string>
+    <string name="escuela_menu">Execute function School</string>
+    <string name="insertar_registro">Insert record</string>
+    <string name="eliminar_registro">Delete record</string>
+    <string name="consultar_registro">"Check record "</string>
+    <string name="actualizar_registro">Update record</string>
+    <string name="title_activity_grupo_insertar">"GroupInsertActivity "</string>
+    <string name="title_activity_grupo_eliminar">GroupDeleteActivity</string>
+    <string name="title_activity_grupo_actualizar">GroupUpdateActivity</string>
+    <string name="title_activity_grupo_consultar">GroupCheckActivity</string>
+    <string name="id_grupo">ID GROUP</string>
+    <string name="id_tipo_grupo_fk">ID Group type</string>
+    <string name="id_asignatura_fk">ID assignature</string>
+    <string name="id_docente">ID Teacher</string>
+    <string name="num_grupo">Group number</string>
+    <string name="estado_grupo">Group state</string>
+    <string name="title_activity_tipo_grupo_insertar">"TypeGroupInsertActivity "</string>
+    <string name="title_activity_tipo_grupo_eliminar">TypeGroupDeleteActivity</string>
+    <string name="title_activity_tipo_grupo_actualizar">TypeGroupUpdateActivity</string>
+    <string name="title_activity_tipo_grupo_consultar">TypeGroupConsultActivity</string>
+    <string name="id_tipo_grupo">ID Type Group</string>
+    <string name="nombre_tipo_grupo">Group Type Name</string>
+    <string name="Estado_tipo_grupo">Group Type Status</string>
+    <string name="title_activity_asignatura_insertar">SubjectInsertActivity</string>
+    <string name="title_activity_asignatura_eliminar">SubjectDeleteActivity</string>
+    <string name="title_activity_asignatura_actualizar">SubjectUpdateActivity</string>
+    <string name="title_activity_asignatura_consultar">SubjectConsultActivity</string>
+    <string name="id_asignatura">Subject ID</string>
+    <string name="id_escuela_fk">School ID</string>
+    <string name="nombre_asignatura">Subject Name</string>
+    <string name="codigo_asignatura">Subject Code</string>
+    <string name="estado_asignatura">Subject Status</string>
+    <string name="title_activity_escuela_insertar">SchoolInsertActivity</string>
+    <string name="title_activity_escuela_eliminar">SchoolDeleteActivity</string>
+    <string name="title_activity_escuela_actualizar">SchoolUpdateActivity</string>
+    <string name="title_activity_escuela_consultar">SchoolConsultActivity</string>
+    <string name="id_escuela">School ID</string>
+    <string name="nombre_escuela">School name</string>
+    <string name="prioridad_escuela">School Priority</string>
+    <string name="estado_escuela">School Status</string>
+    <string name="app_name">Schedule</string>
+    <string name="bar_title">"Check Schedules "</string>
+    <string name="menu_item_one">Profile</string>
+    <string name="menu_item_two">About us</string>
+    <string name="menu_item_three">Signout</string>
+    <string name="menu_item_fourth">Subjects</string>
+    <string name="open_menu">Menu</string>
+    <string name="closed_menu">Close</string>
+    <string name="text_title_events"><b>Events</b></string>
+    <string name="text_helper_events">"There are no events "</string>
+    <string name="card_item_one">Schedule</string>
+    <string name="card_item_two">Events</string>
+    <string name="card_item_three">Requests</string>
+    <string name="opciones">Options</string>
+
+    <!-- TIPO EVENTO -->
+    <!-- CRUD -->
+    <string name="title_activity_tipo_evento_insertar">TypeEventInsertActivity</string>
+    <string name="title_activity_tipo_evento_eliminar">TypeEventDeleteActivity</string>
+    <string name="title_activity_tipo_evento_actualizar">TypeEventUpdateActivity</string>
+    <string name="title_activity_tipo_evento_consultar">TypeEventConsultActivity</string>
+
+    <!-- CAMPOS -->
+    <string name="id_tipo_evento">Type of event ID</string>
+    <string name="nombre_tipo_evento">Name of the type of event</string>
+    <string name="estado_tipo_evento">Event type status</string>
+
+    <!-- EVENTO -->
+    <!-- CRUD -->
+    <string name="title_activity_evento_insertar">EventInsertActivity</string>
+    <string name="title_activity_evento_eliminar">EventDeleteActivity</string>
+    <string name="title_activity_evento_actualizar">EventUpdateActivity</string>
+    <string name="title_activity_evento_consultar">EventConsultActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_evento">Event ID</string>
+    <string name="nombre_evento">Event name</string>
+    <string name="estado_evento">Event status</string>
+    <string name="tipo_evento">type of event</string>
+
+    <!-- TIPO SALON -->
+    <!-- CRUD -->
+    <string name="title_activity_tipo_salon_insertar">ClassroomTypeInsertActivity</string>
+    <string name="title_activity_tipo_salon_eliminar">ClassroomTypeDeleteActivity</string>
+    <string name="title_activity_tipo_salon_actualizar">ClassroomTypeUpdateActivity</string>
+    <string name="title_activity_tipo_salon_consultar">ClassroomTypeConsultActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_tipo_salon">ID Classroom Type</string>
+    <string name="nombre_tipo_salon">Classroom Type Name</string>
+    <string name="disponible_tipo_salon">Availability of Classroom Type</string>
+    <string name="codigo_tipo_salon">Classroom Type Code</string>
+    <string name="estado_tipo_salon">Classroom Type Status</string>
+
+    <!-- SALON -->
+    <!-- CRUD -->
+    <string name="title_activity_salon_insertar">ClassroomInsertActivity</string>
+    <string name="title_activity_salon_eliminar">ClassroomDeleteActivity</string>
+    <string name="title_activity_salon_actualizar">ClassroomUpdateActivity</string>
+    <string name="title_activity_salon_consultar">ClassroomConsultActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_salon">Classroom ID</string>
+    <string name="nombre_salon">Classroom Name</string>
+    <string name="capacidad">Capacity</string>
+    <string name="codigo_salon">Classroom Code</string>
+    <string name="disponible_salon">Classroom Availability</string>
+
+    <!-- DISTRIBUCION HORA -->
+    <!-- CRUD -->
+    <string name="title_activity_distribucion_hora_insertar">TimeDistributionInsertActivity</string>
+    <string name="title_activity_distribucion_hora_eliminar">TimeDistributionDeleteActivity</string>
+    <string name="title_activity_distribucion_hora_actualizar">TimeDistributionUpdateActivity</string>
+    <string name="title_activity_distribucion_hora_consultar">TimeDistributionConsultActivity</string>
+    <!-- CAMPOS -->
+    <string name="id_distribucion_hora">Time Distribution ID</string>
+    <string name="hora_inicio">Beginnning Time</string>
+    <string name="hora_fin">Ending Time</string>
+    <string name="dia">Day</string>
+    <string name="estado_distribucion_hora">Hour Distribution Status</string>
+
+
+    <!-- BOTONES FORMULARIOS -->
+    <string name="btn_insertar">Insert</string>
+    <string name="btn_consultar">Consult</string>
+    <string name="btn_limpiar">Clean</string>
+    <string name="btn_eliminar">Delete</string>
+    <string name="btn_actualizar">Update</string>
+    <string name="menu_item_five">Event type</string>
+    <string name="menu_item_six">Teachers</string>
+    <string name="title_activity_horario_actualizar">ScheduleUpdateActivity</string>
+    <string name="title_activity_horario_consultar">ScheduleConsultActivity</string>
+    <string name="title_activity_horario_insertar">ScheduleInsertActivity</string>
+    <string name="title_activity_horario_eliminar">ScheduleDeleteActivity</string>
+    <string name="title_activity_horario_menu">ScheduleMenuActivity</string>
+    <string name="id_horario">ID Schedule</string>
+    <string name="id_solicitud_horario_fk">ID Schedule Request</string>
+    <string name="id_solicitud_evento_fk">ID Event Request</string>
+    <string name="title_activity_estado_horario_actualizar">ScheduleStatusUpdateActivity</string>
+    <string name="title_activity_estado_horario_consultar">ScheduleStatusConsultActivity</string>
+    <string name="title_activity_estado_horario_insertar">ScheduleStatusInsertActivity</string>
+    <string name="title_activity_estado_horario_eliminar">ScheduleStatusDeleteActivity</string>
+    <string name="id_estado_horario">ID Status Schedule</string>
+    <string name="id_horario_fk">ID Schedule</string>
+    <string name="nombre_estado_horario">Status Schedule name</string>
+    <string name="estado">Status</string>
+    <string name="title_activity_ciclo_academico_actualizar">AcademicCycleUpdateActivity</string>
+    <string name="title_activity_ciclo_academico_consultar">AcademicCycleConsultActivity</string>
+    <string name="title_activity_ciclo_academico_insertar">AcademicCycleInsertActivity</string>
+    <string name="id_ciclo_academico">ID Academic Cycle</string>
+    <string name="id_tipo_ciclo_fk">ID Cycle Type</string>
+    <string name="inicio_ciclo_academico">Home Academic Cycle</string>
+    <string name="fin_ciclo_academico">End of Academic Cycle</string>
+    <string name="anio_ciclo_academico">Year Academic Cycle</string>
+    <string name="estado_ciclo_academico">Academic Cycle Status</string>
+    <string name="title_activity_ciclo_academico_Eliminar">AcademicCycleDeleteActivity</string>
+    <string name="title_activity_tipo_ciclo_actualizar">CycleTypeUpdateActivity</string>
+    <string name="title_activity_tipo_ciclo_consultar">CycleTypeConsultActivity</string>
+    <string name="title_activity_tipo_ciclo_insertar">CycleTypeInsertActivity</string>
+    <string name="title_activity_tipo_ciclo_eliminar">CycleTypeDeleteActivity</string>
+    <string name="id_tipo_ciclo">ID Cycle Type</string>
+    <string name="nombre_tipo_ciclo">Cycle Type Name</string>
+    <string name="estado_tipo_ciclo">Cycle Type Status</string>
+    <string name="seleccine">select</string>
+    <string name="seleccine_solicitud_horario">Select Event Request</string>
+    <string name="seleccine_solicitud_evento">Select Schedule Request</string>
+    <string name="error_intent_load">The resource could not be loaded</string>
+    <string name="title_activity_insert_docente">Add new teacher</string>
+    <string name="text_first_name_teacher">First name</string>
+    <string name="text_second_name_teacher">Second name</string>
+    <string name="text_first_lastname_teacher">First lastname</string>
+    <string name="text_second_lastname_teacher">Second lastname</string>
+    <string name="text_profesion_teacher">Profession</string>
+    <string name="text_state_teacher">State</string>
+    <string name="text_search_teacher">ID Teacher</string>
+    <string name="text_lastname_married">Married name</string>
+    <string name="title_activity_delete_teacher">Delete teacher</string>
+    <string name="title_activity_update_teacher">Update teacher</string>
+    <string name="title_activity_query_teacher">Query teacher</string>
+    <string name="item_status_enable">Active</string>
+    <string name="item_status_innactive">Innactive</string>
+    <string name="menu_item_seven">Function type</string>
+    <string name="title_activity_school_menu">School</string>
+    <string name="title_activity_type_group">Group Type</string>
+    <string name="title_activity_group">Group</string>
+    <string name="title_activity_cycle">Cycle</string>
+
+</resources>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:stretchColumns="1">
+    <TableRow>
+        <TextView android:text="@string/nombre_tipo_ciclo"/>
+        <EditText
+            android:id="@+id/editNombreTipoCiclo"
+            android:inputType="text"
+            android:maxLength="25"/>
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="Opciones" />
+    </TableRow>
+
+    <TableRow>
+        <Button
+            android:onClick="insertarTipoCiclo"
+            android:text="@string/btn_insertar" />
+        <Button
+            android:onClick="limpiarTexto"
+            android:text="@string/btn_limpiar" />
+    </TableRow>
+</TableLayout>

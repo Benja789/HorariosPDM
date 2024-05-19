@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="30dip"
+    android:stretchColumns="1">
+
+    <ImageView
+        android:id="@+id/image_tipo_grupo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_tipo_grupo_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:text="@string/title_activity_group"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_tipo_grupo" />
+
+    <TableRow
+        android:layout_width="399dp"
+        android:layout_height="100dp"
+        android:layout_weight="1">
+
+        <TextView android:text="@string/id_tipo_grupo" />
+
+        <EditText
+            android:id="@+id/editIdTipoGrupo"
+            android:autofillHints=""
+            android:inputType="number"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+    </TableRow>
+
+    <TableRow
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:padding="10px"
+        android:paddingStart="10px"
+        android:paddingEnd="10px">
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/btn_standard"
+            android:onClick="consultarTipoGrupo"
+            android:text="@string/btn_consultar"
+            android:textColor="@color/black" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/btn_standard"
+            android:onClick="limpiarTexto"
+            android:text="@string/btn_limpiar"
+            android:textColor="@color/black"
+            tools:ignore="VisualLintButtonSize" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="399dp"
+        android:layout_height="100dp"
+        android:layout_weight="1">
+
+        <TextView android:text="@string/nombre_tipo_grupo" />
+
+        <EditText
+            android:id="@+id/editNombre_tipo_grupo"
+            android:autofillHints=""
+            android:clickable="false"
+            android:inputType="text"
+            android:maxLength="25"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="399dp"
+        android:layout_height="100dp"
+        android:layout_weight="1">
+
+        <TextView android:text="@string/Estado_tipo_grupo" />
+
+        <EditText
+            android:id="@+id/editEstadoTipoGrupo"
+            android:autofillHints=""
+            android:clickable="false"
+            android:inputType="number"
+            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
+    </TableRow>
+
+</TableLayout>

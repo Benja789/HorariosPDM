@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".menus.DocenteMenu">
+
+    <ImageView
+        android:id="@+id/image_docente_menu"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/human_male_board"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/title_docente_menu"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/image_docente_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/menu_item_six"
+        android:textSize="40sp"
+        android:layout_height="wrap_content"/>
+    <ListView
+        android:id="@+id/list_docente_menu"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toBottomOf="@id/title_docente_menu"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="wrap_content" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
