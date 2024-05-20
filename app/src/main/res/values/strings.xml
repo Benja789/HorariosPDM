@@ -224,4 +224,6 @@
     <string name="title_activity_type_group">Tipo Grupo</string>
     <string name="title_activity_group">Grupo</string>
     <string name="title_activity_cycle">Ciclo</string>
+    <string name="title_about_views"><b>Integrantes:</b></string>
+    <string name="title_head_about_views"><b>Grupo 6 - Horarios</b></string>
 </resources>

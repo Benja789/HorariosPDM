@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -12,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HorariosPDM"
         tools:targetApi="31">
+        <activity
+            android:name=".AboutActivity"
+            android:exported="false" />
         <activity
             android:name=".tipo_salon.TipoSalonInsertarActivity"
             android:exported="false" />
@@ -57,35 +61,29 @@
         <activity
             android:name=".tipo_funcion.TipoFuncionEliminarActivity"
             android:exported="false" />
-
         <activity
             android:name=".ciclo_academico.CicloAcademicoActualizarActivity"
             android:exported="false" />
-
         <activity
             android:name=".ciclo_academico.CicloAcademicoConsultarActivity"
             android:exported="false" />
-
         <activity
             android:name=".ciclo_academico.CicloAcademicoEliminarActivity"
             android:exported="false" />
-
         <activity
             android:name=".ciclo_academico.CicloAcademicoInsertarActivity"
             android:exported="false" />
         <activity
             android:name=".menus.CicloAcademicoMenuActivity"
-            android:exported="false" />
-
-        <!--        <activity-->
-<!--            android:name=".tipo_funcion.TipoFuncionActualizarActivity"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".tipo_funcion.TipoFuncionConsultarActivity"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".tipo_funcion.TipoFuncionEliminarActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".tipo_funcion.TipoFuncionActualizarActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".tipo_funcion.TipoFuncionConsultarActivity" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".tipo_funcion.TipoFuncionEliminarActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".tipo_funcion.TipoFuncionInsertarActivity"
             android:exported="false" />
@@ -306,4 +304,5 @@
             </intent-filter>
         </activity>
     </application>
+
 </manifest>

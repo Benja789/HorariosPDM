@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="ues.grupo6.horariospdm" />
+                  <option name="mobileSdkAppId" value="1:526201895363:android:70470e168ebf973efa2576" />
+                  <option name="projectId" value="horariospdm" />
+                  <option name="projectNumber" value="526201895363" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

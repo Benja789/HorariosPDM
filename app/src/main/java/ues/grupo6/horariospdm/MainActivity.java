@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
     public boolean onNavigationItemSelected(MenuItem item) {
         System.out.println("Accion del boton del menu");
         if (item.getItemId() == R.id.item_one) System.out.println("item 1");
-//        else if ( item.getItemId() == R.id.item_two) callNewActivity(AsignaturaMenuActivity.class);
+        else if ( item.getItemId() == R.id.item_two) callNewActivity(AboutActivity.class);
         else if ( item.getItemId() == R.id.item_three ) System.out.println("item 3");
         else if ( item.getItemId() ==R.id.item_fourth ) callNewActivity(AsignaturaMenuActivity.class);
         else if (item.getItemId() == R.id.item_six)  callNewActivity(DocenteMenu.class);

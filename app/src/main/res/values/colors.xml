@@ -5,4 +5,5 @@
     <color name="box_home">#D4D4D4</color>
     <color name="helper_text">#CACACA</color>
     <color name="btn_standard">#D6D7D7</color>
+    <color name="base_card">#e2e2e2</color>
 </resources>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutActivity">
+    <TextView
+        android:id="@+id/head_text_about"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/title_head_about_views"
+        android:layout_marginStart="10dp"
+        android:textSize="29sp"/>
+    <ImageView
+        android:id="@+id/image_about_logo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/head_text_about"
+        android:src="@drawable/work_group"
+        tools:ignore="MissingConstraints" />
+    <TextView
+        android:id="@+id/title_about_view"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/image_about_logo"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/title_about_views"
+        android:layout_marginStart="10dp"
+        android:textSize="18sp"/>
+    <LinearLayout
+        android:id="@+id/list_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/box_card_base"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_about_view"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:padding="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CC17116 - Jorge Enmanuel Contreras Campos"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DJ18001 - César Rodrigo Domínguez Jorge"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LC18025 - Aura Guadalupe López Chávez"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MR18136 - Benjamin Antonio Molina Rivas"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RP18066 - Walter Alcides Romero Portillo"/>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

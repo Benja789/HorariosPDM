@@ -1,16 +1,20 @@
 package ues.grupo6.horariospdm.menus;
 
 
-import android.app.ListActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import ues.grupo6.horariospdm.R;
+
 /** @noinspection ALL*/
-public class CicloAcademicoMenuActivity extends ListActivity {
+public class CicloAcademicoMenuActivity extends AppCompatActivity {
     String[] menu={"Insertar Registro","Eliminar Registro","Consultar Registro",
             "Actualizar Registro"};
     String[] activities={"CicloAcademicoInsertarActivity","CicloAcademicoEliminarActivity","CicloAcademicoConsultarActivity",
@@ -20,29 +24,24 @@ public class CicloAcademicoMenuActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ListView listView = getListView();
-        listView.setBackgroundColor(Color.TRANSPARENT);
-        ArrayAdapter<String> adapter = new
-                ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, menu);
-        setListAdapter(adapter);
+        setContentView(R.layout.activity_ciclo_academico_menu);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menu);
+        ListView listView = findViewById(R.id.list_ciclo_academico_menu);
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String nombreValue = activities[position];
+                try {
+                    Class<?> clase = Class.forName("ues.grupo6.horariospdm."+entidad+"." + nombreValue);
+                    Intent inte = new Intent(CicloAcademicoMenuActivity.this, clase);
+                    CicloAcademicoMenuActivity.this.startActivity(inte);
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
-    @Override
-    protected void onListItemClick(ListView l,View v,int position,long id){
-        super.onListItemClick(l, v, position, id);
-
-        String nombreValue=activities[position];
-
-        l.getChildAt(position).setBackgroundColor((int) Color.luminance(1));
-
-        try{
-            Class<?> clase=Class.forName("ues.grupo06.horariospdm."+entidad+"."+nombreValue);
-            Intent inte = new Intent(this,clase);
-            this.startActivity(inte);
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-
-    }
 }
 
