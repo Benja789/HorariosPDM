@@ -191,5 +191,6 @@
     <string name="title_activity_cycle">Cycle</string>
     <string name="title_about_views"><b>Members:</b></string>
     <string name="title_head_about_views"><b>Grupo 6 - Horarios</b></string>
+    <string name="btn_login">"Log in "</string>
 
 </resources>
