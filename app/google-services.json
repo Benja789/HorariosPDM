@@ -12,7 +12,12 @@
           "package_name": "ues.grupo6.horariospdm"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "526201895363-e03uu96v5964fave85ps1dtip4uhgjqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyByT7w5x4RNhImWWONR_3KzYV1dC6kkA48"
@@ -20,7 +25,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526201895363-e03uu96v5964fave85ps1dtip4uhgjqb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

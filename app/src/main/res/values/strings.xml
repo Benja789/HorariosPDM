@@ -227,4 +227,6 @@
     <string name="title_about_views"><b>Integrantes:</b></string>
     <string name="title_head_about_views"><b>Grupo 6 - Horarios</b></string>
     <string name="btn_login">Iniciar sesion</string>
+    <string name="string_password" translatable="false">********</string>
+    <string name="string_email" translatable="false">example@ues.edu.sv</string>
 </resources>
