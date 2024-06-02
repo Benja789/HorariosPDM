@@ -30,7 +30,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) redirectToHomePage(user);
-
     }
 
     private void initSessionInFirebase ( String provider ) {

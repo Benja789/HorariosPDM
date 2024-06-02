@@ -3,6 +3,8 @@ package ues.grupo6.horariospdm;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import ues.grupo6.horariospdm.menus.AsignaturaMenuActivity;
 import ues.grupo6.horariospdm.menus.CicloAcademicoMenuActivity;
@@ -31,6 +34,23 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         setContentView(R.layout.activity_main);
         initToolBar();
         initNavigationView();
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
+            @Override
+            public void handleOnBackPressed() {
+                finishAffinity();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+    @Override
+    public void onStart () {
+        super.onStart();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if ( user != null ){
+
+        }
     }
 
     private void initToolBar () {
