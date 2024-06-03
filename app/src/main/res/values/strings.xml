@@ -229,4 +229,9 @@
     <string name="btn_login">Iniciar sesion</string>
     <string name="string_password" translatable="false">********</string>
     <string name="string_email" translatable="false">example@ues.edu.sv</string>
+    <string name="text_solicitud_horario">Solicitud de Horario</string>
+    <string name="id_solicitud_horario">ID Solicitud de Horario</string>
+    <string name="estado_solicitud_evento">Estado Solicitud Evento</string>
+    <string name="grupo">Grupo</string>
+    <string name="nombre_ciclo_academico">Ciclo Academico</string>
 </resources>

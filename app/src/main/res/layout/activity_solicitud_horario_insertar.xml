@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="30dip"
+    android:stretchColumns="1">
+
+    <ImageView
+        android:id="@+id/image_solicitud_horario"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/call_split"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/title_solicitud_horario"
+        android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/image_solicitud_horario"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/text_solicitud_horario"
+        android:textAlignment="center"
+        android:textSize="40sp"
+        android:layout_marginBottom="50dp"
+        android:layout_height="wrap_content"/>
+
+    <TableRow>
+        <TextView android:text="@string/id_solicitud_horario" />
+        <EditText
+            android:id="@+id/editIdSolicitudHorario"
+            android:inputType="text"
+            android:maxLength="25" />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/id_grupo" />
+        <Spinner
+            android:id="@+id/spinnerGrupo"
+
+            />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="@string/id_salon" />
+        <Spinner
+            android:id="@+id/spinnerSalon"
+
+            />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/id_ciclo_academico" />
+        <Spinner
+            android:id="@+id/spinnerCicloAcademico"
+
+            />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:onClick="insertarSolicitudHorario"
+            android:text="@string/btn_insertar" />
+        <Button
+            android:onClick="limpiarSolicitudHorario"
+            android:text="@string/btn_limpiar" />
+    </TableRow>
+</TableLayout>

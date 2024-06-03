@@ -8,11 +8,15 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.media.metrics.Event;
 
+import org.checkerframework.checker.units.qual.C;
+
 import java.util.ArrayList;
 
 import ues.grupo6.horariospdm.distribucion_hora.DistribucionHora;
 import ues.grupo6.horariospdm.asignatura.Asignatura;
 import ues.grupo6.horariospdm.ciclo_academico.CicloAcademico;
+import ues.grupo6.horariospdm.grupo.Grupo;
+import ues.grupo6.horariospdm.solicitud_horario.Solicitud_Horario;
 import ues.grupo6.horariospdm.tipo_ciclo.TipoCiclo;
 import ues.grupo6.horariospdm.docente.Docente;
 import ues.grupo6.horariospdm.escuela.Escuela;
@@ -28,25 +32,27 @@ public class ControlBD {
     //Campos Aura
 
     //Campos Benjamin
-    private static final String[]camposDocente = new String [] {"id_docente","docente_primer_nombre","docente_segundo_nombre", "docente_primer_apellido", "docente_segundo_apellido", "docente_apellido_casada", "docente_titulo", "estado_docente"};
+    private static final String[] camposDocente = new String[]{"id_docente", "docente_primer_nombre", "docente_segundo_nombre", "docente_primer_apellido", "docente_segundo_apellido", "docente_apellido_casada", "docente_titulo", "estado_docente"};
 
     //Campos Cesar
 
     //Campos Manuel
-    private static final String[]camposTipoEvento = new String [] {"id_tipo_evento","nombre_tipo_evento","estado_tipo_evento"};
-    private static final String[]camposEvento = new String [] {"id_evento","id_tipo_evento","nombre_evento","estado_evento"};
-    private static final String[]camposTipoCiclo = new String [] {"id_tipo_ciclo","nombre_tipo_ciclo","estado_tipo_ciclo"};
+    private static final String[] camposTipoEvento = new String[]{"id_tipo_evento", "nombre_tipo_evento", "estado_tipo_evento"};
+    private static final String[] camposEvento = new String[]{"id_evento", "id_tipo_evento", "nombre_evento", "estado_evento"};
+    private static final String[] camposTipoCiclo = new String[]{"id_tipo_ciclo", "nombre_tipo_ciclo", "estado_tipo_ciclo"};
 
-    private static final String[]camposCicloAcademico = new String [] {"id_ciclo_academico","id_tipo_ciclo","inicio_ciclo_academico","fin_ciclo_academico","anio_ciclo_academico","estado_ciclo_academico"};
-    private static final String[]camposHorario = new String [] {"id_horario","id_solicitud_evento","id_solicitud_horario"};
-    private static final String[]camposEstadoHorario = new String [] {"id_estado_horario","id_horario","nombre_estado_horario","estado"};
+    private static final String[] camposCicloAcademico = new String[]{"id_ciclo_academico", "id_tipo_ciclo", "inicio_ciclo_academico", "fin_ciclo_academico", "anio_ciclo_academico", "estado_ciclo_academico"};
+    private static final String[] camposHorario = new String[]{"id_horario", "id_solicitud_evento", "id_solicitud_horario"};
+
+    private static final String[] camposSolicitudHorario = new String[]{"id_solicitud_hoario", "id_grupo", "id_salon", "id_ciclo_academico", "estado_solicitud_horario"};
+
+    private static final String[] camposEstadoHorario = new String[]{"id_estado_horario", "id_horario", "nombre_estado_horario", "estado"};
 
     //Campos Walter
-    private static final String[]camposEscuela = new String [] {"id_escuela","nombre_escuela","prioridad_escuela","estado_escuela"};
-    private static final String[]camposAsignatura = new String [] {"id_asignatura","id_escuela","nombre_asignatura","codigo_asignatura","estado_asignatura"};
+    private static final String[] camposEscuela = new String[]{"id_escuela", "nombre_escuela", "prioridad_escuela", "estado_escuela"};
+    private static final String[] camposAsignatura = new String[]{"id_asignatura", "id_escuela", "nombre_asignatura", "codigo_asignatura", "estado_asignatura"};
 
-    private static final String[]camposTipoGrupo = new String [] {"id_tipo_grupo","nombre_tipo_grupo","estado_tipo_grupo"};
-
+    private static final String[] camposTipoGrupo = new String[]{"id_tipo_grupo", "nombre_tipo_grupo", "estado_tipo_grupo"};
 
 
     private final Context context;
@@ -57,18 +63,24 @@ public class ControlBD {
         this.context = ctx;
         DBHelper = new DatabaseHelper(context);
     }
+
+
+
+
     private static class DatabaseHelper extends SQLiteOpenHelper {
         private static final String BASE_DATOS = "HorariosPDM115.s3db";
         private static final int VERSION = 1;
+
         public DatabaseHelper(Context context) {
             super(context, BASE_DATOS, null, VERSION);
         }
+
         @Override
         public void onCreate(SQLiteDatabase db) {
-            try{
-            //Tablas Aura
+            try {
+                //Tablas Aura
 
-            //Tablas Benjamin
+                //Tablas Benjamin
 
                 db.execSQL("create table docente  (\n" +
                         "   id_docente           integer                         not null,\n" +
@@ -101,7 +113,7 @@ public class ControlBD {
                         "         references ciclo_academico (id_ciclo_academico)\n" +
                         ");");
 
-            //Tablas Cesar
+                //Tablas Cesar
 
                 db.execSQL("CREATE TABLE tipo_salon (" +
                         "id_tipo_salon          integer         PRIMARY KEY AUTOINCREMENT, " +
@@ -136,7 +148,22 @@ public class ControlBD {
                 db.execSQL("CREATE TABLE horario(id_horario INTEGER PRIMARY KEY AUTOINCREMENT, id_solicitud_evento INTEGER NOT NULL, id_solicitud_horario INTEGER NOT NULL,FOREIGN KEY (id_solicitud_evento) REFERENCES solicitud_evento(id_solicitud_evento),FOREIGN KEY (id_solicitud_horario) REFERENCES solicitud_horario(id_solicitud_horario));");
                 db.execSQL("CREATE TABLE estado_horario(id_estado_horario INTEGER PRIMARY KEY AUTOINCREMENT, id_horario INTEGER NOT NULL, nombre_estado_horario VARCHAR(50) NOT NULL, estado NUMERIC(1) NOT NULL, FOREIGN KEY (id_horario) REFERENCES horario(id_horario));");
 
-            //Tablas Walter
+                db.execSQL("create table solicitud_horario  (\n" +
+                        "   id_solicitud_horario integer                         not null,\n" +
+                        "   id_grupo             integer                         not null,\n" +
+                        "   id_salon             integer                         not null,\n" +
+                        "   id_ciclo_academico   integer                         not null,\n" +
+                        "   estado_solicitud_horario number(1)                       not null,\n" +
+                        "   constraint pk_solicitud_horario primary key (id_solicitud_horario),\n" +
+                        "   constraint fk_solicitu_solicita_grupo foreign key (id_grupo)\n" +
+                        "         references grupo (id_grupo),\n" +
+                        "   constraint fk_solicitu_es_solici_salon foreign key (id_salon)\n" +
+                        "         references salon (id_salon),\n" +
+                        "   constraint fk_solicitu_relations_ciclo_ac foreign key (id_ciclo_academico)\n" +
+                        "         references ciclo_academico (id_ciclo_academico)\n" +
+                        ");\n");
+
+                //Tablas Walter
 
                 db.execSQL("create table escuela  (\n" +
                         "   id_escuela           integer                         not null,\n" +
@@ -176,20 +203,23 @@ public class ControlBD {
                         "   constraint fk_grupo_relations_docente foreign key (id_docente)\n" +
                         "         references docente (id_docente)\n" +
                         ");");
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
+
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             // TODO Auto-generated method stub
         }
     }
-    public void abrir() throws SQLException{
+
+    public void abrir() throws SQLException {
         db = DBHelper.getWritableDatabase();
         //return;
     }
-    public void cerrar(){
+
+    public void cerrar() {
         DBHelper.close();
     }
 
@@ -197,30 +227,31 @@ public class ControlBD {
 
     //CRUD Benja
 
-    public  String insertarDocente ( Docente dataTeacher) {
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
+    public String insertarDocente(Docente dataTeacher) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
         ContentValues docenteData = new ContentValues();
-        docenteData.put("docente_primer_nombre",dataTeacher.getFirstName());
-        docenteData.put("docente_segundo_nombre",dataTeacher.getSecondName());
-        docenteData.put("docente_primer_apellido",dataTeacher.getFirstLastName());
-        docenteData.put("docente_segundo_apellido",dataTeacher.getSecondLastName());
+        docenteData.put("docente_primer_nombre", dataTeacher.getFirstName());
+        docenteData.put("docente_segundo_nombre", dataTeacher.getSecondName());
+        docenteData.put("docente_primer_apellido", dataTeacher.getFirstLastName());
+        docenteData.put("docente_segundo_apellido", dataTeacher.getSecondLastName());
         docenteData.put("docente_apellido_casada", dataTeacher.getMarriedName());
-        docenteData.put("docente_titulo",dataTeacher.getProfession());
-        if ( dataTeacher.getActive()) docenteData.put("estado_docente", 1);
-        else  docenteData.put("estado_docente", 0);
+        docenteData.put("docente_titulo", dataTeacher.getProfession());
+        if (dataTeacher.getActive()) docenteData.put("estado_docente", 1);
+        else docenteData.put("estado_docente", 0);
 
-        contador=db.insert("docente", null, docenteData);
-        if(contador==-1 || contador==0) regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        else  regInsertados=regInsertados+contador;
+        contador = db.insert("docente", null, docenteData);
+        if (contador == -1 || contador == 0)
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        else regInsertados = regInsertados + contador;
         return regInsertados;
     }
 
     //CRUD Cesar
 
-    public String insertarTipoSalon(TipoSalon tipoSalon){
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
+    public String insertarTipoSalon(TipoSalon tipoSalon) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
         ContentValues tpSalon = new ContentValues();
 
 
@@ -229,19 +260,18 @@ public class ControlBD {
         tpSalon.put("codigo_tipo_salon", tipoSalon.getCodigoTipoSalon());
         tpSalon.put("estado_tipo_salon", tipoSalon.getEstadoTipoSalon());
 
-        contador=db.insert("tipo_salon", null, tpSalon);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        }
-        else {
-            regInsertados=regInsertados+contador;
+        contador = db.insert("tipo_salon", null, tpSalon);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
         }
         return regInsertados;
     }
-    public String insertarSalon(Salon salon){
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
+
+    public String insertarSalon(Salon salon) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
         ContentValues cvSalon = new ContentValues();
 
         cvSalon.put("id_tipo_salon", salon.getIdTipoSalon());
@@ -249,22 +279,21 @@ public class ControlBD {
         cvSalon.put("id_docente", salon.getIdDocente());
         cvSalon.put("nombre_salon", salon.getNombreSalon());
         cvSalon.put("capacidad", salon.getCapacidad());
-        cvSalon.put("codigo_salon",salon.getCodigoSalon());
+        cvSalon.put("codigo_salon", salon.getCodigoSalon());
         cvSalon.put("disponible", salon.isDisponible());
 
-        contador=db.insert("tipo_salon", null, cvSalon);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        }
-        else {
-            regInsertados=regInsertados+contador;
+        contador = db.insert("tipo_salon", null, cvSalon);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
         }
         return regInsertados;
     }
-    public String insertarDistribucionHora(DistribucionHora distribucionHora){
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
+
+    public String insertarDistribucionHora(DistribucionHora distribucionHora) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
         ContentValues cvDisHora = new ContentValues();
 
 
@@ -273,169 +302,250 @@ public class ControlBD {
         cvDisHora.put("dia", distribucionHora.getDia());
         cvDisHora.put("estado_distribucion_de_hora", distribucionHora.getEstadoDistribucionHora());
 
-        contador=db.insert("distribucion_de_hora", null, cvDisHora);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        }
-        else {
-            regInsertados=regInsertados+contador;
+        contador = db.insert("distribucion_de_hora", null, cvDisHora);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
         }
         return regInsertados;
     }
     //CRUD Manuel
 
-    public String insertarTipoEvento(TipoEvento tipoEvento){
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
+    public String insertarTipoEvento(TipoEvento tipoEvento) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
         ContentValues tpEvento = new ContentValues();
 
 
         tpEvento.put("nombre_tipo_evento", tipoEvento.getNombre_tipo_evento());
         tpEvento.put("estado_tipo_evento", tipoEvento.getEstado_tipo_evento());
 
-        contador=db.insert("tipo_evento", null, tpEvento);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        }
-        else {
-            regInsertados=regInsertados+contador;
+        contador = db.insert("tipo_evento", null, tpEvento);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
         }
         return regInsertados;
     }
-        public String insertarTipoCiclo(TipoCiclo tipoCiclo){
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
+
+    public String insertarTipoCiclo(TipoCiclo tipoCiclo) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
         ContentValues tpCiclo = new ContentValues();
 
 
-            tpCiclo.put("nombre_tipo_evento", tipoCiclo.getNombre_tipo_ciclo());
-            tpCiclo.put("estado_tipo_evento", tipoCiclo.getEstado_tipo_ciclo());
+        tpCiclo.put("nombre_tipo_evento", tipoCiclo.getNombre_tipo_ciclo());
+        tpCiclo.put("estado_tipo_evento", tipoCiclo.getEstado_tipo_ciclo());
 
-        contador=db.insert("tipo_ciclo", null, tpCiclo);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        }
-        else {
-            regInsertados=regInsertados+contador;
+        contador = db.insert("tipo_ciclo", null, tpCiclo);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
         }
         return regInsertados;
     }
 
 
-    public String insertarEvento(Evento evento){
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
+    public String insertarEvento(Evento evento) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
         ContentValues event = new ContentValues();
         event.put("nombre_evento", evento.getNombre_evento());
         event.put("estado_evento", evento.getEstado_evento());
         event.put("id_tipo_evento", evento.getId_tipo_evento());
 
-        contador=db.insert("evento", null, event);
-        if(contador==-1 || contador==0) regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        else regInsertados=regInsertados+contador;
+        contador = db.insert("evento", null, event);
+        if (contador == -1 || contador == 0)
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        else regInsertados = regInsertados + contador;
+        return regInsertados;
+    }
+    public String insertarSolicitudHorario(Solicitud_Horario solicitudHorario) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues solh = new ContentValues();
+        solh.put("id_grupo", solicitudHorario.getId_grupo());
+        solh.put("id_salon", solicitudHorario.getId_salon());
+        solh.put("id_ciclo_academico", solicitudHorario.getId_ciclo_academico());
+        solh.put("estado_solicitud_horario", solicitudHorario.getEstado_solicitud_horario());
+        contador = db.insert("solicitud_horario", null, solh);
+        if (contador == -1 || contador == 0)
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        else regInsertados = regInsertados + contador;
         return regInsertados;
     }
 
-    public String actualizar(TipoEvento tipoEvento){
-        if(verificarIntegridad(tipoEvento, 4)){
-            String[] id = {tipoEvento.getId_tipo_evento()+""};
+
+    public String actualizar(TipoEvento tipoEvento) {
+        if (verificarIntegridad(tipoEvento, 4)) {
+            String[] id = {tipoEvento.getId_tipo_evento() + ""};
             ContentValues cv = new ContentValues();
             cv.put("nombre_tipo_evento", tipoEvento.getNombre_tipo_evento());
             cv.put("estado_tipo_evento", tipoEvento.getEstado_tipo_evento());
             db.update("tipo_evento", cv, "id_tipo_evento = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
+        } else {
             return "Registro con id tipo de evento " + tipoEvento.getId_tipo_evento() + " no existe";
         }
 
     }
 
-    public String actualizarEvento(Evento evento){
-        if(verificarIntegridad(evento, 41)){
-            String[] id = {evento.getId_evento()+""};
+    public String actualizarEvento(Evento evento) {
+        if (verificarIntegridad(evento, 41)) {
+            String[] id = {evento.getId_evento() + ""};
             ContentValues cv = new ContentValues();
             cv.put("nombre_evento", evento.getNombre_evento());
             cv.put("id_tipo_evento", evento.getId_tipo_evento());
             cv.put("estado_evento", evento.getEstado_evento());
             db.update("evento", cv, "id_evento = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
+        } else {
             return "Registro con id evento " + evento.getId_evento() + " no existe";
         }
     }
 
-    public String eliminar(TipoEvento tipoEvento){
+    public String actualizarSolicitudHorario(Solicitud_Horario solicitudHorario) {
+        if (verificarIntegridad(solicitudHorario, 42)) {
+            String[] id = {solicitudHorario.getId_solicitud_horario() + ""};
+            ContentValues cv = new ContentValues();
+            cv.put("id_grupo", solicitudHorario.getId_grupo());
+            cv.put("id_salon", solicitudHorario.getId_salon());
+            cv.put("id_ciclo_academico", solicitudHorario.getId_ciclo_academico());
+            cv.put("estado_solicitud_horario", solicitudHorario.getEstado_solicitud_horario());
+            db.update("solicitud_horario", cv, "id_evento = ?", id);
+            return "Registro Actualizado Correctamente";
+        } else {
+            return "Registro con id evento " + solicitudHorario.getId_solicitud_horario() + " no existe";
+        }
+    }
 
-        if(verificarIntegridad(tipoEvento, 4)){
-            String[] id = {tipoEvento.getId_tipo_evento()+""};
+
+    public String eliminar(TipoEvento tipoEvento) {
+
+        if (verificarIntegridad(tipoEvento, 4)) {
+            String[] id = {tipoEvento.getId_tipo_evento() + ""};
             ContentValues cv = new ContentValues();
             cv.put("estado_tipo_evento", 0);
             db.update("tipo_evento", cv, "id_tipo_evento = ?", id);
             return "Registro eliminado Correctamente";
-        }else{
+        } else {
             return "Registro con id tipo de evento " + tipoEvento.getId_tipo_evento() + " no existe";
         }
 
     }
 
-    public String eliminar(TipoCiclo tipoCiclo){
+    public String eliminar(TipoCiclo tipoCiclo) {
 
-        if(verificarIntegridad(tipoCiclo, 4)){
-            String[] id = {tipoCiclo.getId_tipo_ciclo()+""};
+        if (verificarIntegridad(tipoCiclo, 4)) {
+            String[] id = {tipoCiclo.getId_tipo_ciclo() + ""};
             ContentValues cv = new ContentValues();
             cv.put("estado_tipo_ciclo", 0);
             db.update("tipo_ciclo", cv, "id_tipo_ciclo = ?", id);
             return "Registro eliminado Correctamente";
-        }else{
+        } else {
             return "Registro con id tipo de ciclo " + tipoCiclo.getId_tipo_ciclo() + " no existe";
         }
 
     }
 
-    public String eliminarEvento(Evento evento){
-        if(verificarIntegridad(evento, 41)){
-            String[] id = {evento.getId_evento()+""};
+    public String eliminarEvento(Evento evento) {
+        if (verificarIntegridad(evento, 41)) {
+            String[] id = {evento.getId_evento() + ""};
             ContentValues cv = new ContentValues();
             cv.put("estado_evento", 0);
             db.update("evento", cv, "id_evento = ?", id);
             return "Registro eliminado Correctamente";
-        }else{
+        } else {
             return "Registro con id evento " + evento.getId_evento() + " no existe";
         }
     }
 
-    public TipoEvento consultarTipoEvento(int id_tipo_evento){
-        String[] id = {id_tipo_evento+""};
+    public TipoEvento consultarTipoEvento(int id_tipo_evento) {
+        String[] id = {id_tipo_evento + ""};
         Cursor cursor = db.query("tipo_evento", camposTipoEvento, "id_tipo_evento = ?", id, null, null, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             TipoEvento tipoEvento = new TipoEvento();
             tipoEvento.setId_tipo_evento(cursor.getInt(0));
             tipoEvento.setNombre_tipo_evento(cursor.getString(1));
             tipoEvento.setEstado_tipo_evento(cursor.getInt(2));
             return tipoEvento;
-        }else{
+        } else {
             return null;
         }
 
     }
 
-    public TipoCiclo consultarTipoCiclo(int id_tipo_ciclo){
-        String[] id = {id_tipo_ciclo+""};
+    public TipoCiclo consultarTipoCiclo(int id_tipo_ciclo) {
+        String[] id = {id_tipo_ciclo + ""};
         Cursor cursor = db.query("tipo_ciclo", camposTipoCiclo, "id_tipo_ciclo = ?", id, null, null, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             TipoCiclo tipoCiclo = new TipoCiclo();
             tipoCiclo.setId_tipo_ciclo(cursor.getInt(0));
             tipoCiclo.setNombre_tipo_ciclo(cursor.getString(1));
             tipoCiclo.setEstado_tipo_ciclo(cursor.getInt(2));
             return tipoCiclo;
-        }else{
+        } else {
             return null;
         }
 
     }
+
+    public ArrayList<Grupo> consultarGruposActivos() {
+        ArrayList<Grupo> listado = new ArrayList<Grupo>();
+        Cursor cursor = db.rawQuery("SELECT * FROM grupo WHERE estado_grupo = 1", null);
+        while (cursor.moveToNext()) {
+            Grupo grupo = new Grupo();
+            grupo.setId_grupo(cursor.getInt(0));
+            grupo.setId_tipo_grupo(cursor.getInt(1));
+            grupo.setId_asignatura(cursor.getInt(2));
+            grupo.setId_docente(cursor.getInt(3));
+            grupo.setNum_grupo(cursor.getInt(4));
+            grupo.setEstado_grupo(cursor.getInt(5));
+            listado.add(grupo);
+        }
+        cursor.close();
+        return listado;
+    }
+
+    public ArrayList<CicloAcademico> consultarCicloActivos() {
+        ArrayList<CicloAcademico> listado = new ArrayList<CicloAcademico>();
+        Cursor cursor = db.rawQuery("SELECT * FROM ciclo_academico WHERE estado_ciclo_academico = 1", null);
+        while (cursor.moveToNext()) {
+            CicloAcademico cicloAcademico = new CicloAcademico();
+            cicloAcademico.setId_ciclo_academico(cursor.getInt(0));
+            cicloAcademico.setId_tipo_ciclo(cursor.getInt(1));
+            cicloAcademico.setInicio_ciclo_academico(cursor.getString(2));
+            cicloAcademico.setFin_ciclo_academico(cursor.getString(3));
+            cicloAcademico.setAnio_ciclo_academico(cursor.getString(4));
+            cicloAcademico.setEstado_ciclo_academico(cursor.getInt(5));
+            listado.add(cicloAcademico);
+        }
+        cursor.close();
+        return listado;
+    }
+
+    public ArrayList<Salon> consultarSalonActivos() {
+        ArrayList<Salon> listado = new ArrayList<Salon>();
+        Cursor cursor = db.rawQuery("SELECT * FROM salon WHERE disponible = 1", null);
+        while (cursor.moveToNext()) {
+            Salon salon = new Salon();
+            salon.setIdSalon(cursor.getInt(0));
+            salon.setIdTipoSalon(cursor.getInt(1));
+            salon.setIdDistribucionDeHora(cursor.getInt(2));
+            salon.setIdDocente(cursor.getInt(3));
+            salon.setNombreSalon(cursor.getString(4));
+            salon.setCapacidad(cursor.getInt(5));
+            salon.setCodigoSalon(cursor.getString(6));
+            salon.setDisponible(cursor.getInt(7));
+            listado.add(salon);
+        }
+        cursor.close();
+        return listado;
+    }
+
     public ArrayList<TipoEvento> consultarTiposEventosActivos() {
         ArrayList<TipoEvento> listado = new ArrayList<TipoEvento>();
         Cursor cursor = db.rawQuery("SELECT * FROM tipo_evento WHERE estado_tipo_evento = 1", null);
@@ -448,124 +558,140 @@ public class ControlBD {
         }
         cursor.close();
         return listado;
-
-
     }
 
-    public Evento consultarEvento(int id_evento){
-        String[] id = {id_evento+""};
+    public Evento consultarEvento(int id_evento) {
+        String[] id = {id_evento + ""};
         Cursor cursor = db.query("evento", camposEvento, "id_evento = ?", id, null, null, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Evento evento = new Evento();
             evento.setId_evento(cursor.getInt(0));
             evento.setId_tipo_evento(cursor.getInt(1));
             evento.setNombre_evento(cursor.getString(2));
             evento.setEstado_evento(cursor.getInt(3));
             return evento;
-        }else{
+        } else {
+            return null;
+        }
+    }
+    public Solicitud_Horario consultarSolicitudHorario(int id_solicitud_horario) {
+        String[] id = {id_solicitud_horario + ""};
+        Cursor cursor = db.query("solicitud_horario", camposSolicitudHorario, "id_solicitud_horario = ?", id, null, null, null);
+        if (cursor.moveToFirst()) {
+            Solicitud_Horario solicitudHorario = new Solicitud_Horario();
+
+            solicitudHorario.setId_solicitud_horario(0);
+            solicitudHorario.setId_grupo(1);
+            solicitudHorario.setId_salon(2);
+            solicitudHorario.setId_ciclo_academico(3);
+            solicitudHorario.setEstado_solicitud_horario(4);
+            return solicitudHorario;
+        } else {
             return null;
         }
     }
 
-
     //CRUD Walter
 
-        //Escuela
-    public String insertar(Escuela escuela){
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
+    //Escuela
+    public String insertar(Escuela escuela) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
 
         ContentValues esc = new ContentValues();
         esc.put("nombre_escuela", escuela.getNombre_escuela());
         esc.put("prioridad_escuela", escuela.getPrioridad_esccuela());
         esc.put("estado_escuela", escuela.getEstado_escuela());
 
-        contador=db.insert("escuela", null, esc);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        }
-        else {
-            regInsertados=regInsertados+contador;
+        contador = db.insert("escuela", null, esc);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
         }
         return regInsertados;
     }
-    public Escuela consultarEscuela(int id_escuela){
-        String[] id = {id_escuela+""};
+
+    public Escuela consultarEscuela(int id_escuela) {
+        String[] id = {id_escuela + ""};
         Cursor cursor = db.query("escuela", camposEscuela, "id_escuela = ?", id, null, null, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Escuela escuela = new Escuela();
             escuela.setId_escuela(cursor.getInt(0));
             escuela.setNombre_escuela(cursor.getString(1));
             escuela.setPrioridad_esccuela(cursor.getInt(2));
             escuela.setEstado_escuela(cursor.getInt(3));
             return escuela;
-        }else{
+        } else {
             return null;
         }
     }
-    public String actualizarEscuela(Escuela escuela){
-        if(verificarIntegridad(escuela, 50)){
-            String[] id = {escuela.getId_escuela()+""};
+
+    public String actualizarEscuela(Escuela escuela) {
+        if (verificarIntegridad(escuela, 50)) {
+            String[] id = {escuela.getId_escuela() + ""};
             ContentValues cv = new ContentValues();
             cv.put("nombre_escuela", escuela.getNombre_escuela());
             cv.put("prioridad_escuela", escuela.getPrioridad_esccuela());
             cv.put("estado_escuela", escuela.getEstado_escuela());
             db.update("escuela", cv, "id_escuela = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
+        } else {
             return "Registro con id Escuela " + escuela.getId_escuela() + " no existe";
         }
     }
-    public String eliminarEscuela(Escuela escuela){
 
-        if(verificarIntegridad(escuela, 50)){
-            String[] id = {escuela.getId_escuela()+""};
+    public String eliminarEscuela(Escuela escuela) {
+
+        if (verificarIntegridad(escuela, 50)) {
+            String[] id = {escuela.getId_escuela() + ""};
             ContentValues cv = new ContentValues();
             cv.put("estado_escuela", 0);
             db.update("escuela", cv, "id_escuela = ?", id);
             return "Registro eliminado Correctamente";
-        }else{
+        } else {
             return "Registro con id Escuela " + escuela.getId_escuela() + " no existe";
         }
     }
 
-        //Asignatura
-        public ArrayList<Escuela> consultarEscuelasActivas() {
-            ArrayList<Escuela> listado = new ArrayList<Escuela>();
-            Cursor cursor = db.rawQuery("SELECT * FROM escuela WHERE estado_escuela = 1", null);
-            while (cursor.moveToNext()) {
-                Escuela escuela = new Escuela();
-                escuela.setId_escuela(cursor.getInt(0));
-                escuela.setNombre_escuela(cursor.getString(1));
-                escuela.setPrioridad_esccuela(cursor.getInt(2));
-                escuela.setEstado_escuela(cursor.getInt(3));
-                listado.add(escuela);
-            }
-            cursor.close();
-            return listado;
-
-
+    //Asignatura
+    public ArrayList<Escuela> consultarEscuelasActivas() {
+        ArrayList<Escuela> listado = new ArrayList<Escuela>();
+        Cursor cursor = db.rawQuery("SELECT * FROM escuela WHERE estado_escuela = 1", null);
+        while (cursor.moveToNext()) {
+            Escuela escuela = new Escuela();
+            escuela.setId_escuela(cursor.getInt(0));
+            escuela.setNombre_escuela(cursor.getString(1));
+            escuela.setPrioridad_esccuela(cursor.getInt(2));
+            escuela.setEstado_escuela(cursor.getInt(3));
+            listado.add(escuela);
         }
-        public String insertarAsignatura(Asignatura asignatura){
-            String regInsertados="Registro Insertado Nº= ";
-            long contador=0;
-            ContentValues asign = new ContentValues();
-            asign.put("id_escuela", asignatura.getId_escuela());
-            asign.put("nombre_asignatura", asignatura.getNombre_asignatura());
-            asign.put("codigo_asignatura", asignatura.getCodigo_asignatura());
-            asign.put("estado_asignatura", asignatura.getEstado_asignatura());
+        cursor.close();
+        return listado;
 
-            contador=db.insert("asignatura", null, asign);
-            if(contador==-1 || contador==0) regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-            else regInsertados=regInsertados+contador;
-            return regInsertados;
-        }
 
-    public Asignatura consultarAsignatura(int id_asignatura){
-        String[] id = {id_asignatura+""};
+    }
+
+    public String insertarAsignatura(Asignatura asignatura) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
+        ContentValues asign = new ContentValues();
+        asign.put("id_escuela", asignatura.getId_escuela());
+        asign.put("nombre_asignatura", asignatura.getNombre_asignatura());
+        asign.put("codigo_asignatura", asignatura.getCodigo_asignatura());
+        asign.put("estado_asignatura", asignatura.getEstado_asignatura());
+
+        contador = db.insert("asignatura", null, asign);
+        if (contador == -1 || contador == 0)
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        else regInsertados = regInsertados + contador;
+        return regInsertados;
+    }
+
+    public Asignatura consultarAsignatura(int id_asignatura) {
+        String[] id = {id_asignatura + ""};
         Cursor cursor = db.query("asignatura", camposAsignatura, "id_asignatura = ?", id, null, null, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Asignatura asignatura = new Asignatura();
             asignatura.setId_asignatura(cursor.getInt(0));
             asignatura.setId_escuela(cursor.getInt(1));
@@ -573,35 +699,33 @@ public class ControlBD {
             asignatura.setCodigo_asignatura(cursor.getString(3));
             asignatura.setEstado_asignatura(cursor.getInt(4));
             return asignatura;
-        }else{
+        } else {
             return null;
         }
     }
 
-        //Tipo Grupo
-    public String insertar(Tipo_Grupo tipoGrupo){
-        String regInsertados="Registro Insertado Nº= ";
-        long contador=0;
+    //Tipo Grupo
+    public String insertar(Tipo_Grupo tipoGrupo) {
+        String regInsertados = "Registro Insertado Nº= ";
+        long contador = 0;
 
         ContentValues tpGrupo = new ContentValues();
         tpGrupo.put("nombre_tipo_grupo", tipoGrupo.getNombre_tipo_grupo());
         tpGrupo.put("estado_tipo_grupo", tipoGrupo.getEstado_tipo_grupo());
 
-        contador=db.insert("tipo_grupo", null, tpGrupo);
-        if(contador==-1 || contador==0)
-        {
-            regInsertados= "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
-        }
-        else {
-            regInsertados=regInsertados+contador;
+        contador = db.insert("tipo_grupo", null, tpGrupo);
+        if (contador == -1 || contador == 0) {
+            regInsertados = "Error al Insertar el registro, Registro Duplicado. Verificar inserción";
+        } else {
+            regInsertados = regInsertados + contador;
         }
         return regInsertados;
     }
 
-    public Docente consultarDocente (int idDocente) {
-        String[] id = {idDocente+""};
+    public Docente consultarDocente(int idDocente) {
+        String[] id = {idDocente + ""};
         Cursor cursor = db.query("docente", camposDocente, "id_docente = ?", id, null, null, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Docente docente = new Docente();
             docente.setIdDocente(cursor.getInt(0));
             docente.setFirstName(cursor.getString(1));
@@ -612,14 +736,15 @@ public class ControlBD {
             docente.setProfession(cursor.getString(6));
             docente.setActive(cursor.getInt(7));
             return docente;
-        }else{
+        } else {
             return null;
         }
     }
-    public String eliminateDocent(Docente docente){
 
-        if(verificarIntegridad(docente, 20)){
-            String[] id = {docente.getIdDocente()+""};
+    public String eliminateDocent(Docente docente) {
+
+        if (verificarIntegridad(docente, 20)) {
+            String[] id = {docente.getIdDocente() + ""};
             ContentValues cv = new ContentValues();
             cv.put("id_docente", 0);
             db.update("docente", cv, "id_docente = ?", id);
@@ -629,9 +754,9 @@ public class ControlBD {
         }
     }
 
-    public Boolean updateTeacher ( Docente docente ) {
-        if(verificarIntegridad(docente, 20)){
-            String[] id = {docente.getIdDocente()+""};
+    public Boolean updateTeacher(Docente docente) {
+        if (verificarIntegridad(docente, 20)) {
+            String[] id = {docente.getIdDocente() + ""};
             ContentValues cv = new ContentValues();
             cv.put("docente_primer_nombre", docente.getFirstName());
             cv.put("docente_segundo_nombre", docente.getSecondName());
@@ -645,133 +770,151 @@ public class ControlBD {
         } else return false;
     }
 
-    public Tipo_Grupo consultarTipoGrupo(int id_tipo_grupo){
-        String[] id = {id_tipo_grupo+""};
+    public Tipo_Grupo consultarTipoGrupo(int id_tipo_grupo) {
+        String[] id = {id_tipo_grupo + ""};
         Cursor cursor = db.query("tipo_grupo", camposTipoGrupo, "id_tipo_grupo = ?", id, null, null, null);
-        if(cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             Tipo_Grupo tipoGrupo = new Tipo_Grupo();
             tipoGrupo.setId_tipo_grupo(cursor.getInt(0));
             tipoGrupo.setNombre_tipo_grupo(cursor.getString(1));
             tipoGrupo.setEstado_tipo_grupo(cursor.getInt(2));
             return tipoGrupo;
-        }else{
+        } else {
             return null;
         }
     }
-    public String actualizarTipoGrupo(Tipo_Grupo tipoGrupo){
-        if(verificarIntegridad(tipoGrupo, 530)){
-            String[] id = {tipoGrupo.getId_tipo_grupo()+""};
+
+    public String actualizarTipoGrupo(Tipo_Grupo tipoGrupo) {
+        if (verificarIntegridad(tipoGrupo, 530)) {
+            String[] id = {tipoGrupo.getId_tipo_grupo() + ""};
             ContentValues cv = new ContentValues();
             cv.put("nombre_tipo_grupo", tipoGrupo.getNombre_tipo_grupo());
             cv.put("estado_tipo_grupo", tipoGrupo.getEstado_tipo_grupo());
             db.update("tipo_grupo", cv, "id_tipo_grupo = ?", id);
             return "Registro Actualizado Correctamente";
-        }else{
+        } else {
             return "Registro con id tipo de grupo " + tipoGrupo.getId_tipo_grupo() + " no existe";
         }
     }
-    public String eliminarTipoGrupo(Tipo_Grupo tipoGrupo){
 
-        if(verificarIntegridad(tipoGrupo, 530)){
-            String[] id = {tipoGrupo.getId_tipo_grupo()+""};
+    public String eliminarTipoGrupo(Tipo_Grupo tipoGrupo) {
+
+        if (verificarIntegridad(tipoGrupo, 530)) {
+            String[] id = {tipoGrupo.getId_tipo_grupo() + ""};
             ContentValues cv = new ContentValues();
             cv.put("estado_tipo_grupo", 0);
             db.update("tipo_grupo", cv, "id_tipo_grupo = ?", id);
             return "Registro eliminado Correctamente";
-        }else{
+        } else {
             return "Registro con id tipo de evento " + tipoGrupo.getId_tipo_grupo() + " no existe";
         }
     }
 
     //INTEGRIDAD DE LOS DATOS
-    private boolean verificarIntegridad(Object dato, int relacion) throws SQLException{
-        switch(relacion){
+    private boolean verificarIntegridad(Object dato, int relacion) throws SQLException {
+        switch (relacion) {
 
-        //Case tablas Aura (empiezan con 1, ejemplo 10,11,110,111)
+            //Case tablas Aura (empiezan con 1, ejemplo 10,11,110,111)
 
-        //Case tablas Cesar (empiezan con 3, ejemplo 30,31,310,311)
+            //Case tablas Cesar (empiezan con 3, ejemplo 30,31,310,311)
 
-        //Case tablas Manuel (empiezan con 4, ejemplo 40,41,410,411)
+            //Case tablas Manuel (empiezan con 4, ejemplo 40,41,410,411)
 
-            case 1:
-            {
+            case 1: {
                 //Verificar que al insertar un evento exista un tipo evento
                 Evento evento = (Evento) dato;
                 //Se agregó erl +"" para convertir el ID a String, debido a que el query requiere que el parametrop del id1 sea String
-                String[] id1 = {evento.getId_tipo_evento()+""};
+                String[] id1 = {evento.getId_tipo_evento() + ""};
 
                 //abrir();
                 Cursor cursor1 = db.query("tipo_evento", null, "id_tipo_evento = ?", id1, null, null, null);
 
-                if(cursor1.moveToFirst()){
+                if (cursor1.moveToFirst()) {
                     //Se encontraron datos
                     return true;
                 }
                 return false;
             }
-            case 2:
-            {
+            case 2: {
                 //verificar que al modificar un evento exista un tipo de evento y un evento
                 Evento evento = (Evento) dato;
-                String[] ids = {evento.getId_tipo_evento()+"", evento.getId_evento()+""};
+                String[] ids = {evento.getId_tipo_evento() + "", evento.getId_evento() + ""};
                 abrir();
                 Cursor c = db.query("evento", null, "id_tipo_evento = ? AND id_evento", ids, null, null, null);
-                if(c.moveToFirst()){
+                if (c.moveToFirst()) {
                     //Se encontraron datos
                     return true;
                 }
                 return false;
             }
-            case 3:
-            {
+            case 3: {
                 //Verificador para el tipo de evento
                 TipoEvento tipoEvento = (TipoEvento) dato;
-                Cursor c = db.query(true, "evento", new String[] {"id_tipo_evento" }, "id_tipo_evento='" + tipoEvento.getId_tipo_evento() + "'",null, null, null, null, null);
-                if(c.moveToFirst())
+                Cursor c = db.query(true, "evento", new String[]{"id_tipo_evento"}, "id_tipo_evento='" + tipoEvento.getId_tipo_evento() + "'", null, null, null, null, null);
+                if (c.moveToFirst())
                     return true;
                 else
                     return false;
             }
-            case 4:
-            {
+            case 4: {
                 //verificar que exista tipoEvento
                 TipoEvento tipoEvento2 = (TipoEvento) dato;
-                String[] id = {tipoEvento2.getId_tipo_evento()+""};
+                String[] id = {tipoEvento2.getId_tipo_evento() + ""};
                 abrir();
                 Cursor c2 = db.query("tipo_evento", null, "id_tipo_evento = ?", id, null, null, null);
-                if(c2.moveToFirst()){
+                if (c2.moveToFirst()) {
                     //Se encontro el tipo de evento
                     return true;
                 }
                 return false;
             }
-            case 41:
-            {
+            case 41: {
                 //verificar que exista tipoEvento
                 Evento evento = (Evento) dato;
-                String[] id = {evento.getId_tipo_evento()+""};
+                String[] id = {evento.getId_tipo_evento() + ""};
                 abrir();
                 Cursor c2 = db.query("evento", null, "id_evento = ?", id, null, null, null);
-                if(c2.moveToFirst()){
+                if (c2.moveToFirst()) {
                     //Se encontro el evento
                     return true;
                 }
                 return false;
             }
+            case 42: {
+                //verificar que exista tipoEvento
+                Solicitud_Horario solicitudHorario = (Solicitud_Horario) dato;
+                String[] id = {solicitudHorario.getId_grupo() + ""};
+                abrir();
+                Cursor c2 = db.query("solicitud_horario", null, "id_grupo = ?", id, null, null, null);
+                if (c2.moveToFirst()) {
+                    String[] ids = {solicitudHorario.getId_salon() + ""};
+                    abrir();
+                    Cursor c3 = db.query("solicitud_horario", null, "id_salon = ?", id, null, null, null);
+                    if (c3.moveToFirst()) {
+                        String[] idc = {solicitudHorario.getId_ciclo_academico() + ""};
+                        abrir();
+                        Cursor c4 = db.query("solicitud_horario", null, "id_ciclo_academico = ?", id, null, null, null);
+                        if (c4.moveToFirst()) {
+                            return true;
+                        }
+                    }
+                }//Se encontro el evento
+                return false;
+            }
             //Case tablas Benjamin (empiezan con 2, ejemplo 20,21,210,211)
             case 20: {
                 Docente docente = (Docente) dato;
-                String[] id = {docente.getIdDocente()+""};
+                String[] id = {docente.getIdDocente() + ""};
                 abrir();
                 Cursor c2 = db.query("docente", null, "id_docente = ?", id, null, null, null);
                 //Se encontro el tipo de evento
                 return c2.moveToFirst();
             }
-        //Case tablas Walter (empiezan con 5, ejemplo 50,51,510,511)
-            case 50:  {
+            //Case tablas Walter (empiezan con 5, ejemplo 50,51,510,511)
+            case 50: {
                 //verificar que exista tipoGrupo
                 Tipo_Grupo tipoGrupo = (Tipo_Grupo) dato;
-                String[] id = {tipoGrupo.getId_tipo_grupo()+""};
+                String[] id = {tipoGrupo.getId_tipo_grupo() + ""};
                 abrir();
                 Cursor c2 = db.query("tipo_grupo", null, "id_tipo_grupo = ?", id, null, null, null);
                 return c2.moveToFirst();
@@ -780,5 +923,8 @@ public class ControlBD {
                 return false;
             }
         }
+
+
     }
 }
+

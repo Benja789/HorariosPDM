@@ -14,6 +14,18 @@
         android:theme="@style/Theme.HorariosPDM"
         tools:targetApi="31">
         <activity
+            android:name=".solicitud_horario.SolicitudHorarioEliminarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".solicitud_horario.SolicitudHorarioInsertarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".solicitud_horario.SolicitudHorarioConsultarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".solicitud_horario.SolicitudHorarioActualizarActivity"
+            android:exported="false" />
+        <activity
             android:name=".AboutActivity"
             android:exported="false" />
         <activity
@@ -160,11 +172,10 @@
         <activity
             android:name=".menus.DocenteMenu"
             android:exported="false"
-            android:screenOrientation="portrait" />
-<!--        <activity-->
-<!--            android:name=".LoginActivity"-->
-<!--            android:exported="false"-->
-<!--            android:screenOrientation="portrait" />-->
+            android:screenOrientation="portrait" /> <!-- <activity -->
+        <!-- android:name=".LoginActivity" -->
+        <!-- android:exported="false" -->
+        <!-- android:screenOrientation="portrait" /> -->
         <activity
             android:name=".menus.EventoMenuActivity"
             android:exported="false"
@@ -292,28 +303,17 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!--        <activity-->
-<!--            android:name=".MainActivity"-->
-<!--            android:exported="true"-->
-<!--            android:screenOrientation="portrait">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
     </application>
 
 </manifest>
