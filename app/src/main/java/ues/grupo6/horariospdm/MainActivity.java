@@ -3,7 +3,6 @@ package ues.grupo6.horariospdm;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -11,17 +10,21 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-
+import java.util.ArrayList;
+import java.util.List;
 import ues.grupo6.horariospdm.menus.AsignaturaMenuActivity;
 import ues.grupo6.horariospdm.menus.CicloAcademicoMenuActivity;
 import ues.grupo6.horariospdm.menus.DocenteMenu;
@@ -35,6 +38,9 @@ import ues.grupo6.horariospdm.menus.TipoGrupoMenuActivity;
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener  {
     DrawerLayout drawerLayout;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private RecyclerView recyclerView;
+    private MyAdapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     CollectionReference collectionRef = db.collection("evento");
     @Override
@@ -51,6 +57,14 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
+
+
+        recyclerView = findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        mAdapter = new MyAdapter(new ArrayList<>());
+        recyclerView.setAdapter(mAdapter);
     }
 
     @Override
@@ -72,19 +86,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
                     return;
                 }
 
+                List<DocumentSnapshot> documentList = new ArrayList<>();
                 for (DocumentChange dc : snapshots.getDocumentChanges()) {
-                    switch (dc.getType()) {
-                        case ADDED:
-                            System.out.println("New data: " + dc.getDocument().getData());
-                            break;
-                        case MODIFIED:
-                            System.out.println("Modified data: " + dc.getDocument().getData());
-                            break;
-                        case REMOVED:
-                            System.out.println("Removed data: " + dc.getDocument().getData());
-                            break;
-                    }
+                    documentList.add(dc.getDocument());
                 }
+                mAdapter = new MyAdapter(documentList);
+                recyclerView.setAdapter(mAdapter);
             }
         });
     }
@@ -123,7 +130,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-
 
     public void navigateTo (View view) {
         if (view.getId() == R.id.btn_schedule) callNewActivity(ScheduleActivity.class);
