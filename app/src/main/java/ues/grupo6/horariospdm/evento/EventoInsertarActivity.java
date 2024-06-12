@@ -116,28 +116,18 @@ public class EventoInsertarActivity extends Activity {
 
     public void getData() {
         CollectionReference myRef = db.collection("tipo_evento");
-
         myRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    // Crear una lista para almacenar los datos
                     List<String> list = new ArrayList<>();
-                    System.out.println("-----------------------------------------------------------------------------");
-
-                    // Iterar a través de los datos y agregarlos a la lista
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         String name = document.getString("nombre_tipo_evento");
-                        System.out.println(name);
                         list.add(name);
                     }
-                    System.out.println("-----------------------------------------------------------------------------");
 
-                    // Crear un ArrayAdapter usando la lista
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(EventoInsertarActivity.this, android.R.layout.simple_spinner_item, list);
                     adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-                    // Obtener una referencia al Spinner y asignarle el adaptador
                     Spinner spinner = findViewById(R.id.spinnerTipoEvento);
                     spinner.setAdapter(adapter);
                 } else {
