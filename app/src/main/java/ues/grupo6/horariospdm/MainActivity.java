@@ -1,6 +1,8 @@
 package ues.grupo6.horariospdm;
 
 import android.content.Intent;
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import androidx.activity.OnBackPressedCallback;
@@ -8,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -65,6 +69,13 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         recyclerView.setLayoutManager(layoutManager);
         mAdapter = new MyAdapter(new ArrayList<>());
         recyclerView.setAdapter(mAdapter);
+
+        // solicita permiso a la ubicacion precisa
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // Permiso no concedido, solicítalo
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
     }
 
     @Override

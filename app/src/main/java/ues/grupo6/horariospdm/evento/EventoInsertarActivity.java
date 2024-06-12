@@ -9,14 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -26,13 +23,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import ues.grupo6.horariospdm.ControlBD;
 import ues.grupo6.horariospdm.R;
 
 public class EventoInsertarActivity extends Activity {
 
-    ControlBD helper;
     EditText edNombreEvento;
     Spinner spTipoEventos;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -42,10 +36,8 @@ public class EventoInsertarActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_evento_insertar);
-        helper = new ControlBD(this);
         edNombreEvento = (EditText) findViewById(R.id.editNombreEvento);
         spTipoEventos = (Spinner) findViewById(R.id.spinnerTipoEvento);
-        helper.abrir();
         getData();
 
     }
