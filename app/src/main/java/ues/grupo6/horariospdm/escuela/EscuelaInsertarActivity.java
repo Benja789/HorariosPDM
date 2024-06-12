@@ -1,51 +1,81 @@
 package ues.grupo6.horariospdm.escuela;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import ues.grupo6.horariospdm.ControlBD;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
+
 import ues.grupo6.horariospdm.R;
-import ues.grupo6.horariospdm.tipo_grupo.Tipo_Grupo;
+import ues.grupo6.horariospdm.asignatura.AsignaturaInsertarActivity;
 
 public class EscuelaInsertarActivity extends AppCompatActivity {
-    ControlBD helper;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     EditText editNombre_escuela;
     EditText editPrioridad_escuela;
-    EditText editEstado_escuela;
-    EditText editId_escuela;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_escuela_insertar);
-        helper = new ControlBD(this);
         editNombre_escuela = (EditText) findViewById(R.id.editNombre_escuela);
+        editPrioridad_escuela = (EditText) findViewById(R.id.editPrioridad_escuela);
     }
 
-    public void insertarTipoEvento(View v) {
-        String nombre = editNombre_escuela.getText().toString();
-        Integer prioridad = Integer.parseInt(String.valueOf(editPrioridad_escuela.getText()));
-        String regInsertados;
+    public void insertarEscuela(View v) {
+        String emailInput = editNombre_escuela.getText().toString();
+        CollectionReference myRef = db.collection("schools");
 
-        Escuela escuela = new Escuela();
-        escuela.setNombre_escuela(nombre);
-        escuela.setPrioridad_esccuela(prioridad);
-        escuela.setEstado_escuela(1);
+        // Verifica si el correo electrónico ya existe en la base de datos
+        db.collection("schools")
+                .whereEqualTo("name", emailInput)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if (!task.getResult().isEmpty()) {
+                                Toast.makeText(EscuelaInsertarActivity.this, "Escuela ya existe", Toast.LENGTH_SHORT).show();
+                            } else {
+                                // Crea un nuevo documento con los datos que deseas guardar
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("name", editNombre_escuela.getText().toString());
+                                data.put("priority", Integer.parseInt(editPrioridad_escuela.getText().toString()));
 
-        helper.abrir();
-        regInsertados = helper.insertar(escuela);
-        helper.cerrar();
-        Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
+                                // Agrega el nuevo documento a la colección
+                                myRef.add(data)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Toast.makeText(EscuelaInsertarActivity.this, "Escuela insertada correctamente", Toast.LENGTH_SHORT).show();
+                                                limpiarTexto(v);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("TAG", "Error adding document", e);
+                                            }
+                                        });
+                            }
+                        }
+                    }
+                });
     }
     public void limpiarTexto(View v) {
 

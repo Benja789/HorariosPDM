@@ -1,6 +1,7 @@
 package ues.grupo6.horariospdm.asignatura;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -8,91 +9,107 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import ues.grupo6.horariospdm.ControlBD;
 import ues.grupo6.horariospdm.R;
-import ues.grupo6.horariospdm.escuela.Escuela;
-import ues.grupo6.horariospdm.evento.Evento;
-import ues.grupo6.horariospdm.tipo_evento.TipoEvento;
-
 public class AsignaturaInsertarActivity extends AppCompatActivity {
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    ControlBD helper;
-    EditText editId_Asignatura;
     Spinner spinnerId_Escuela;
     EditText editNombre_asignatura;
     EditText editCodigo_asignatura;
-    EditText editEstado_asignatura;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_asignatura_insertar);
-        helper = new ControlBD(this);
         spinnerId_Escuela = (Spinner) findViewById(R.id.spinnerEscuela);
         editNombre_asignatura = (EditText) findViewById(R.id.editNombreAsignatura);
-        helper.abrir();
+        editCodigo_asignatura = (EditText) findViewById(R.id.editCodigoAsignatura);
         cargarEscuelasActivas();
     }
     private void cargarEscuelasActivas() {
-        ArrayList<Escuela> listaEscuelas = new ArrayList<Escuela>();
-        listaEscuelas = helper.consultarEscuelasActivas();
+        CollectionReference myRef = db.collection("schools");
+        myRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    List<String> list = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String name = document.getString("name");
+                        list.add(name);
+                    }
 
-        // Crear un ArrayList de Strings con los nombres de los tipos de eventos
-        ArrayList<String> nombresEscuelas = new ArrayList<>();
-        for (Escuela escuela : listaEscuelas) {
-            nombresEscuelas.add(escuela.getNombre_escuela());
-        }
-
-        // Crear ArrayAdapter con los nombres de los tipos de eventos
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, nombresEscuelas);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerId_Escuela.setAdapter(adapter);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(AsignaturaInsertarActivity.this, android.R.layout.simple_spinner_item, list);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    Spinner spinner = findViewById(R.id.spinnerEscuela);
+                    spinner.setAdapter(adapter);
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
+                }
+            }
+        });
 
     }
     public void insertarAsignatura(View v) {
-        String nombre = editNombre_asignatura.getText().toString();
-        String codigo = editCodigo_asignatura.getText().toString();
-        // Obtener el nombre seleccionado en el Spinner
-        String nombreEscuela = spinnerId_Escuela.getSelectedItem().toString();
+        CollectionReference myRef = db.collection("subject");
 
-        // Buscar el objeto TipoEvento correspondiente al nombre seleccionado
-        Escuela escuelaSeleccionada = buscarEscuelaNombre(nombreEscuela);
+        // Obtén una referencia al documento que deseas referenciar
+        db.collection("schools")
+                .whereEqualTo("name", spinnerId_Escuela.getSelectedItem().toString())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                DocumentReference tipoEventoRef = document.getReference();
+                                // Crea un nuevo documento con los datos que deseas guardar
+                                Map<String, Object> data = new HashMap<>();
+                                data.put("name", editNombre_asignatura.getText().toString());
+                                data.put("code", editCodigo_asignatura.getText().toString());
+                                data.put("schoolReference", tipoEventoRef);
 
-        // Verificar si se encontró el tipo de evento
-        if (escuelaSeleccionada != null) {
-            int id_Escuela = escuelaSeleccionada.getId_escuela();
-            Asignatura asignatura = new Asignatura();
-            asignatura.setNombre_asignatura(nombre);
-            asignatura.setId_escuela(id_Escuela);
-            asignatura.setCodigo_asignatura(codigo);
-            asignatura.setEstado_asignatura(1);
-
-            helper.abrir();
-            String regInsertados = helper.insertarAsignatura(asignatura);
-            helper.cerrar();
-
-            Toast.makeText(this, regInsertados, Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(this, "Error: Escuela no encontrado", Toast.LENGTH_SHORT).show();
-        }
+                                // Agrega el nuevo documento a la colección
+                                myRef.add(data)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Toast.makeText(AsignaturaInsertarActivity.this, "Materia creada correctamente", Toast.LENGTH_SHORT).show();
+                                                limpiarTexto(v);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("TAG", "Error adding document", e);
+                                            }
+                                        });
+                            }
+                        }
+                    }
+                });
     }
 
-    private Escuela buscarEscuelaNombre(String nombreEscuela) {
-        ArrayList<Escuela> listaEscuelas = helper.consultarEscuelasActivas();
-
-        for (Escuela escuela : listaEscuelas) {
-            if (escuela.getNombre_escuela().equals(nombreEscuela)) {
-                return escuela;
-            }
-        }
-        // Retornar null si el tipo de evento no se encontró
-        return null;
+    public void limpiarTexto (View v) {
+        editNombre_asignatura.setText("");
+        editCodigo_asignatura.setText("");
     }
+
 }
