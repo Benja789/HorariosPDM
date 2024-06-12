@@ -9,7 +9,18 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
+import java.util.List;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import ues.grupo6.horariospdm.ControlBD;
 import ues.grupo6.horariospdm.R;
@@ -20,6 +31,7 @@ public class EventoInsertarActivity extends Activity {
     ControlBD helper;
     EditText edNombreEvento;
     Spinner spTipoEventos;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
     //@SuppressLint("MissingInflatedId")
@@ -35,6 +47,7 @@ public class EventoInsertarActivity extends Activity {
         // Cargar tipos de eventos desde la base de datos
         helper.abrir();
         cargarTiposEventosActivos();
+        getData();
 
     }
 
@@ -98,5 +111,29 @@ public class EventoInsertarActivity extends Activity {
 
     public void limpiarTexto(View v) {
         edNombreEvento.setText("");
+    }
+
+
+    public void getData() {
+        CollectionReference myRef = db.collection("tipo_evento");
+        myRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    List<String> list = new ArrayList<>();
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        String name = document.getString("nombre_tipo_evento");
+                        list.add(name);
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(EventoInsertarActivity.this, android.R.layout.simple_spinner_item, list);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    Spinner spinner = findViewById(R.id.spinnerTipoEvento);
+                    spinner.setAdapter(adapter);
+                } else {
+                    Log.d("TAG", "Error getting documents: ", task.getException());
+                }
+            }
+        });
     }
 }

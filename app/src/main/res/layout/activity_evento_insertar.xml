@@ -1,35 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingTop="30dip"
-    android:stretchColumns="1" >
+    android:paddingTop="30dp">
 
-    <TableRow>
-        <TextView android:text="@string/nombre_evento" />
-        <EditText
-            android:id="@+id/editNombreEvento"
-            android:inputType="text"
-            android:maxLength="25" />
-    </TableRow>
-    <TableRow>
-        <TextView android:text="Seleccione:" />
-        <Spinner
-            android:id="@+id/spinnerTipoEvento"
+    <TextView
+        android:id="@+id/textViewNombreEvento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nombre_evento"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            />
-    </TableRow>
+    <EditText
+        android:id="@+id/editNombreEvento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLength="25"
+        app:layout_constraintStart_toEndOf="@id/textViewNombreEvento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TableRow>
-        <TextView android:text="@string/tipo_evento" />
-    </TableRow>
+    <TextView
+        android:id="@+id/textViewSeleccione"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Seleccione:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editNombreEvento" />
 
-    <TableRow>
-        <Button
-            android:onClick="insertarEvento"
-            android:text="@string/btn_insertar" />
-        <Button
-            android:onClick="limpiarTexto"
-            android:text="@string/btn_limpiar" />
-    </TableRow>
-</TableLayout>
+    <Spinner
+        android:id="@+id/spinnerTipoEvento"
+        android:layout_width="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/textViewSeleccione"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editNombreEvento" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/textViewTipoEvento"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:text="@string/tipo_evento"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/spinnerTipoEvento" />-->
+
+    <Button
+        android:id="@+id/buttonInsertarEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="insertarEvento"
+        android:layout_marginTop="20dp"
+        android:text="@string/btn_insertar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerTipoEvento" />
+
+    <Button
+        android:id="@+id/buttonLimpiarTexto"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_height="wrap_content"
+        android:onClick="limpiarTexto"
+        android:text="@string/btn_limpiar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/buttonInsertarEvento" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

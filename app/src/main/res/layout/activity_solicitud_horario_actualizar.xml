@@ -8,7 +8,7 @@
     android:stretchColumns="1">
 
     <ImageView
-        android:id="@+id/image_evento"
+        android:id="@+id/image_solicitud_horario"
         android:layout_width="200dp"
         android:layout_height="200dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,12 +16,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
     <TextView
-        android:id="@+id/title_evento"
+        android:id="@+id/title_solicitud_horario"
         android:layout_width="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/image_evento"
+        app:layout_constraintTop_toBottomOf="@id/image_solicitud_horario"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="@string/text_title_events"
+        android:text="@string/text_solicitud_horario"
         android:textAlignment="center"
         android:textSize="40sp"
         android:layout_marginBottom="50dp"
@@ -32,47 +32,43 @@
         android:layout_height="100dp"
         android:layout_weight="1">
 
-        <TextView android:text="@string/id_evento" />
+        <TextView android:text="@string/id_solicitud_horario" />
 
         <EditText
-            android:id="@+id/editIdEvento"
+            android:id="@+id/editIdSolicitudHorario"
             android:autofillHints=""
             android:inputType="number"
             tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
     </TableRow>
-
-    <TableRow
-        android:layout_width="399dp"
-        android:layout_height="100dp"
-        android:layout_weight="1">
-
-        <TextView android:text="@string/nombre_evento" />
-
-        <EditText
-            android:id="@+id/editNombreEvento"
-            android:autofillHints=""
-            android:inputType="text"
-            android:maxLength="25"
-            android:clickable="false"
-            tools:ignore="LabelFor,SpeakableTextPresentCheck,TouchTargetSizeCheck,VisualLintTextFieldSize" />
-    </TableRow>
     <TableRow>
-        <TextView android:text="Seleccione:" />
+        <TextView android:text="@string/id_grupo" />
 
         <Spinner
-            android:id="@+id/spinnerTipoEvento"
-
+            android:id="@+id/spinnerGrupo"
             tools:ignore="TouchTargetSizeCheck" />
     </TableRow>
+    <TableRow>
+        <TextView android:text="@string/id_salon" />
+        <Spinner
+            android:id="@+id/spinnerSalon"
+            />
+    </TableRow>
+    <TableRow>
+        <TextView android:text="@string/id_ciclo_academico" />
+        <Spinner
+            android:id="@+id/spinnerCicloAcademico"
+            />
+    </TableRow>
+
     <TableRow
         android:layout_width="399dp"
         android:layout_height="100dp"
         android:layout_weight="1">
 
-        <TextView android:text="@string/estado_evento" />
+        <TextView android:text="@string/estado_solicitud_evento" />
 
         <EditText
-            android:id="@+id/editEstadoEvento"
+            android:id="@+id/editEstadoSolicitudHorario"
             android:autofillHints=""
             android:inputType="number"
             android:clickable="false"
@@ -89,7 +85,7 @@
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:backgroundTint="@color/btn_standard"
-            android:onClick="actualizarEvento"
+            android:onClick="actualizarSolicitudHorario"
             android:text="@string/btn_actualizar"
             android:textColor="@color/black" />
 

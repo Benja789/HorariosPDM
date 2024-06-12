@@ -5,17 +5,28 @@ public class Grupo {
     private int id_tipo_grupo;
     private int id_asignatura;
     private int id_docente;
+
+    public int getNum_grupo() {
+        return num_grupo;
+    }
+
+    public void setNum_grupo(int num_grupo) {
+        this.num_grupo = num_grupo;
+    }
+
+    private int num_grupo;
     private int estado_grupo;
 
     public Grupo() {
     }
 
-    public Grupo(int id_grupo, int id_tipo_grupo, int id_asignatura, int id_docente, int estado_grupo) {
+    public Grupo(int id_grupo, int id_tipo_grupo, int id_asignatura, int id_docente, int num_grupo, int estado_grupo) {
         this.id_grupo = id_grupo;
         this.id_tipo_grupo = id_tipo_grupo;
         this.id_asignatura = id_asignatura;
         this.id_docente = id_docente;
         this.estado_grupo = estado_grupo;
+        this.num_grupo = num_grupo;
     }
 
     public int getId_grupo() {
