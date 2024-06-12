@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         if (view.getId() == R.id.btn_schedule) callNewActivity(ScheduleActivity.class);
         else if ( view.getId() == R.id.btn_events ) callNewActivity( EventoMenuActivity.class);
         else if ( view.getId() == R.id.btn_request ) callNewActivity(RequestActivity.class);
+        else if ( view.getId() == R.id.btn_scanQR ) callNewActivity(EventScan.class);
         else callNewActivity(EventoMenuActivity.class);
     }
 

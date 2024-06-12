@@ -27,6 +27,11 @@ android {
             )
         }
     }
+    
+    buildFeatures {
+        viewBinding = true
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -50,5 +55,6 @@ dependencies {
     implementation("com.google.android.gms:play-services-auth:20.7.0")
     implementation("com.onesignal:OneSignal:[5.0.0, 5.99.99]")
     implementation("com.google.android.material:material:1.4.0")
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 
 }

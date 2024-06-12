@@ -102,4 +102,5 @@ public class EventoActualizarActivity extends AppCompatActivity {
         editNombreEvento.setText("");
         editEstadoEvento.setText("");
     }
+
 }
