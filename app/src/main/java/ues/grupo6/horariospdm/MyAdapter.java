@@ -5,8 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 
 import java.util.List;
@@ -38,7 +42,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(MyViewHolder holder, int position) {
         DocumentSnapshot document = documentList.get(position);
         holder.title.setText(document.getString("nombre_evento"));
-        holder.description.setText(document.getString("description"));
+        DocumentReference reference = document.getDocumentReference("nombreDelCampoReferencia");
+        if (reference != null) {
+            reference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot documentReference = task.getResult();
+                        if (documentReference.exists()) {
+                            holder.description.setText(documentReference.getString("nombre_tipo_evento"));
+                        }
+                    }
+                }
+            });
+        } else {
+            // Handle the case where the DocumentReference is null
+        }
+
     }
 
     @Override
