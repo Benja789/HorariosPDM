@@ -12,8 +12,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.onesignal.Continue;
+import com.onesignal.OneSignal;
+import com.onesignal.debug.LogLevel;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String ONESIGNAL_APP_ID = "05bc1393-e1bb-491a-bde1-a7bd25007941";
 
     private EditText textEmail, textPassword;
     private FirebaseAuth mAuth;
@@ -24,6 +28,17 @@ public class LoginActivity extends AppCompatActivity {
         textPassword = findViewById(R.id.text_password);
         textEmail = findViewById(R.id.text_email);
         mAuth = FirebaseAuth.getInstance();
+
+
+        // Verbose Logging set to help debug issues, remove before releasing your app.
+        OneSignal.getDebug().setLogLevel(LogLevel.VERBOSE);
+
+        // OneSignal Initialization
+        OneSignal.initWithContext(this, ONESIGNAL_APP_ID);
+
+        // requestPermission will show the native Android notification permission prompt.
+        // NOTE: It's recommended to use a OneSignal In-App Message to prompt instead.
+        OneSignal.getNotifications().requestPermission(false, Continue.none());
     }
     @Override
     protected void onStart () {

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +15,12 @@ import android.view.MenuItem;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import ues.grupo6.horariospdm.menus.AsignaturaMenuActivity;
 import ues.grupo6.horariospdm.menus.CicloAcademicoMenuActivity;
@@ -27,7 +34,9 @@ import ues.grupo6.horariospdm.menus.TipoGrupoMenuActivity;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener  {
     DrawerLayout drawerLayout;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+    CollectionReference collectionRef = db.collection("evento");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,10 +58,36 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         super.onStart();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if ( user != null ){
-
+            listenToChangesInFirebase();
         }
     }
 
+    private void listenToChangesInFirebase() {
+        collectionRef.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot snapshots,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    System.err.println("Listen failed: " + e);
+                    return;
+                }
+
+                for (DocumentChange dc : snapshots.getDocumentChanges()) {
+                    switch (dc.getType()) {
+                        case ADDED:
+                            System.out.println("New data: " + dc.getDocument().getData());
+                            break;
+                        case MODIFIED:
+                            System.out.println("Modified data: " + dc.getDocument().getData());
+                            break;
+                        case REMOVED:
+                            System.out.println("Removed data: " + dc.getDocument().getData());
+                            break;
+                    }
+                }
+            }
+        });
+    }
     private void initToolBar () {
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar_element);
         setSupportActionBar(toolbar);
