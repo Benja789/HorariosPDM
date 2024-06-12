@@ -9,11 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -23,6 +21,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import ues.grupo6.horariospdm.R;
 
 public class EventoInsertarActivity extends Activity {
@@ -44,7 +48,7 @@ public class EventoInsertarActivity extends Activity {
 
     public void insertarEvento(View v) {
         // Obtén una referencia a la colección de Firestore
-        final CollectionReference myRef = db.collection("evento");
+        CollectionReference myRef = db.collection("evento");
 
         // Obtén una referencia al documento que deseas referenciar
         db.collection("tipo_evento")
@@ -110,4 +114,5 @@ public class EventoInsertarActivity extends Activity {
             }
         });
     }
+
 }

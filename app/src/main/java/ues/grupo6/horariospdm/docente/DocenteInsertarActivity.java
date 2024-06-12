@@ -1,29 +1,45 @@
 package ues.grupo6.horariospdm.docente;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import ues.grupo6.horariospdm.ControlBD;
 import ues.grupo6.horariospdm.R;
+import ues.grupo6.horariospdm.evento.EventoInsertarActivity;
 
 public class DocenteInsertarActivity extends AppCompatActivity {
-    ControlBD helper;
-    EditText text_first_name, text_second_name,text_first_lastname,text_second_lastname, text_married_name, text_profession;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    EditText text_first_name, text_second_name,text_first_lastname,text_second_lastname, text_married_name, text_profession, txt_email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_docente_insertar);
-        helper = new ControlBD(this);
         text_first_name = findViewById(R.id.text_first_name);
         text_second_name = findViewById(R.id.text_second_name);
         text_first_lastname = findViewById(R.id.text_first_lastname);
         text_second_lastname = findViewById(R.id.text_second_lastname);
         text_profession = findViewById(R.id.text_profession);
         text_married_name = findViewById(R.id.text_married_lastname);
+        txt_email = findViewById(R.id.text_email);
     }
 
     public void cleanFields (View v) {
@@ -33,6 +49,7 @@ public class DocenteInsertarActivity extends AppCompatActivity {
         text_second_lastname.setText("");
         text_profession.setText("");
         text_married_name.setText("");
+        txt_email.setText("");
     }
 
     public void saveNewTeacher (View v) {
@@ -84,9 +101,60 @@ public class DocenteInsertarActivity extends AppCompatActivity {
             Toast.makeText(this, "Campo de profesion solo con un maximo de 25 caracteres", Toast.LENGTH_SHORT).show();
             return;
         }
-        helper.abrir();
-        Toast.makeText(this,  helper.insertarDocente(newTeacher), Toast.LENGTH_SHORT).show();
-        helper.cerrar();
-        cleanFields(null);
+
+        if (txt_email.getText().equals("") ){
+            Toast.makeText(this, "Es obligatorio el correo electronico", Toast.LENGTH_SHORT).show();
+            return;
+        } else if ( txt_email.getText().length() >=  50) {
+            Toast.makeText(this, "Campo de correo electronico solo con un maximo de 50 caracteres", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        CollectionReference myRef = db.collection("users");
+
+        // Crea un nuevo documento con los datos que deseas guardar
+        Map<String, Object> data = new HashMap<>();
+        data.put("firstName",newTeacher.getFirstName() + " "+ newTeacher.getSecondName());
+        data.put("lastName", newTeacher.getFirstLastName() + " "+ newTeacher.getSecondLastName());
+        data.put("lastNameMarried", newTeacher.getMarriedName());
+        data.put("docente_titulo", newTeacher.getProfession());
+        data.put("email", txt_email.getText().toString());
+        data.put("estado", true);
+        data.put("deleted", false);
+        data.put("role", "teacher");
+
+
+        // Verifica si el correo electrónico ya existe en la base de datos
+        db.collection("users")
+                .whereEqualTo("email", txt_email.getText().toString())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if (!task.getResult().isEmpty()) {
+                                Toast.makeText(DocenteInsertarActivity.this, "El correo electrónico ya está registrado", Toast.LENGTH_SHORT).show();
+                            } else {
+                                myRef.add(data)
+                                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                            @Override
+                                            public void onSuccess(DocumentReference documentReference) {
+                                                Toast.makeText(DocenteInsertarActivity.this, "Dato guardado correctamente", Toast.LENGTH_SHORT).show();
+                                                cleanFields(null);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.w("TAG", "Error adding document", e);
+                                            }
+                                        });
+                            }
+                        }
+                    }
+                });
+
+
     }
 }
