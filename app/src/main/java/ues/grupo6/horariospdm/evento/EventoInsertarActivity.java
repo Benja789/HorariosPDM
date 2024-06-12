@@ -87,8 +87,6 @@ public class EventoInsertarActivity extends Activity {
                                             }
                                         });
                             }
-                        } else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
                         }
                     }
                 });
